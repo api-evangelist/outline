@@ -1,0 +1,74 @@
+name: Outline Plans and Pricing
+description: Pricing plans for Outline cloud-hosted team knowledge base and wiki service.
+url: https://www.getoutline.com/pricing
+plans:
+  - name: Starter
+    description: For small teams getting started with a shared knowledge base.
+    price: 10
+    unit: month
+    members: 1-10
+    features:
+      - Unlimited documents
+      - Version history
+      - Real-time collaborative editing
+      - Commenting and @mentions
+      - AI question answering
+      - Multi-language translation
+      - 20+ integrations including Zapier
+    api_access: false
+    webhooks: false
+
+  - name: Team
+    description: For growing teams needing SSO and permissions management.
+    price: 79
+    unit: month
+    members: 11-100
+    features:
+      - All Starter features
+      - SSO authentication
+      - Templating
+      - Groups and user permissions
+    api_access: false
+    webhooks: false
+
+  - name: Business
+    description: For larger organizations requiring API access, webhooks, and security audit logging.
+    price: 249
+    unit: month
+    members: 101-200
+    features:
+      - All Team features
+      - API access
+      - Webhooks
+      - Security audit log
+      - Email support
+    api_access: true
+    webhooks: true
+
+  - name: Enterprise
+    description: Custom pricing for teams exceeding 200 users.
+    price: custom
+    unit: month
+    members: 200+
+    features:
+      - All Business features
+      - Custom pricing
+      - Dedicated support
+    api_access: true
+    webhooks: true
+
+discounts:
+  - name: Non-Profit / Education
+    description: 30% discount for non-profits and educational institutions.
+    percent: 30
+  - name: Climate Non-Profit
+    description: Sponsored accounts available for climate-focused non-profits.
+    percent: 100
+
+trial:
+  description: First 30 days are free; read-only access until payment is added.
+  days: 30
+
+self_hosted:
+  description: Open-source self-hosted option available with no per-seat fee.
+  url: https://github.com/outline/outline

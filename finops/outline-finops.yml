@@ -1,0 +1,61 @@
+name: Outline FinOps
+description: Financial operations guidance for managing Outline API and subscription costs.
+url: https://www.getoutline.com/pricing
+
+cost_drivers:
+  - name: Team Size (Seat Count)
+    description: Pricing is tiered by number of members. Plans auto-upgrade if team size exceeds current tier.
+    tiers:
+      - range: 1-10 members
+        price: 10/month
+        plan: Starter
+      - range: 11-100 members
+        price: 79/month
+        plan: Team
+      - range: 101-200 members
+        price: 249/month
+        plan: Business
+      - range: 200+ members
+        price: custom
+        plan: Enterprise
+
+  - name: API Access Requirement
+    description: API and webhook access is only available on the Business plan ($249/month) or higher. Teams requiring programmatic integration must budget for the Business tier minimum.
+    minimum_plan: Business
+    minimum_cost: 249/month
+
+optimization:
+  - strategy: Right-Size Team Tier
+    description: Monitor active member count and downgrade tier if team shrinks below a threshold boundary to avoid overpaying.
+
+  - strategy: Self-Host for API Access
+    description: The open-source self-hosted version of Outline provides full API access at no per-seat cost. Infrastructure costs (server, storage, bandwidth) apply but can be significantly lower than $249/month for smaller teams needing API access.
+    url: https://github.com/outline/outline
+
+  - strategy: Non-Profit / Education Discount
+    description: Eligible organizations receive a 30% discount across all paid plans, reducing Business plan cost to approximately $174/month.
+    discount: 30%
+
+  - strategy: Annual Billing
+    description: Check if annual billing options are available directly with Outline sales for multi-year commitments to reduce per-month effective cost.
+
+  - strategy: API Key Scoping
+    description: Scope API keys to minimum required endpoints to reduce attack surface and simplify cost attribution across teams or projects.
+
+self_hosted_costs:
+  description: Estimated monthly infrastructure costs for a self-hosted Outline deployment.
+  components:
+    - name: Application Server
+      estimate: $20-100/month
+      notes: Depends on team size and usage; small VPS sufficient for teams under 100 users.
+    - name: PostgreSQL Database
+      estimate: $15-50/month
+      notes: Managed database service recommended for reliability.
+    - name: Object Storage (S3-compatible)
+      estimate: $1-20/month
+      notes: For attachments and file operations; cost scales with stored content volume.
+    - name: Redis Cache
+      estimate: $10-25/month
+      notes: Required for session management and background jobs.
+  total_estimate: $46-195/month
+  break_even: Self-hosting becomes cost-effective vs Business plan for teams needing API access but below the 101-200 member tier.

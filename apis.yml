@@ -1,0 +1,68 @@
+aid: outline
+name: Outline
+description: Outline is an open-source team knowledge base and wiki with a fully featured RPC-style REST API for programmatically managing documents, collections, teams, users, groups, comments, shares, attachments, and importing or exporting organizational knowledge. The main application itself is built on the same API it exposes publicly.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/outline/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Knowledge Base
+  - Wiki
+  - Documents
+  - Collaboration
+  - Open Source
+  - Team
+apis:
+  - aid: outline:outline-api
+    name: Outline API
+    description: An RPC-style REST API that enables programmatic access to all aspects of Outline data including documents, collections, users, groups, comments, shares, attachments, revisions, and file operations. Authentication via Bearer API keys or OAuth 2.0.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://www.getoutline.com/developers
+    baseURL: https://app.getoutline.com/api
+    tags:
+      - Documents
+      - Collections
+      - Users
+      - Groups
+      - Comments
+      - Shares
+      - Attachments
+      - Revisions
+      - Webhooks
+      - OAuth
+    properties:
+      - type: Documentation
+        url: https://www.getoutline.com/developers
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/outline/openapi/main/spec3.yml
+      - type: GitHubRepository
+        url: https://github.com/outline/openapi
+common:
+  - type: Documentation
+    url: https://docs.getoutline.com/s/guide
+  - type: OpenAPI
+    url: https://raw.githubusercontent.com/outline/openapi/main/spec3.yml
+  - type: GitHubOrganization
+    url: https://github.com/outline
+  - type: GitHubRepository
+    url: https://github.com/outline/outline
+  - type: Changelog
+    url: https://www.getoutline.com/changelog
+  - type: Status
+    url: https://status.getoutline.com/
+  - type: Webhooks
+    url: https://docs.getoutline.com/s/47305ccd-9f29-4edf-b48a-21c239bd625e
+  - type: Integrations
+    url: https://docs.getoutline.com/s/hosting/doc/integrations-Oav5MXNDJk
+  - type: Pricing
+    url: https://www.getoutline.com/pricing
+  - type: Plans
+    url: plans/outline-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/outline-rate-limits.yml
+  - type: FinOps
+    url: finops/outline-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,38 @@
+name: Outline Rate Limits
+description: Rate limiting configuration for the Outline API, covering both cloud-hosted and self-hosted deployments.
+url: https://docs.getoutline.com/s/hosting/doc/rate-limiter-HSqErsUgXH
+
+cloud_hosted:
+  description: Rate limits applied on the getoutline.com hosted service.
+  global:
+    requests_per_minute: 1000
+    scope: per IP address
+  sensitive_endpoints:
+    description: Mutation endpoints (create, update, delete) may have stricter default limits.
+    note: Specific per-endpoint thresholds are not publicly documented for the hosted service.
+
+self_hosted:
+  description: Rate limiting for self-hosted Outline installations.
+  enabled_by_default: true
+  configuration:
+    - variable: RATE_LIMITER_ENABLED
+      description: Enable or disable the rate limiter entirely.
+      default: true
+    - variable: RATE_LIMITER_DURATION_WINDOW
+      description: Time window for rate limiting measured in seconds.
+      recommended: 60
+    - variable: RATE_LIMITER_REQUESTS
+      description: Maximum number of requests per IP address per time window.
+      example: 1000
+  global:
+    requests_per_minute: 1000
+    scope: per IP address
+  sensitive_endpoints:
+    description: Endpoints classed as mutations (create, update, delete) receive additional per-endpoint protections with sensible defaults.
+
+authentication:
+  description: API keys are scoped and can be restricted to specific endpoints or endpoint patterns using space-separated wildcards.
+  examples:
+    - documents.info
+    - "*.info"
+    - "documents.*"
