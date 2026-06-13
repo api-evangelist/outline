@@ -1,0 +1,37 @@
+{
+  "operationId": "documentsImport",
+  "path": "/documents.import",
+  "method": "POST",
+  "summary": "Import a file as a document",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "file": {
+        "type": "object",
+        "description": "Plain text, markdown, docx, csv, tsv, and html format are supported."
+      },
+      "collectionId": {
+        "type": "string",
+        "format": "uuid",
+        "nullable": true,
+        "description": "Identifier for the collection to import into. One of collectionId or parentDocumentId is required."
+      },
+      "parentDocumentId": {
+        "type": "string",
+        "format": "uuid",
+        "nullable": true,
+        "description": "Identifier for the parent document to import under. One of collectionId or parentDocumentId is required."
+      },
+      "publish": {
+        "type": "boolean",
+        "description": "Whether to publish the imported document"
+      }
+    },
+    "required": [
+      "file"
+    ]
+  }
+}

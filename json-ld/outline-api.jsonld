@@ -1,0 +1,41 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "WebAPI",
+  "name": "Outline API",
+  "description": "The Outline API is an RPC-style REST API for programmatically managing knowledge base documents, collections, teams, users, groups, comments, shares, and attachments.",
+  "version": "0.1.0",
+  "url": "https://www.getoutline.com/developers",
+  "documentation": "https://www.getoutline.com/developers",
+  "termsOfService": "https://www.getoutline.com/terms",
+  "provider": {
+    "@type": "Organization",
+    "name": "Outline",
+    "url": "https://www.getoutline.com"
+  },
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://app.getoutline.com/api"
+  },
+  "featureList": [
+    "AccessRequests",
+    "Attachments",
+    "Auth",
+    "Collections",
+    "Comments",
+    "DataAttributes",
+    "Documents",
+    "Events",
+    "FileOperations",
+    "Groups",
+    "OAuthClients",
+    "OAuthAuthentications",
+    "Revisions",
+    "Shares",
+    "Stars",
+    "Users",
+    "Templates",
+    "Views"
+  ],
+  "license": "https://www.getoutline.com/terms",
+  "operatingSystem": "Cloud"
+}

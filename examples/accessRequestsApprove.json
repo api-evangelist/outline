@@ -1,0 +1,32 @@
+{
+  "operationId": "accessRequestsApprove",
+  "path": "/accessRequests.approve",
+  "method": "POST",
+  "summary": "Approve an access request",
+  "tags": [
+    "AccessRequests"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Unique identifier for the access request."
+      },
+      "permission": {
+        "type": "string",
+        "description": "The permission to grant the requesting user.",
+        "enum": [
+          "read",
+          "read_write",
+          "admin"
+        ],
+        "default": "read"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

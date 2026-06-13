@@ -1,0 +1,133 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Share",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the object.",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "documentTitle": {
+      "type": "string",
+      "description": "Title of the shared document.",
+      "example": "React best practices",
+      "readOnly": true
+    },
+    "documentUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the original document.",
+      "readOnly": true
+    },
+    "sourceTitle": {
+      "type": "string",
+      "description": "Title of the shared document or collection.",
+      "readOnly": true
+    },
+    "sourcePath": {
+      "type": "string",
+      "description": "Path of the shared document or collection.",
+      "readOnly": true
+    },
+    "documentId": {
+      "type": "string",
+      "format": "uuid",
+      "nullable": true,
+      "description": "Identifier of the shared document, if any.",
+      "readOnly": true
+    },
+    "collectionId": {
+      "type": "string",
+      "format": "uuid",
+      "nullable": true,
+      "description": "Identifier of the shared collection, if any.",
+      "readOnly": true
+    },
+    "urlId": {
+      "type": "string",
+      "nullable": true,
+      "description": "Short URL identifier for the share, if set.",
+      "readOnly": true
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the publicly shared document.",
+      "readOnly": true
+    },
+    "domain": {
+      "type": "string",
+      "nullable": true,
+      "description": "Custom domain the share is served on, if any."
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 255,
+      "nullable": true,
+      "description": "Override title displayed on the publicly shared page. If not set the source document or collection title is used."
+    },
+    "iconUrl": {
+      "type": "string",
+      "format": "uri",
+      "maxLength": 4096,
+      "nullable": true,
+      "description": "URL of an icon displayed on the publicly shared page, overriding the workspace branding."
+    },
+    "published": {
+      "type": "boolean",
+      "example": false,
+      "description": "If true the share can be loaded without a user account."
+    },
+    "includeChildDocuments": {
+      "type": "boolean",
+      "example": true,
+      "description": "If to also give permission to view documents nested beneath this one."
+    },
+    "allowSubscriptions": {
+      "type": "boolean",
+      "example": true,
+      "description": "Whether visitors to the public share can subscribe to receive email notifications when the document is updated. Requires SMTP to be configured on the workspace."
+    },
+    "allowIndexing": {
+      "type": "boolean",
+      "description": "Whether the shared page may be indexed by search engines."
+    },
+    "showLastUpdated": {
+      "type": "boolean",
+      "description": "Whether to show the last-updated time on the shared page."
+    },
+    "showTOC": {
+      "type": "boolean",
+      "description": "Whether to show a table of contents on the shared page."
+    },
+    "views": {
+      "type": "number",
+      "description": "The number of times the shared page has been viewed.",
+      "readOnly": true
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this share was created",
+      "readOnly": true
+    },
+    "createdBy": {
+      "$ref": "#/components/schemas/User"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this share was edited",
+      "readOnly": true
+    },
+    "lastAccessedAt": {
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "description": "Date and time when this share was last viewed. Only returned to workspace admins.",
+      "readOnly": true
+    }
+  }
+}

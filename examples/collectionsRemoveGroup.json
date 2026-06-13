@@ -1,0 +1,27 @@
+{
+  "operationId": "collectionsRemoveGroup",
+  "path": "/collections.remove_group",
+  "method": "POST",
+  "summary": "Remove a collection group",
+  "tags": [
+    "Collections"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Identifier for the collection",
+        "format": "uuid"
+      },
+      "groupId": {
+        "type": "string",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id",
+      "groupId"
+    ]
+  }
+}

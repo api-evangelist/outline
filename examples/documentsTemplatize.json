@@ -1,0 +1,32 @@
+{
+  "operationId": "documentsTemplatize",
+  "path": "/documents.templatize",
+  "method": "POST",
+  "summary": "Create a template from a document",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "collectionId": {
+        "type": "string",
+        "format": "uuid",
+        "nullable": true,
+        "description": "Identifier for the collection where the template should be created"
+      },
+      "publish": {
+        "type": "boolean",
+        "description": "Whether the new template should be published"
+      }
+    },
+    "required": [
+      "id",
+      "publish"
+    ]
+  }
+}

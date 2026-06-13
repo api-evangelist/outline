@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Team",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the object.",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of this workspace, it is usually auto-generated when the first SSO connection is made but can be changed if necessary."
+    },
+    "description": {
+      "type": "string",
+      "nullable": true,
+      "description": "A short description of this workspace."
+    },
+    "avatarUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL for the image associated with this workspace, it will be displayed in the workspace switcher and in the top left of the knowledge base along with the name."
+    },
+    "sharing": {
+      "type": "boolean",
+      "description": "Whether this workspace has share links globally enabled. If this value is false then all sharing UI and APIs are disabled."
+    },
+    "defaultCollectionId": {
+      "type": "string",
+      "description": "If set then the referenced collection is where users will be redirected to after signing in instead of the Home screen",
+      "format": "uuid"
+    },
+    "defaultUserRole": {
+      "$ref": "#/components/schemas/UserRole"
+    },
+    "memberCollectionCreate": {
+      "type": "boolean",
+      "description": "Whether members are allowed to create new collections. If false then only admins can create collections."
+    },
+    "memberTeamCreate": {
+      "type": "boolean",
+      "description": "Whether members are allowed to create new groups. If false then only admins can create groups."
+    },
+    "documentEmbeds": {
+      "type": "boolean",
+      "description": "Whether this workspace has embeds in documents globally enabled. It can be disabled to reduce potential data leakage to third parties."
+    },
+    "inviteRequired": {
+      "type": "boolean",
+      "description": "Whether an invite is required to join this workspace, if false users may join with a linked SSO provider."
+    },
+    "allowedDomains": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "A hostname that user emails are restricted to"
+      }
+    },
+    "guestSignin": {
+      "type": "boolean",
+      "description": "Whether this workspace has guest signin enabled. Guests can signin with an email address and are not required to have a Google Workspace/Slack SSO account once invited."
+    },
+    "subdomain": {
+      "type": "string",
+      "description": "Represents the subdomain at which this workspace's knowledge base can be accessed."
+    },
+    "domain": {
+      "type": "string",
+      "nullable": true,
+      "description": "The custom domain configured for this workspace, if any."
+    },
+    "url": {
+      "type": "string",
+      "description": "The fully qualified URL at which this workspace's knowledge base can be accessed.",
+      "readOnly": true,
+      "format": "uri"
+    },
+    "passkeysEnabled": {
+      "type": "boolean",
+      "description": "Whether passkey authentication is enabled for this workspace."
+    },
+    "preferences": {
+      "type": "object",
+      "nullable": true,
+      "description": "Workspace-level preference flags."
+    },
+    "guidanceMCP": {
+      "type": "string",
+      "nullable": true,
+      "description": "Guidance text provided to MCP integrations."
+    }
+  }
+}

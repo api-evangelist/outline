@@ -1,0 +1,27 @@
+{
+  "operationId": "documentsUnpublish",
+  "path": "/documents.unpublish",
+  "method": "POST",
+  "summary": "Unpublish a document",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "example": "hDYep1TPAM",
+        "description": "Unique identifier for the document. Either the UUID or the urlId is acceptable."
+      },
+      "detach": {
+        "type": "boolean",
+        "description": "Whether to detach the document from the collection",
+        "default": false
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

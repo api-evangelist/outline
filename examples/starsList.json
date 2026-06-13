@@ -1,0 +1,12 @@
+{
+  "operationId": "starsList",
+  "path": "/stars.list",
+  "method": "POST",
+  "summary": "List all stars",
+  "tags": [
+    "Stars"
+  ],
+  "requestSchema": {
+    "$ref": "#/components/schemas/Pagination"
+  }
+}

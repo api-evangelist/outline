@@ -1,0 +1,29 @@
+{
+  "operationId": "documentsAddUser",
+  "path": "/documents.add_user",
+  "method": "POST",
+  "summary": "Add a document user",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the document. Either the UUID or the urlId is acceptable."
+      },
+      "userId": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "permission": {
+        "$ref": "#/components/schemas/Permission"
+      }
+    },
+    "required": [
+      "id",
+      "userId"
+    ]
+  }
+}

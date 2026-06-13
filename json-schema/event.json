@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Event",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the object.",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "name": {
+      "type": "string",
+      "example": "documents.create",
+      "readOnly": true
+    },
+    "modelId": {
+      "type": "string",
+      "description": "Identifier for the object this event is associated with when it is not one of document, collection, or user.",
+      "format": "uuid",
+      "readOnly": true
+    },
+    "userId": {
+      "type": "string",
+      "description": "Identifier for the user associated with the event, if any.",
+      "format": "uuid",
+      "readOnly": true
+    },
+    "actorId": {
+      "type": "string",
+      "description": "The user that performed the action.",
+      "format": "uuid",
+      "readOnly": true
+    },
+    "actorIpAddress": {
+      "type": "string",
+      "description": "The ip address the action was performed from. This field is only returned when the `auditLog` boolean is true.",
+      "example": "60.169.88.100",
+      "readOnly": true
+    },
+    "collectionId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identifier for the associated collection, if any",
+      "readOnly": true
+    },
+    "documentId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identifier for the associated document, if any",
+      "readOnly": true
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "The date and time that this event was created",
+      "readOnly": true,
+      "format": "date-time"
+    },
+    "data": {
+      "type": "object",
+      "example": {
+        "name": "Equipment list"
+      },
+      "description": "Additional unstructured data associated with the event",
+      "readOnly": true
+    },
+    "changes": {
+      "type": "object",
+      "nullable": true,
+      "description": "The set of changes made by this event. This field is only returned when the `auditLog` boolean is true.",
+      "readOnly": true
+    },
+    "actor": {
+      "$ref": "#/components/schemas/User"
+    }
+  }
+}

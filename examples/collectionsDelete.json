@@ -1,0 +1,21 @@
+{
+  "operationId": "collectionsDelete",
+  "path": "/collections.delete",
+  "method": "POST",
+  "summary": "Delete a collection",
+  "tags": [
+    "Collections"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

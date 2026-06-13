@@ -1,0 +1,37 @@
+{
+  "operationId": "collectionsGroupMemberships",
+  "path": "/collections.group_memberships",
+  "method": "POST",
+  "summary": "List all collection group members",
+  "tags": [
+    "Collections"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifier for the collection",
+            "format": "uuid"
+          },
+          "query": {
+            "type": "string",
+            "description": "Filter memberships by group names",
+            "example": "developers"
+          },
+          "permission": {
+            "$ref": "#/components/schemas/Permission"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "operationId": "accessRequestsDismiss",
+  "path": "/accessRequests.dismiss",
+  "method": "POST",
+  "summary": "Dismiss an access request",
+  "tags": [
+    "AccessRequests"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Unique identifier for the access request."
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

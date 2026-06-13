@@ -1,0 +1,29 @@
+{
+  "operationId": "documentsMemberships",
+  "path": "/documents.memberships",
+  "method": "POST",
+  "summary": "List document memberships",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "example": "hDYep1TPAM",
+        "description": "Unique identifier for the document. Either the UUID or the urlId is acceptable."
+      },
+      "query": {
+        "type": "string",
+        "description": "If set, will filter the results by user name"
+      },
+      "permission": {
+        "$ref": "#/components/schemas/Permission"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "operationId": "documentsDocuments",
+  "path": "/documents.documents",
+  "method": "POST",
+  "summary": "Retrieve a document's child structure",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the document. Either the UUID or the urlId is acceptable."
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

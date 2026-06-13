@@ -1,0 +1,52 @@
+{
+  "operationId": "usersList",
+  "path": "/users.list",
+  "method": "POST",
+  "summary": "List all users",
+  "tags": [
+    "Users"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "$ref": "#/components/schemas/Sorting"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "example": "jane"
+          },
+          "emails": {
+            "type": "array",
+            "description": "Array of emails",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "jane.crandall@mail.com",
+              "prudence.crandall@mail.com"
+            ]
+          },
+          "filter": {
+            "type": "string",
+            "description": "The status to filter by",
+            "enum": [
+              "all",
+              "invited",
+              "active",
+              "suspended"
+            ]
+          },
+          "role": {
+            "$ref": "#/components/schemas/UserRole"
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "operationId": "documentsAddGroup",
+  "path": "/documents.add_group",
+  "method": "POST",
+  "summary": "Add a group to a document",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the document. Either the UUID or the urlId is acceptable."
+      },
+      "groupId": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "permission": {
+        "$ref": "#/components/schemas/Permission"
+      }
+    },
+    "required": [
+      "id",
+      "groupId"
+    ]
+  }
+}

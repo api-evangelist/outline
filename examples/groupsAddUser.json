@@ -1,0 +1,28 @@
+{
+  "operationId": "groupsAddUser",
+  "path": "/groups.add_user",
+  "method": "POST",
+  "summary": "Add a group member",
+  "tags": [
+    "Groups"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Identifier for the group",
+        "format": "uuid"
+      },
+      "userId": {
+        "type": "string",
+        "description": "Identifier for the user to add to the group",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id",
+      "userId"
+    ]
+  }
+}

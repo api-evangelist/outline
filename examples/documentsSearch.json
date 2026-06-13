@@ -1,0 +1,95 @@
+{
+  "operationId": "documentsSearch",
+  "path": "/documents.search",
+  "method": "POST",
+  "summary": "Search all documents",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "example": "hiring"
+          },
+          "userId": {
+            "type": "string",
+            "description": "Any documents that have not been edited by the user identifier will be filtered out",
+            "format": "uuid"
+          },
+          "collectionId": {
+            "type": "string",
+            "description": "A collection to search within",
+            "format": "uuid"
+          },
+          "documentId": {
+            "type": "string",
+            "description": "A document to search within",
+            "format": "uuid"
+          },
+          "statusFilter": {
+            "type": "array",
+            "description": "Document statuses to include in results",
+            "items": {
+              "type": "string",
+              "enum": [
+                "draft",
+                "archived",
+                "published"
+              ]
+            }
+          },
+          "dateFilter": {
+            "type": "string",
+            "description": "Any documents that have not been updated within the specified period will be filtered out",
+            "example": "month",
+            "enum": [
+              "day",
+              "week",
+              "month",
+              "year"
+            ]
+          },
+          "shareId": {
+            "type": "string",
+            "description": "Filter results to the collection or document referenced by the shareId"
+          },
+          "snippetMinWords": {
+            "type": "number",
+            "description": "Minimum number of words to show in search result snippets",
+            "default": 20
+          },
+          "snippetMaxWords": {
+            "type": "number",
+            "description": "Maximum number of words to show in search result snippets",
+            "default": 30
+          },
+          "sort": {
+            "type": "string",
+            "enum": [
+              "relevance",
+              "createdAt",
+              "updatedAt",
+              "title"
+            ],
+            "description": "Specifies the attributes by which search results will be sorted"
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "ASC",
+              "DESC"
+            ],
+            "description": "Specifies the sort order with respect to sort field"
+          }
+        }
+      }
+    ]
+  }
+}

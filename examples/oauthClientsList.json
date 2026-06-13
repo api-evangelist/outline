@@ -1,0 +1,12 @@
+{
+  "operationId": "oauthClientsList",
+  "path": "/oauthClients.list",
+  "method": "POST",
+  "summary": "List accessible OAuth clients",
+  "tags": [
+    "OAuthClients"
+  ],
+  "requestSchema": {
+    "$ref": "#/components/schemas/Pagination"
+  }
+}

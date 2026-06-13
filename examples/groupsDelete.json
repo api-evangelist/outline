@@ -1,0 +1,21 @@
+{
+  "operationId": "groupsDelete",
+  "path": "/groups.delete",
+  "method": "POST",
+  "summary": "Delete a group",
+  "tags": [
+    "Groups"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

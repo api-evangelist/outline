@@ -1,0 +1,29 @@
+{
+  "operationId": "collectionsExport",
+  "path": "/collections.export",
+  "method": "POST",
+  "summary": "Export a collection",
+  "tags": [
+    "Collections"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "format": {
+        "type": "string",
+        "enum": [
+          "outline-markdown",
+          "json",
+          "html"
+        ]
+      },
+      "id": {
+        "type": "string",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

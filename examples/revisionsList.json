@@ -1,0 +1,29 @@
+{
+  "operationId": "revisionsList",
+  "path": "/revisions.list",
+  "method": "POST",
+  "summary": "List all revisions",
+  "tags": [
+    "Revisions"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "$ref": "#/components/schemas/Sorting"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "documentId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The document ID to retrieve revisions for"
+          }
+        }
+      }
+    ]
+  }
+}

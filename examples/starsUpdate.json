@@ -1,0 +1,25 @@
+{
+  "operationId": "starsUpdate",
+  "path": "/stars.update",
+  "method": "POST",
+  "summary": "Update a stars order in the sidebar",
+  "tags": [
+    "Stars"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "index": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "id",
+      "index"
+    ]
+  }
+}

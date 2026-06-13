@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Ability",
+  "description": "A single permission granted by a policy",
+  "example": true,
+  "oneOf": [
+    {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    {
+      "type": "boolean"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "operationId": "templatesList",
+  "path": "/templates.list",
+  "method": "POST",
+  "summary": "List all templates",
+  "tags": [
+    "Templates"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "$ref": "#/components/schemas/Sorting"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "collectionId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Optionally filter to a specific collection"
+          }
+        }
+      }
+    ]
+  }
+}

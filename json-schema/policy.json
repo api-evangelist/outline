@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Policy",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the object this policy references.",
+      "format": "uuid",
+      "readOnly": true
+    },
+    "abilities": {
+      "type": "object",
+      "description": "The abilities that are allowed by this policy, if an array is returned then the individual ID's in the array represent the memberships that grant the ability.",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/Ability"
+      },
+      "example": {
+        "read": true,
+        "update": true,
+        "delete": false
+      }
+    }
+  }
+}

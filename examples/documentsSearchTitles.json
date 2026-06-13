@@ -1,0 +1,87 @@
+{
+  "operationId": "documentsSearchTitles",
+  "path": "/documents.search_titles",
+  "method": "POST",
+  "summary": "Search document titles",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query to match against document titles"
+          },
+          "collectionId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Filter to a specific collection"
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Filter results based on user"
+          },
+          "documentId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Filter results based on content within a document and its children"
+          },
+          "statusFilter": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "draft",
+                "archived",
+                "published"
+              ]
+            },
+            "description": "Document statuses to include in results"
+          },
+          "dateFilter": {
+            "type": "string",
+            "description": "Any documents that have not been updated within the specified period will be filtered out",
+            "enum": [
+              "day",
+              "week",
+              "month",
+              "year"
+            ]
+          },
+          "shareId": {
+            "type": "string",
+            "description": "Filter results for the collection or document referenced by the shareId"
+          },
+          "sort": {
+            "type": "string",
+            "enum": [
+              "relevance",
+              "createdAt",
+              "updatedAt",
+              "title"
+            ],
+            "description": "Specifies the attributes by which search results will be sorted"
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "ASC",
+              "DESC"
+            ],
+            "description": "Specifies the sort order with respect to sort field"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "operationId": "sharesRevoke",
+  "path": "/shares.revoke",
+  "method": "POST",
+  "summary": "Revoke a share",
+  "tags": [
+    "Shares"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

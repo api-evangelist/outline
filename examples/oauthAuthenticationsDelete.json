@@ -1,0 +1,27 @@
+{
+  "operationId": "oauthAuthenticationsDelete",
+  "path": "/oauthAuthentications.delete",
+  "method": "POST",
+  "summary": "Delete an OAuth authentiation",
+  "tags": [
+    "OAuthAuthentications"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "oauthClientId": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "scope": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "oauthClientId"
+    ]
+  }
+}

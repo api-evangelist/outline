@@ -1,0 +1,47 @@
+{
+  "operationId": "collectionsCreate",
+  "path": "/collections.create",
+  "method": "POST",
+  "summary": "Create a collection",
+  "tags": [
+    "Collections"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "example": "Human Resources"
+      },
+      "description": {
+        "type": "string",
+        "description": "A brief description of the collection, markdown supported. Only one of `description` or `data` may be provided.",
+        "example": "HR documentation is confidential and should be handled with care."
+      },
+      "data": {
+        "type": "object",
+        "description": "The collection description as a rich-text ProseMirror JSON document. Only one of `description` or `data` may be provided."
+      },
+      "permission": {
+        "$ref": "#/components/schemas/Permission"
+      },
+      "icon": {
+        "type": "string",
+        "description": "A string that represents an icon in the outline-icons package or an emoji"
+      },
+      "color": {
+        "type": "string",
+        "description": "A hex color code for the collection icon",
+        "example": "#123123"
+      },
+      "sharing": {
+        "type": "boolean",
+        "description": "Whether public sharing of documents is allowed",
+        "example": false
+      }
+    },
+    "required": [
+      "name"
+    ]
+  }
+}

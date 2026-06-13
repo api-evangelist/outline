@@ -1,0 +1,22 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "outline": "https://www.getoutline.com/api#",
+    "Document": "outline:Document",
+    "Collection": "outline:Collection",
+    "User": "outline:User",
+    "Group": "outline:Group",
+    "Comment": "outline:Comment",
+    "Share": "outline:Share",
+    "Revision": "outline:Revision",
+    "Attachment": "outline:Attachment",
+    "Team": "outline:Team",
+    "Event": "outline:Event",
+    "FileOperation": "outline:FileOperation",
+    "Star": "outline:Star",
+    "View": "outline:View",
+    "Auth": "outline:Auth",
+    "OAuthClient": "outline:OAuthClient",
+    "Policy": "outline:Policy"
+  }
+}

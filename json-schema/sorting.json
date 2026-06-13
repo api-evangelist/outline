@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sorting",
+  "type": "object",
+  "properties": {
+    "sort": {
+      "type": "string",
+      "example": "updatedAt"
+    },
+    "direction": {
+      "type": "string",
+      "example": "DESC",
+      "enum": [
+        "ASC",
+        "DESC"
+      ]
+    }
+  }
+}

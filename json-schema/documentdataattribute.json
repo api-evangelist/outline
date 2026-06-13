@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DocumentDataAttribute",
+  "type": "object",
+  "properties": {
+    "dataAttributeId": {
+      "type": "string",
+      "description": "Unique identifier for the associated data attribute.",
+      "format": "uuid"
+    },
+    "value": {
+      "description": "The value of the data attribute for this document.",
+      "example": "In Progress",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "The date and time that this object attribute was last changed",
+      "readOnly": true,
+      "format": "date-time"
+    }
+  }
+}

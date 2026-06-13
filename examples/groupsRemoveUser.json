@@ -1,0 +1,28 @@
+{
+  "operationId": "groupsRemoveUser",
+  "path": "/groups.remove_user",
+  "method": "POST",
+  "summary": "Remove a group member",
+  "tags": [
+    "Groups"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Identifier for the group",
+        "format": "uuid"
+      },
+      "userId": {
+        "type": "string",
+        "description": "Identifier for the user to remove from the group",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id",
+      "userId"
+    ]
+  }
+}

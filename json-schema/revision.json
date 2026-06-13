@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Revision",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the object.",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "documentId": {
+      "type": "string",
+      "description": "Identifier for the associated document.",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of the document.",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string",
+      "nullable": true,
+      "description": "The name of the revision, if any.",
+      "readOnly": true
+    },
+    "data": {
+      "type": "object",
+      "description": "The body of the revision as a Prosemirror document.",
+      "readOnly": true
+    },
+    "text": {
+      "type": "string",
+      "description": "Body of the document, may contain markdown formatting",
+      "readOnly": true
+    },
+    "icon": {
+      "type": "string",
+      "nullable": true,
+      "description": "An emoji or icon associated with the revision.",
+      "readOnly": true
+    },
+    "color": {
+      "type": "string",
+      "nullable": true,
+      "description": "The color of the revision icon in hex format.",
+      "readOnly": true
+    },
+    "collaborators": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/User"
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this revision was created",
+      "readOnly": true
+    },
+    "createdBy": {
+      "$ref": "#/components/schemas/User"
+    },
+    "createdById": {
+      "type": "string",
+      "description": "Identifier for the user who created this revision.",
+      "format": "uuid",
+      "readOnly": true
+    },
+    "deletedAt": {
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "description": "Date and time when this revision was deleted, if applicable.",
+      "readOnly": true
+    }
+  }
+}

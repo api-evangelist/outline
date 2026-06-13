@@ -1,0 +1,22 @@
+{
+  "operationId": "collectionsInfo",
+  "path": "/collections.info",
+  "method": "POST",
+  "summary": "Retrieve a collection",
+  "tags": [
+    "Collections"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the collection.",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

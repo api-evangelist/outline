@@ -1,0 +1,9 @@
+{
+  "operationId": "authConfig",
+  "path": "/auth.config",
+  "method": "POST",
+  "summary": "Retrieve auth config",
+  "tags": [
+    "Auth"
+  ]
+}

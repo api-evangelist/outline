@@ -1,0 +1,28 @@
+{
+  "operationId": "collectionsRemoveUser",
+  "path": "/collections.remove_user",
+  "method": "POST",
+  "summary": "Remove a collection user",
+  "tags": [
+    "Collections"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Identifier for the collection",
+        "format": "uuid"
+      },
+      "userId": {
+        "type": "string",
+        "description": "Identifier for the user to remove from the collection",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id",
+      "userId"
+    ]
+  }
+}

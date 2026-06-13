@@ -1,0 +1,25 @@
+{
+  "operationId": "commentsUpdate",
+  "path": "/comments.update",
+  "method": "POST",
+  "summary": "Update a comment",
+  "tags": [
+    "Comments"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "data": {
+        "type": "object"
+      }
+    },
+    "required": [
+      "id",
+      "data"
+    ]
+  }
+}

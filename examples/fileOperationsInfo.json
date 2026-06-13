@@ -1,0 +1,22 @@
+{
+  "operationId": "fileOperationsInfo",
+  "path": "/fileOperations.info",
+  "method": "POST",
+  "summary": "Retrieve a file operation",
+  "tags": [
+    "FileOperations"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the file operation.",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

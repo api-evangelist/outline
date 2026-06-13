@@ -1,0 +1,38 @@
+{
+  "operationId": "commentsList",
+  "path": "/comments.list",
+  "method": "POST",
+  "summary": "List all comments",
+  "tags": [
+    "Comments"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "$ref": "#/components/schemas/Sorting"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "documentId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Filter to a specific document"
+          },
+          "collectionId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Filter to a specific collection"
+          },
+          "includeAnchorText": {
+            "type": "boolean",
+            "description": "Include the document text that the comment is anchored to, if any, in the response."
+          }
+        }
+      }
+    ]
+  }
+}

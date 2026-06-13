@@ -1,0 +1,39 @@
+{
+  "operationId": "groupsList",
+  "path": "/groups.list",
+  "method": "POST",
+  "summary": "List all groups",
+  "tags": [
+    "Groups"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "$ref": "#/components/schemas/Sorting"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Filter to groups including a specific user"
+          },
+          "externalId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Filter to groups matching an external ID"
+          },
+          "query": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Filter to groups matching a search query"
+          }
+        }
+      }
+    ]
+  }
+}

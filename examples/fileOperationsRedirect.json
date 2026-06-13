@@ -1,0 +1,22 @@
+{
+  "operationId": "fileOperationsRedirect",
+  "path": "/fileOperations.redirect",
+  "method": "POST",
+  "summary": "Retrieve the file",
+  "tags": [
+    "FileOperations"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the file operation.",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

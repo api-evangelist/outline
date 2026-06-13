@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DocumentInsight",
+  "type": "object",
+  "description": "A rollup of activity counts for a document over a daily or weekly period.",
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "The UTC day the rollup represents. For weekly rollups this is the first day (Monday) of the week."
+    },
+    "period": {
+      "type": "string",
+      "description": "The length of time the rollup covers. Daily rollups are stored for recent activity, older rollups are aggregated into weekly buckets.",
+      "enum": [
+        "day",
+        "week"
+      ]
+    },
+    "viewCount": {
+      "type": "integer",
+      "description": "Total number of document views on this day."
+    },
+    "viewerCount": {
+      "type": "integer",
+      "description": "Number of unique viewers on this day."
+    },
+    "commentCount": {
+      "type": "integer",
+      "description": "Total comments made on this day."
+    },
+    "reactionCount": {
+      "type": "integer",
+      "description": "Total reactions added on this day."
+    },
+    "revisionCount": {
+      "type": "integer",
+      "description": "Number of document revisions on this day."
+    },
+    "editorCount": {
+      "type": "integer",
+      "description": "Number of unique editors on this day."
+    }
+  }
+}

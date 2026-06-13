@@ -1,0 +1,22 @@
+{
+  "operationId": "attachmentsRedirect",
+  "path": "/attachments.redirect",
+  "method": "POST",
+  "summary": "Retrieve an attachment",
+  "tags": [
+    "Attachments"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the attachment.",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "operationId": "groupsUpdate",
+  "path": "/groups.update",
+  "method": "POST",
+  "summary": "Update a group",
+  "tags": [
+    "Groups"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "name": {
+        "type": "string",
+        "example": "Designers"
+      }
+    },
+    "required": [
+      "id",
+      "name"
+    ]
+  }
+}

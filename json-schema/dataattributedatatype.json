@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DataAttributeDataType",
+  "type": "string",
+  "description": "The data type of the attribute value.",
+  "enum": [
+    "string",
+    "number",
+    "boolean",
+    "list"
+  ]
+}

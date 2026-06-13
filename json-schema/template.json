@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Template",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the object.",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "url": {
+      "type": "string",
+      "description": "A URL path to access the template.",
+      "readOnly": true
+    },
+    "urlId": {
+      "type": "string",
+      "description": "A short unique identifier for the template used in URLs.",
+      "readOnly": true
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the template."
+    },
+    "data": {
+      "type": "object",
+      "description": "The body of the template as a Prosemirror document."
+    },
+    "icon": {
+      "type": "string",
+      "description": "An emoji to use as the template icon.",
+      "nullable": true
+    },
+    "color": {
+      "type": "string",
+      "description": "The color of the template icon in hex format.",
+      "nullable": true
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "description": "Whether the template should be displayed full width."
+    },
+    "collectionId": {
+      "type": "string",
+      "description": "Identifier for the associated collection, if any.",
+      "format": "uuid",
+      "nullable": true
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "The date and time that the template was created.",
+      "readOnly": true,
+      "format": "date-time"
+    },
+    "createdBy": {
+      "$ref": "#/components/schemas/User"
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "The date and time that the template was last changed.",
+      "readOnly": true,
+      "format": "date-time"
+    },
+    "updatedBy": {
+      "$ref": "#/components/schemas/User"
+    },
+    "deletedAt": {
+      "type": "string",
+      "description": "The date and time that the template was deleted.",
+      "readOnly": true,
+      "format": "date-time",
+      "nullable": true
+    },
+    "publishedAt": {
+      "type": "string",
+      "nullable": true,
+      "description": "The date and time that the template was published.",
+      "readOnly": true,
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "operationId": "sharesUpdate",
+  "path": "/shares.update",
+  "method": "POST",
+  "summary": "Update a share",
+  "tags": [
+    "Shares"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "published": {
+        "type": "boolean"
+      },
+      "title": {
+        "type": "string",
+        "maxLength": 255,
+        "nullable": true,
+        "description": "Override title displayed on the publicly shared page. If not set the source document or collection title is used."
+      },
+      "iconUrl": {
+        "type": "string",
+        "format": "uri",
+        "maxLength": 4096,
+        "nullable": true,
+        "description": "URL of an icon to display on the publicly shared page, overriding the workspace branding."
+      }
+    },
+    "required": [
+      "id",
+      "published"
+    ]
+  }
+}

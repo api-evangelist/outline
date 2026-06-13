@@ -1,0 +1,43 @@
+{
+  "operationId": "documentsDuplicate",
+  "path": "/documents.duplicate",
+  "method": "POST",
+  "summary": "Duplicate a document",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the document. Either the UUID or the urlId is acceptable."
+      },
+      "title": {
+        "type": "string",
+        "description": "New title for the duplicated document"
+      },
+      "recursive": {
+        "type": "boolean",
+        "description": "Whether child documents should also be duplicated"
+      },
+      "publish": {
+        "type": "boolean",
+        "description": "Whether the new document should be published"
+      },
+      "collectionId": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Identifier for the collection the document should be copied to"
+      },
+      "parentDocumentId": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Identifier for the parent document the document should be copied to"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

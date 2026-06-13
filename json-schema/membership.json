@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Membership",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the object.",
+      "readOnly": true
+    },
+    "userId": {
+      "type": "string",
+      "description": "Identifier for the associated user.",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "documentId": {
+      "type": "string",
+      "description": "Identifier for the associated document, if any.",
+      "readOnly": true,
+      "format": "uuid",
+      "nullable": true
+    },
+    "collectionId": {
+      "type": "string",
+      "description": "Identifier for the associated collection, if any.",
+      "readOnly": true,
+      "format": "uuid",
+      "nullable": true
+    },
+    "permission": {
+      "$ref": "#/components/schemas/Permission"
+    },
+    "createdById": {
+      "type": "string",
+      "description": "Identifier for the user who created this membership.",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "sourceId": {
+      "type": "string",
+      "description": "Identifier for the membership this one was inherited from, if any.",
+      "readOnly": true,
+      "format": "uuid",
+      "nullable": true
+    },
+    "index": {
+      "type": "string",
+      "description": "The position of the collection in the user's sidebar.",
+      "nullable": true
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "operationId": "usersInvite",
+  "path": "/users.invite",
+  "method": "POST",
+  "summary": "Invite users",
+  "tags": [
+    "Users"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "invites": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Invite"
+        }
+      },
+      "suppressEmail": {
+        "type": "boolean",
+        "description": "If true, the invitation emails will not be sent to the invited users. Defaults to false."
+      }
+    },
+    "required": [
+      "invites"
+    ]
+  }
+}

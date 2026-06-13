@@ -1,0 +1,39 @@
+{
+  "operationId": "dataAttributesCreate",
+  "path": "/dataAttributes.create",
+  "method": "POST",
+  "summary": "Create a data attribute",
+  "tags": [
+    "DataAttributes"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Name of the data attribute.",
+        "example": "Status"
+      },
+      "description": {
+        "type": "string",
+        "description": "Description of the data attribute.",
+        "example": "The current status of the document."
+      },
+      "dataType": {
+        "$ref": "#/components/schemas/DataAttributeDataType"
+      },
+      "options": {
+        "$ref": "#/components/schemas/DataAttributeOptions"
+      },
+      "pinned": {
+        "type": "boolean",
+        "description": "Whether the data attribute is pinned to the top of document.",
+        "default": false
+      }
+    },
+    "required": [
+      "name",
+      "dataType"
+    ]
+  }
+}

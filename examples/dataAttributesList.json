@@ -1,0 +1,19 @@
+{
+  "operationId": "dataAttributesList",
+  "path": "/dataAttributes.list",
+  "method": "POST",
+  "summary": "List all data attributes",
+  "tags": [
+    "DataAttributes"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "$ref": "#/components/schemas/Sorting"
+      }
+    ]
+  }
+}

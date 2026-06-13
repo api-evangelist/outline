@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DataAttributeOptions",
+  "type": "object",
+  "description": "Additional options for certain data attribute types.",
+  "properties": {
+    "icon": {
+      "type": "string",
+      "description": "An icon representing the data attribute from the outline-icons package."
+    },
+    "options": {
+      "type": "array",
+      "description": "Valid options for list data type.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The label/value of the option."
+          },
+          "color": {
+            "type": "string",
+            "description": "Optional color for the option."
+          }
+        }
+      }
+    }
+  }
+}

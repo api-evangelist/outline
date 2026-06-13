@@ -1,0 +1,21 @@
+{
+  "operationId": "templatesRestore",
+  "path": "/templates.restore",
+  "method": "POST",
+  "summary": "Restore a template",
+  "tags": [
+    "Templates"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the template. Either the UUID or the urlId is acceptable."
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

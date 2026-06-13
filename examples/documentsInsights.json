@@ -1,0 +1,32 @@
+{
+  "operationId": "documentsInsights",
+  "path": "/documents.insights",
+  "method": "POST",
+  "summary": "Retrieve insights for a document",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Unique identifier for the document."
+      },
+      "startDate": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Start of the insights window (inclusive). Defaults to 30 days ago."
+      },
+      "endDate": {
+        "type": "string",
+        "format": "date-time",
+        "description": "End of the insights window (inclusive). Defaults to today."
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

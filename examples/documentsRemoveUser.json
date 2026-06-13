@@ -1,0 +1,26 @@
+{
+  "operationId": "documentsRemoveUser",
+  "path": "/documents.remove_user",
+  "method": "POST",
+  "summary": "Remove a document user",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the document. Either the UUID or the urlId is acceptable."
+      },
+      "userId": {
+        "type": "string",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id",
+      "userId"
+    ]
+  }
+}

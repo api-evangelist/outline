@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SearchResult",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "query": {
+      "type": "string",
+      "description": "The user-provided search query",
+      "example": "What is our hiring policy?",
+      "readOnly": true
+    },
+    "answer": {
+      "type": "string",
+      "description": "An answer to the query, if possible",
+      "example": "Our hiring policy can be summarized as\u2026",
+      "readOnly": true
+    },
+    "source": {
+      "type": "string",
+      "example": "app",
+      "description": "The source of the query",
+      "readOnly": true,
+      "enum": [
+        "api",
+        "app"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "The date and time that this object was created",
+      "readOnly": true,
+      "format": "date-time"
+    }
+  }
+}

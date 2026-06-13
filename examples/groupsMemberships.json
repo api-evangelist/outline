@@ -1,0 +1,34 @@
+{
+  "operationId": "groupsMemberships",
+  "path": "/groups.memberships",
+  "method": "POST",
+  "summary": "List all group members",
+  "tags": [
+    "Groups"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Group id",
+            "example": "a32c2ee6-fbde-4654-841b-0eabdc71b812"
+          },
+          "query": {
+            "type": "string",
+            "description": "Filter memberships by user names",
+            "example": "jenny"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    ]
+  }
+}

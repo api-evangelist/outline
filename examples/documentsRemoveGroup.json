@@ -1,0 +1,26 @@
+{
+  "operationId": "documentsRemoveGroup",
+  "path": "/documents.remove_group",
+  "method": "POST",
+  "summary": "Remove a group from a document",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the document. Either the UUID or the urlId is acceptable."
+      },
+      "groupId": {
+        "type": "string",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id",
+      "groupId"
+    ]
+  }
+}

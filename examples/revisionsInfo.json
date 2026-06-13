@@ -1,0 +1,22 @@
+{
+  "operationId": "revisionsInfo",
+  "path": "/revisions.info",
+  "method": "POST",
+  "summary": "Retrieve a revision",
+  "tags": [
+    "Revisions"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the revision.",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

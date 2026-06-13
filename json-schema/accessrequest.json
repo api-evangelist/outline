@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AccessRequest",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the object.",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "documentId": {
+      "type": "string",
+      "description": "Identifier for the document this request is for.",
+      "format": "uuid"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Identifier for the user that made the request.",
+      "format": "uuid"
+    },
+    "user": {
+      "$ref": "#/components/schemas/User"
+    },
+    "teamId": {
+      "type": "string",
+      "description": "Identifier for the workspace the request belongs to.",
+      "format": "uuid"
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the access request.",
+      "enum": [
+        "pending",
+        "approved",
+        "dismissed"
+      ]
+    },
+    "responderId": {
+      "type": "string",
+      "description": "Identifier for the user that responded to the request, if any.",
+      "format": "uuid",
+      "nullable": true
+    },
+    "responder": {
+      "$ref": "#/components/schemas/User"
+    },
+    "respondedAt": {
+      "type": "string",
+      "description": "The date and time the request was responded to, if any.",
+      "format": "date-time",
+      "nullable": true
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "The date and time that this object was created",
+      "readOnly": true,
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "The date and time that this object was last changed",
+      "readOnly": true,
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "operationId": "oauthClientsInfo",
+  "path": "/oauthClients.info",
+  "method": "POST",
+  "summary": "Retrieve an OAuth client",
+  "tags": [
+    "OAuthClients"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the OAuth client.",
+        "format": "uuid"
+      },
+      "clientId": {
+        "type": "string",
+        "description": "Public identifier for the OAuth client.",
+        "example": "2bquf8avrpdv31par42a"
+      }
+    }
+  }
+}

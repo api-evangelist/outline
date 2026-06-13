@@ -1,0 +1,26 @@
+{
+  "operationId": "usersUpdateRole",
+  "path": "/users.update_role",
+  "method": "POST",
+  "summary": "Change a users role",
+  "tags": [
+    "Users"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the user.",
+        "format": "uuid"
+      },
+      "role": {
+        "$ref": "#/components/schemas/UserRole"
+      }
+    },
+    "required": [
+      "id",
+      "role"
+    ]
+  }
+}

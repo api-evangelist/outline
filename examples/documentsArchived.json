@@ -1,0 +1,29 @@
+{
+  "operationId": "documentsArchived",
+  "path": "/documents.archived",
+  "method": "POST",
+  "summary": "List all archived documents",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "$ref": "#/components/schemas/Sorting"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "collectionId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Optionally filter to a specific collection"
+          }
+        }
+      }
+    ]
+  }
+}

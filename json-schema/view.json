@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "View",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the object.",
+      "readOnly": true
+    },
+    "documentId": {
+      "type": "string",
+      "description": "Identifier for the associated document.",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "firstViewedAt": {
+      "type": "string",
+      "description": "When the document was first viewed by the user",
+      "readOnly": true,
+      "format": "date-time"
+    },
+    "lastViewedAt": {
+      "type": "string",
+      "description": "When the document was last viewed by the user",
+      "readOnly": true,
+      "format": "date-time"
+    },
+    "count": {
+      "type": "number",
+      "description": "The number of times the user has viewed the document.",
+      "example": 22,
+      "readOnly": true
+    },
+    "userId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identifier of the user who viewed the document.",
+      "readOnly": true
+    },
+    "user": {
+      "$ref": "#/components/schemas/User"
+    }
+  }
+}

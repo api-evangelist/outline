@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Group",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the object.",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of this group.",
+      "example": "Engineering"
+    },
+    "description": {
+      "type": "string",
+      "nullable": true,
+      "description": "A short description of this group."
+    },
+    "externalId": {
+      "type": "string",
+      "nullable": true,
+      "description": "An identifier for this group in an external system, if linked."
+    },
+    "disableMentions": {
+      "type": "boolean",
+      "description": "Whether mentioning this group is disabled."
+    },
+    "externalGroup": {
+      "type": "object",
+      "nullable": true,
+      "description": "Details of the linked external group, if any."
+    },
+    "memberCount": {
+      "type": "number",
+      "description": "The number of users that are members of the group",
+      "example": 11,
+      "readOnly": true
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "The date and time that this object was created",
+      "readOnly": true,
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "The date and time that this object was last changed",
+      "readOnly": true,
+      "format": "date-time"
+    }
+  }
+}

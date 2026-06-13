@@ -1,0 +1,36 @@
+{
+  "operationId": "fileOperationsList",
+  "path": "/fileOperations.list",
+  "method": "POST",
+  "summary": "List all file operations",
+  "tags": [
+    "FileOperations"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "$ref": "#/components/schemas/Sorting"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The type of fileOperation",
+            "example": "export",
+            "enum": [
+              "export",
+              "import"
+            ]
+          }
+        },
+        "required": [
+          "type"
+        ]
+      }
+    ]
+  }
+}

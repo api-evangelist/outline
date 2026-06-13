@@ -1,0 +1,1086 @@
+{
+  "name": "Outline API Vocabulary",
+  "description": "Terms and definitions extracted from the Outline API OpenAPI specification",
+  "version": "1.0",
+  "terms": [
+    {
+      "term": "AccessRequests",
+      "definition": "`AccessRequests` represent a request by a user for access to a document\nthey do not currently have permission to view. The request can be approved\nor dismissed by a user with permission to share the document.\n",
+      "source": "tag"
+    },
+    {
+      "term": "Attachments",
+      "definition": "`Attachments` represent a file uploaded to cloud storage. They are created\nbefore the upload happens from the client and store all the meta information\nsuch as file type, size, and location.\n",
+      "source": "tag"
+    },
+    {
+      "term": "Auth",
+      "definition": "A Auth object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "Collections",
+      "definition": "`Collections` represent grouping of documents in the knowledge base, they\noffer a way to structure information in a nested hierarchy and a level\nat which read and write permissions can be granted to individual users or\ngroups of users.\n",
+      "source": "tag"
+    },
+    {
+      "term": "Comments",
+      "definition": "`Comments` represent a comment either on a selection of text in a document\nor on the document itself.\n",
+      "source": "tag"
+    },
+    {
+      "term": "DataAttributes",
+      "definition": "`DataAttributes` represent custom metadata fields that can be attached to\ndocuments. They allow workspaces to add structured data like status, priority,\nor any other custom properties to their documents.\n",
+      "source": "tag"
+    },
+    {
+      "term": "Documents",
+      "definition": "`Documents` are what everything else revolves around. A document represents\na single page of information and always returns the latest version of the\ncontent. Documents are stored in [Markdown](https://spec.commonmark.org/)\nformatting.\n",
+      "source": "tag"
+    },
+    {
+      "term": "Events",
+      "definition": "`Events` represent an artifact of an action. Whether it is creating a user,\nediting a document, changing permissions, or any other action \u2013 an event\nis created that can be used as an audit trail or activity stream.\n",
+      "source": "tag"
+    },
+    {
+      "term": "FileOperations",
+      "definition": "`FileOperations` represent background jobs for importing or exporting files.\nYou can query the file operation to find the state of progress and any\nresulting output.\n",
+      "source": "tag"
+    },
+    {
+      "term": "Groups",
+      "definition": "`Groups` represent a list of users that logically belong together, for\nexample there might be groups for each department in your organization.\nGroups can be granted access to collections with read or write permissions.\n",
+      "source": "tag"
+    },
+    {
+      "term": "OAuthClients",
+      "definition": "`OAuthClients` represent OAuth clients that can be used to authenticate\nusers with third-party services.\n",
+      "source": "tag"
+    },
+    {
+      "term": "OAuthAuthentications",
+      "definition": "`OAuthAuthentications` represent individual scoped authentications between\nOutline and an `OAuthClient`.\n",
+      "source": "tag"
+    },
+    {
+      "term": "Revisions",
+      "definition": "`Revisions` represent a snapshot of a document at a point in time. They\nare used to keep track of editing and collaboration history \u2013 a document\ncan also be restored to a previous revision if necessary.\n",
+      "source": "tag"
+    },
+    {
+      "term": "Shares",
+      "definition": "`Shares` represent authorization to view a document without being a member\nof the workspace. Shares are created in order to give access to documents publicly.\nEach user that shares a document will have a unique share object.\n",
+      "source": "tag"
+    },
+    {
+      "term": "Stars",
+      "definition": "`Stars` represent a favorited document or collection in the application sidebar.\nEach user has their own collection of starred items.\n",
+      "source": "tag"
+    },
+    {
+      "term": "Users",
+      "definition": "`Users` represent an individual with access to the knowledge base. Users\ncan be created automatically when signing in with SSO or when a user is\ninvited via email.\n",
+      "source": "tag"
+    },
+    {
+      "term": "Templates",
+      "definition": "`Templates` represent reusable document templates that can be used as a\nstarting point when creating new documents. Templates can be scoped to a\nspecific collection or available workspace-wide.\n",
+      "source": "tag"
+    },
+    {
+      "term": "Views",
+      "definition": "`Views` represent a compressed record of an individual users views of a\ndocument. Individual views are not recorded but a first, last and total\nis kept per user.\n",
+      "source": "tag"
+    },
+    {
+      "term": "Permission",
+      "definition": "A Permission object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "TextEditMode",
+      "definition": "The editing mode for text updates to a document. When set to `patch`, the `findText` parameter is required and the existing occurrence of `findText` will be replaced with the value of `text`.",
+      "source": "schema"
+    },
+    {
+      "term": "AccessRequest",
+      "definition": "A AccessRequest object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "id",
+      "definition": "Unique identifier for the object.",
+      "source": "schema:AccessRequest",
+      "type": "string"
+    },
+    {
+      "term": "documentId",
+      "definition": "Identifier for the document this request is for.",
+      "source": "schema:AccessRequest",
+      "type": "string"
+    },
+    {
+      "term": "userId",
+      "definition": "Identifier for the user that made the request.",
+      "source": "schema:AccessRequest",
+      "type": "string"
+    },
+    {
+      "term": "user",
+      "definition": "",
+      "source": "schema:AccessRequest",
+      "type": ""
+    },
+    {
+      "term": "teamId",
+      "definition": "Identifier for the workspace the request belongs to.",
+      "source": "schema:AccessRequest",
+      "type": "string"
+    },
+    {
+      "term": "status",
+      "definition": "The current status of the access request.",
+      "source": "schema:AccessRequest",
+      "type": "string"
+    },
+    {
+      "term": "responderId",
+      "definition": "Identifier for the user that responded to the request, if any.",
+      "source": "schema:AccessRequest",
+      "type": "string"
+    },
+    {
+      "term": "responder",
+      "definition": "",
+      "source": "schema:AccessRequest",
+      "type": ""
+    },
+    {
+      "term": "respondedAt",
+      "definition": "The date and time the request was responded to, if any.",
+      "source": "schema:AccessRequest",
+      "type": "string"
+    },
+    {
+      "term": "createdAt",
+      "definition": "The date and time that this object was created",
+      "source": "schema:AccessRequest",
+      "type": "string"
+    },
+    {
+      "term": "updatedAt",
+      "definition": "The date and time that this object was last changed",
+      "source": "schema:AccessRequest",
+      "type": "string"
+    },
+    {
+      "term": "Attachment",
+      "definition": "A Attachment object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "contentType",
+      "definition": "",
+      "source": "schema:Attachment",
+      "type": "string"
+    },
+    {
+      "term": "size",
+      "definition": "The size of the attachment in bytes. Returned as a string as the value may exceed the safe integer range.",
+      "source": "schema:Attachment",
+      "type": "string"
+    },
+    {
+      "term": "name",
+      "definition": "",
+      "source": "schema:Attachment",
+      "type": "string"
+    },
+    {
+      "term": "url",
+      "definition": "",
+      "source": "schema:Attachment",
+      "type": "string"
+    },
+    {
+      "term": "Pagination",
+      "definition": "A Pagination object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "offset",
+      "definition": "",
+      "source": "schema:Pagination",
+      "type": "number"
+    },
+    {
+      "term": "limit",
+      "definition": "",
+      "source": "schema:Pagination",
+      "type": "number"
+    },
+    {
+      "term": "Sorting",
+      "definition": "A Sorting object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "sort",
+      "definition": "",
+      "source": "schema:Sorting",
+      "type": "string"
+    },
+    {
+      "term": "direction",
+      "definition": "",
+      "source": "schema:Sorting",
+      "type": "string"
+    },
+    {
+      "term": "NavigationNode",
+      "definition": "A NavigationNode object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "title",
+      "definition": "",
+      "source": "schema:NavigationNode",
+      "type": "string"
+    },
+    {
+      "term": "children",
+      "definition": "",
+      "source": "schema:NavigationNode",
+      "type": "array"
+    },
+    {
+      "term": "team",
+      "definition": "",
+      "source": "schema:Auth",
+      "type": ""
+    },
+    {
+      "term": "Collection",
+      "definition": "A Collection object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "urlId",
+      "definition": "A short unique identifier that can be used to identify the collection instead of the UUID.",
+      "source": "schema:Collection",
+      "type": "string"
+    },
+    {
+      "term": "description",
+      "definition": "A description of the collection, may contain markdown formatting",
+      "source": "schema:Collection",
+      "type": "string"
+    },
+    {
+      "term": "data",
+      "definition": "The collection description as rich-text JSON, when available.",
+      "source": "schema:Collection",
+      "type": "object"
+    },
+    {
+      "term": "index",
+      "definition": "The position of the collection in the sidebar",
+      "source": "schema:Collection",
+      "type": "string"
+    },
+    {
+      "term": "color",
+      "definition": "A color representing the collection, this is used to help make collections more identifiable in the UI. It should be in HEX format including the #",
+      "source": "schema:Collection",
+      "type": "string"
+    },
+    {
+      "term": "icon",
+      "definition": "A string that represents an icon in the outline-icons package or an emoji",
+      "source": "schema:Collection",
+      "type": "string"
+    },
+    {
+      "term": "permission",
+      "definition": "",
+      "source": "schema:Collection",
+      "type": ""
+    },
+    {
+      "term": "templateManagement",
+      "definition": "",
+      "source": "schema:Collection",
+      "type": ""
+    },
+    {
+      "term": "sharing",
+      "definition": "Whether public document sharing is enabled in this collection",
+      "source": "schema:Collection",
+      "type": "boolean"
+    },
+    {
+      "term": "commenting",
+      "definition": "Whether commenting is enabled in this collection",
+      "source": "schema:Collection",
+      "type": "boolean"
+    },
+    {
+      "term": "deletedAt",
+      "definition": "The date and time that this object was deleted",
+      "source": "schema:Collection",
+      "type": "string"
+    },
+    {
+      "term": "archivedAt",
+      "definition": "The date and time that this object was archived",
+      "source": "schema:Collection",
+      "type": "string"
+    },
+    {
+      "term": "archivedBy",
+      "definition": "",
+      "source": "schema:Collection",
+      "type": ""
+    },
+    {
+      "term": "sourceMetadata",
+      "definition": "Metadata about the external source this collection was imported from, if any.",
+      "source": "schema:Collection",
+      "type": "object"
+    },
+    {
+      "term": "Comment",
+      "definition": "A Comment object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "parentCommentId",
+      "definition": "Identifier for the comment this is a child of, if any.",
+      "source": "schema:Comment",
+      "type": "string"
+    },
+    {
+      "term": "createdBy",
+      "definition": "",
+      "source": "schema:Comment",
+      "type": ""
+    },
+    {
+      "term": "createdById",
+      "definition": "Identifier for the user who created this comment.",
+      "source": "schema:Comment",
+      "type": "string"
+    },
+    {
+      "term": "resolvedAt",
+      "definition": "The date and time that this comment was resolved, if it has been.",
+      "source": "schema:Comment",
+      "type": "string"
+    },
+    {
+      "term": "resolvedBy",
+      "definition": "",
+      "source": "schema:Comment",
+      "type": ""
+    },
+    {
+      "term": "resolvedById",
+      "definition": "Identifier for the user who resolved this comment, if any.",
+      "source": "schema:Comment",
+      "type": "string"
+    },
+    {
+      "term": "reactions",
+      "definition": "List of emoji reactions on this comment.",
+      "source": "schema:Comment",
+      "type": "array"
+    },
+    {
+      "term": "anchorText",
+      "definition": "The document text that the comment is anchored to, only included if includeAnchorText=true.",
+      "source": "schema:Comment",
+      "type": "string"
+    },
+    {
+      "term": "DataAttribute",
+      "definition": "A DataAttribute object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "dataType",
+      "definition": "",
+      "source": "schema:DataAttribute",
+      "type": ""
+    },
+    {
+      "term": "options",
+      "definition": "",
+      "source": "schema:DataAttribute",
+      "type": ""
+    },
+    {
+      "term": "pinned",
+      "definition": "Whether this data attribute is pinned to the top of documents.",
+      "source": "schema:DataAttribute",
+      "type": "boolean"
+    },
+    {
+      "term": "DataAttributeDataType",
+      "definition": "The data type of the attribute value.",
+      "source": "schema"
+    },
+    {
+      "term": "DataAttributeOptions",
+      "definition": "Additional options for certain data attribute types.",
+      "source": "schema"
+    },
+    {
+      "term": "DocumentDataAttribute",
+      "definition": "A DocumentDataAttribute object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "dataAttributeId",
+      "definition": "Unique identifier for the associated data attribute.",
+      "source": "schema:DocumentDataAttribute",
+      "type": "string"
+    },
+    {
+      "term": "value",
+      "definition": "The value of the data attribute for this document.",
+      "source": "schema:DocumentDataAttribute",
+      "type": ""
+    },
+    {
+      "term": "Document",
+      "definition": "A Document object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "collectionId",
+      "definition": "Identifier for the associated collection.",
+      "source": "schema:Document",
+      "type": "string"
+    },
+    {
+      "term": "parentDocumentId",
+      "definition": "Identifier for the document this is a child of, if any.",
+      "source": "schema:Document",
+      "type": "string"
+    },
+    {
+      "term": "fullWidth",
+      "definition": "Whether this document should be displayed in a full-width view.",
+      "source": "schema:Document",
+      "type": "boolean"
+    },
+    {
+      "term": "text",
+      "definition": "The text content of the document, contains markdown formatting",
+      "source": "schema:Document",
+      "type": "string"
+    },
+    {
+      "term": "collaboratorIds",
+      "definition": "Identifiers of users who have edited the document.",
+      "source": "schema:Document",
+      "type": "array"
+    },
+    {
+      "term": "tasks",
+      "definition": "Task completion counts for the document.",
+      "source": "schema:Document",
+      "type": "object"
+    },
+    {
+      "term": "templateId",
+      "definition": "Unique identifier for the template this document was created from, if any",
+      "source": "schema:Document",
+      "type": "string"
+    },
+    {
+      "term": "revision",
+      "definition": "A number that is auto incrementing with every revision of the document that is saved",
+      "source": "schema:Document",
+      "type": "number"
+    },
+    {
+      "term": "updatedBy",
+      "definition": "",
+      "source": "schema:Document",
+      "type": ""
+    },
+    {
+      "term": "publishedAt",
+      "definition": "The date and time that this object was published",
+      "source": "schema:Document",
+      "type": "string"
+    },
+    {
+      "term": "dataAttributes",
+      "definition": "",
+      "source": "schema:Document",
+      "type": "array"
+    },
+    {
+      "term": "DocumentInsight",
+      "definition": "A rollup of activity counts for a document over a daily or weekly period.",
+      "source": "schema"
+    },
+    {
+      "term": "date",
+      "definition": "The UTC day the rollup represents. For weekly rollups this is the first day (Monday) of the week.",
+      "source": "schema:DocumentInsight",
+      "type": "string"
+    },
+    {
+      "term": "period",
+      "definition": "The length of time the rollup covers. Daily rollups are stored for recent activity, older rollups are aggregated into weekly buckets.",
+      "source": "schema:DocumentInsight",
+      "type": "string"
+    },
+    {
+      "term": "viewCount",
+      "definition": "Total number of document views on this day.",
+      "source": "schema:DocumentInsight",
+      "type": "integer"
+    },
+    {
+      "term": "viewerCount",
+      "definition": "Number of unique viewers on this day.",
+      "source": "schema:DocumentInsight",
+      "type": "integer"
+    },
+    {
+      "term": "commentCount",
+      "definition": "Total comments made on this day.",
+      "source": "schema:DocumentInsight",
+      "type": "integer"
+    },
+    {
+      "term": "reactionCount",
+      "definition": "Total reactions added on this day.",
+      "source": "schema:DocumentInsight",
+      "type": "integer"
+    },
+    {
+      "term": "revisionCount",
+      "definition": "Number of document revisions on this day.",
+      "source": "schema:DocumentInsight",
+      "type": "integer"
+    },
+    {
+      "term": "editorCount",
+      "definition": "Number of unique editors on this day.",
+      "source": "schema:DocumentInsight",
+      "type": "integer"
+    },
+    {
+      "term": "Event",
+      "definition": "A Event object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "modelId",
+      "definition": "Identifier for the object this event is associated with when it is not one of document, collection, or user.",
+      "source": "schema:Event",
+      "type": "string"
+    },
+    {
+      "term": "actorId",
+      "definition": "The user that performed the action.",
+      "source": "schema:Event",
+      "type": "string"
+    },
+    {
+      "term": "actorIpAddress",
+      "definition": "The ip address the action was performed from. This field is only returned when the `auditLog` boolean is true.",
+      "source": "schema:Event",
+      "type": "string"
+    },
+    {
+      "term": "changes",
+      "definition": "The set of changes made by this event. This field is only returned when the `auditLog` boolean is true.",
+      "source": "schema:Event",
+      "type": "object"
+    },
+    {
+      "term": "actor",
+      "definition": "",
+      "source": "schema:Event",
+      "type": ""
+    },
+    {
+      "term": "Error",
+      "definition": "A Error object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "ok",
+      "definition": "",
+      "source": "schema:Error",
+      "type": "boolean"
+    },
+    {
+      "term": "error",
+      "definition": "",
+      "source": "schema:Error",
+      "type": "string"
+    },
+    {
+      "term": "message",
+      "definition": "",
+      "source": "schema:Error",
+      "type": "string"
+    },
+    {
+      "term": "FileOperation",
+      "definition": "A FileOperation object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "type",
+      "definition": "The type of file operation.",
+      "source": "schema:FileOperation",
+      "type": "string"
+    },
+    {
+      "term": "format",
+      "definition": "The file format of the resulting file.",
+      "source": "schema:FileOperation",
+      "type": "string"
+    },
+    {
+      "term": "state",
+      "definition": "The state of the file operation.",
+      "source": "schema:FileOperation",
+      "type": "string"
+    },
+    {
+      "term": "Group",
+      "definition": "A Group object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "externalId",
+      "definition": "An identifier for this group in an external system, if linked.",
+      "source": "schema:Group",
+      "type": "string"
+    },
+    {
+      "term": "disableMentions",
+      "definition": "Whether mentioning this group is disabled.",
+      "source": "schema:Group",
+      "type": "boolean"
+    },
+    {
+      "term": "externalGroup",
+      "definition": "Details of the linked external group, if any.",
+      "source": "schema:Group",
+      "type": "object"
+    },
+    {
+      "term": "memberCount",
+      "definition": "The number of users that are members of the group",
+      "source": "schema:Group",
+      "type": "number"
+    },
+    {
+      "term": "OAuthClient",
+      "definition": "A OAuthClient object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "developerName",
+      "definition": "The name of the developer who created this OAuth client.",
+      "source": "schema:OAuthClient",
+      "type": "string"
+    },
+    {
+      "term": "developerUrl",
+      "definition": "The URL of the developer who created this OAuth client.",
+      "source": "schema:OAuthClient",
+      "type": "string"
+    },
+    {
+      "term": "avatarUrl",
+      "definition": "A URL pointing to an image representing the OAuth client.",
+      "source": "schema:OAuthClient",
+      "type": "string"
+    },
+    {
+      "term": "clientId",
+      "definition": "The client ID for the OAuth client.",
+      "source": "schema:OAuthClient",
+      "type": "string"
+    },
+    {
+      "term": "clientSecret",
+      "definition": "The client secret for the OAuth client.",
+      "source": "schema:OAuthClient",
+      "type": "string"
+    },
+    {
+      "term": "clientType",
+      "definition": "The type of the OAuth client.",
+      "source": "schema:OAuthClient",
+      "type": "string"
+    },
+    {
+      "term": "redirectUris",
+      "definition": "The redirect URIs for the OAuth client.",
+      "source": "schema:OAuthClient",
+      "type": "array"
+    },
+    {
+      "term": "published",
+      "definition": "Whether the OAuth client is available to other workspaces.",
+      "source": "schema:OAuthClient",
+      "type": "boolean"
+    },
+    {
+      "term": "lastActiveAt",
+      "definition": "Date and time when this OAuth client was last used.",
+      "source": "schema:OAuthClient",
+      "type": "string"
+    },
+    {
+      "term": "OAuthAuthentication",
+      "definition": "A OAuthAuthentication object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "oauthClientId",
+      "definition": "Identifier for the associated OAuthClient.",
+      "source": "schema:OAuthAuthentication",
+      "type": "string"
+    },
+    {
+      "term": "oauthClient",
+      "definition": "A reduced, public representation of the associated OAuth client.",
+      "source": "schema:OAuthAuthentication",
+      "type": "object"
+    },
+    {
+      "term": "scope",
+      "definition": "",
+      "source": "schema:OAuthAuthentication",
+      "type": "array"
+    },
+    {
+      "term": "Revision",
+      "definition": "A Revision object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "collaborators",
+      "definition": "",
+      "source": "schema:Revision",
+      "type": "array"
+    },
+    {
+      "term": "Share",
+      "definition": "A Share object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "documentTitle",
+      "definition": "Title of the shared document.",
+      "source": "schema:Share",
+      "type": "string"
+    },
+    {
+      "term": "documentUrl",
+      "definition": "URL of the original document.",
+      "source": "schema:Share",
+      "type": "string"
+    },
+    {
+      "term": "sourceTitle",
+      "definition": "Title of the shared document or collection.",
+      "source": "schema:Share",
+      "type": "string"
+    },
+    {
+      "term": "sourcePath",
+      "definition": "Path of the shared document or collection.",
+      "source": "schema:Share",
+      "type": "string"
+    },
+    {
+      "term": "domain",
+      "definition": "Custom domain the share is served on, if any.",
+      "source": "schema:Share",
+      "type": "string"
+    },
+    {
+      "term": "iconUrl",
+      "definition": "URL of an icon displayed on the publicly shared page, overriding the workspace branding.",
+      "source": "schema:Share",
+      "type": "string"
+    },
+    {
+      "term": "includeChildDocuments",
+      "definition": "If to also give permission to view documents nested beneath this one.",
+      "source": "schema:Share",
+      "type": "boolean"
+    },
+    {
+      "term": "allowSubscriptions",
+      "definition": "Whether visitors to the public share can subscribe to receive email notifications when the document is updated. Requires SMTP to be configured on the workspace.",
+      "source": "schema:Share",
+      "type": "boolean"
+    },
+    {
+      "term": "allowIndexing",
+      "definition": "Whether the shared page may be indexed by search engines.",
+      "source": "schema:Share",
+      "type": "boolean"
+    },
+    {
+      "term": "showLastUpdated",
+      "definition": "Whether to show the last-updated time on the shared page.",
+      "source": "schema:Share",
+      "type": "boolean"
+    },
+    {
+      "term": "showTOC",
+      "definition": "Whether to show a table of contents on the shared page.",
+      "source": "schema:Share",
+      "type": "boolean"
+    },
+    {
+      "term": "views",
+      "definition": "The number of times the shared page has been viewed.",
+      "source": "schema:Share",
+      "type": "number"
+    },
+    {
+      "term": "lastAccessedAt",
+      "definition": "Date and time when this share was last viewed. Only returned to workspace admins.",
+      "source": "schema:Share",
+      "type": "string"
+    },
+    {
+      "term": "Star",
+      "definition": "A Star object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "Team",
+      "definition": "A Team object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "defaultCollectionId",
+      "definition": "If set then the referenced collection is where users will be redirected to after signing in instead of the Home screen",
+      "source": "schema:Team",
+      "type": "string"
+    },
+    {
+      "term": "defaultUserRole",
+      "definition": "",
+      "source": "schema:Team",
+      "type": ""
+    },
+    {
+      "term": "memberCollectionCreate",
+      "definition": "Whether members are allowed to create new collections. If false then only admins can create collections.",
+      "source": "schema:Team",
+      "type": "boolean"
+    },
+    {
+      "term": "memberTeamCreate",
+      "definition": "Whether members are allowed to create new groups. If false then only admins can create groups.",
+      "source": "schema:Team",
+      "type": "boolean"
+    },
+    {
+      "term": "documentEmbeds",
+      "definition": "Whether this workspace has embeds in documents globally enabled. It can be disabled to reduce potential data leakage to third parties.",
+      "source": "schema:Team",
+      "type": "boolean"
+    },
+    {
+      "term": "inviteRequired",
+      "definition": "Whether an invite is required to join this workspace, if false users may join with a linked SSO provider.",
+      "source": "schema:Team",
+      "type": "boolean"
+    },
+    {
+      "term": "allowedDomains",
+      "definition": "",
+      "source": "schema:Team",
+      "type": "array"
+    },
+    {
+      "term": "guestSignin",
+      "definition": "Whether this workspace has guest signin enabled. Guests can signin with an email address and are not required to have a Google Workspace/Slack SSO account once invited.",
+      "source": "schema:Team",
+      "type": "boolean"
+    },
+    {
+      "term": "subdomain",
+      "definition": "Represents the subdomain at which this workspace's knowledge base can be accessed.",
+      "source": "schema:Team",
+      "type": "string"
+    },
+    {
+      "term": "passkeysEnabled",
+      "definition": "Whether passkey authentication is enabled for this workspace.",
+      "source": "schema:Team",
+      "type": "boolean"
+    },
+    {
+      "term": "preferences",
+      "definition": "Workspace-level preference flags.",
+      "source": "schema:Team",
+      "type": "object"
+    },
+    {
+      "term": "guidanceMCP",
+      "definition": "Guidance text provided to MCP integrations.",
+      "source": "schema:Team",
+      "type": "string"
+    },
+    {
+      "term": "User",
+      "definition": "A User object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "email",
+      "definition": "The email associated with this user, it is migrated from Slack or Google Workspace when the SSO connection is made but can be changed if necessary.",
+      "source": "schema:User",
+      "type": "string"
+    },
+    {
+      "term": "role",
+      "definition": "",
+      "source": "schema:User",
+      "type": ""
+    },
+    {
+      "term": "isSuspended",
+      "definition": "Whether this user has been suspended.",
+      "source": "schema:User",
+      "type": "boolean"
+    },
+    {
+      "term": "timezone",
+      "definition": "The timezone this user has registered.",
+      "source": "schema:User",
+      "type": "string"
+    },
+    {
+      "term": "Invite",
+      "definition": "A Invite object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "UserRole",
+      "definition": "A UserRole object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "CollectionStatus",
+      "definition": "A CollectionStatus object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "Membership",
+      "definition": "A Membership object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "sourceId",
+      "definition": "Identifier for the membership this one was inherited from, if any.",
+      "source": "schema:Membership",
+      "type": "string"
+    },
+    {
+      "term": "SearchResult",
+      "definition": "A SearchResult object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "query",
+      "definition": "The user-provided search query",
+      "source": "schema:SearchResult",
+      "type": "string"
+    },
+    {
+      "term": "answer",
+      "definition": "An answer to the query, if possible",
+      "source": "schema:SearchResult",
+      "type": "string"
+    },
+    {
+      "term": "source",
+      "definition": "The source of the query",
+      "source": "schema:SearchResult",
+      "type": "string"
+    },
+    {
+      "term": "Policy",
+      "definition": "A Policy object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "abilities",
+      "definition": "The abilities that are allowed by this policy, if an array is returned then the individual ID's in the array represent the memberships that grant the ability.",
+      "source": "schema:Policy",
+      "type": "object"
+    },
+    {
+      "term": "Ability",
+      "definition": "A single permission granted by a policy",
+      "source": "schema"
+    },
+    {
+      "term": "GroupMembership",
+      "definition": "A GroupMembership object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "groupId",
+      "definition": "Identifier for the associated group.",
+      "source": "schema:GroupMembership",
+      "type": "string"
+    },
+    {
+      "term": "CollectionGroupMembership",
+      "definition": "A CollectionGroupMembership object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "Template",
+      "definition": "A Template object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "View",
+      "definition": "A View object in the Outline API",
+      "source": "schema"
+    },
+    {
+      "term": "firstViewedAt",
+      "definition": "When the document was first viewed by the user",
+      "source": "schema:View",
+      "type": "string"
+    },
+    {
+      "term": "lastViewedAt",
+      "definition": "When the document was last viewed by the user",
+      "source": "schema:View",
+      "type": "string"
+    },
+    {
+      "term": "count",
+      "definition": "The number of times the user has viewed the document.",
+      "source": "schema:View",
+      "type": "number"
+    }
+  ]
+}

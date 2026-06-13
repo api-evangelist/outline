@@ -1,0 +1,22 @@
+{
+  "operationId": "usersInfo",
+  "path": "/users.info",
+  "method": "POST",
+  "summary": "Retrieve a user",
+  "tags": [
+    "Users"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the user.",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

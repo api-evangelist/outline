@@ -1,0 +1,105 @@
+{
+  "operationId": "documentsUpdate",
+  "path": "/documents.update",
+  "method": "POST",
+  "summary": "Update a document",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "example": "hDYep1TPAM",
+        "description": "Unique identifier for the document. Either the UUID or the urlId is acceptable."
+      },
+      "title": {
+        "type": "string",
+        "description": "The title of the document."
+      },
+      "text": {
+        "type": "string",
+        "description": "The body of the document in markdown."
+      },
+      "icon": {
+        "type": "string",
+        "nullable": true,
+        "description": "Icon displayed alongside the document title"
+      },
+      "color": {
+        "type": "string",
+        "nullable": true,
+        "description": "Color for the document icon (hex format)"
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Whether the document should be displayed in full width"
+      },
+      "templateId": {
+        "type": "string",
+        "format": "uuid",
+        "nullable": true,
+        "description": "Identifier for the template this document is based on"
+      },
+      "collectionId": {
+        "type": "string",
+        "format": "uuid",
+        "nullable": true,
+        "description": "Identifier for the collection to move the document to"
+      },
+      "insightsEnabled": {
+        "type": "boolean",
+        "description": "Whether insights should be visible on the document"
+      },
+      "editMode": {
+        "$ref": "#/components/schemas/TextEditMode"
+      },
+      "findText": {
+        "type": "string",
+        "description": "The text to find within the document when using `patch` editMode. This text will be replaced with the value of `text`. Required when `editMode` is `patch`."
+      },
+      "publish": {
+        "type": "boolean",
+        "description": "Whether this document should be published and made visible to other workspace members, if a draft"
+      },
+      "dataAttributes": {
+        "type": "array",
+        "description": "Data attributes to be updated. Attributes not included will be removed from the document.",
+        "nullable": true,
+        "items": {
+          "type": "object",
+          "properties": {
+            "dataAttributeId": {
+              "type": "string",
+              "description": "Unique identifier for the data attribute.",
+              "format": "uuid"
+            },
+            "value": {
+              "description": "The value of the data attribute. Can be a string, boolean, or number depending on the data attribute type.",
+              "example": "In Progress",
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "required": [
+            "dataAttributeId",
+            "value"
+          ]
+        }
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

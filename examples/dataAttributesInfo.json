@@ -1,0 +1,22 @@
+{
+  "operationId": "dataAttributesInfo",
+  "path": "/dataAttributes.info",
+  "method": "POST",
+  "summary": "Retrieve a data attribute",
+  "tags": [
+    "DataAttributes"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the data attribute.",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

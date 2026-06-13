@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Attachment",
+  "type": "object",
+  "properties": {
+    "contentType": {
+      "type": "string",
+      "example": "image/png"
+    },
+    "size": {
+      "type": "string",
+      "description": "The size of the attachment in bytes. Returned as a string as the value may exceed the safe integer range."
+    },
+    "name": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "documentId": {
+      "type": "string",
+      "description": "Identifier for the associated document, if any.",
+      "format": "uuid",
+      "nullable": true
+    },
+    "userId": {
+      "type": "string",
+      "description": "Identifier for the user that created the attachment.",
+      "format": "uuid"
+    }
+  }
+}

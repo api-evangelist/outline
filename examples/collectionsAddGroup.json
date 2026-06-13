@@ -1,0 +1,29 @@
+{
+  "operationId": "collectionsAddGroup",
+  "path": "/collections.add_group",
+  "method": "POST",
+  "summary": "Add a group to a collection",
+  "tags": [
+    "Collections"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "groupId": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "permission": {
+        "$ref": "#/components/schemas/Permission"
+      }
+    },
+    "required": [
+      "id",
+      "groupId"
+    ]
+  }
+}

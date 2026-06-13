@@ -1,0 +1,19 @@
+{
+  "operationId": "documentsViewed",
+  "path": "/documents.viewed",
+  "method": "POST",
+  "summary": "List all recently viewed documents",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "$ref": "#/components/schemas/Sorting"
+      }
+    ]
+  }
+}

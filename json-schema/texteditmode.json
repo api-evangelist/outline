@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TextEditMode",
+  "type": "string",
+  "description": "The editing mode for text updates to a document. When set to `patch`, the `findText` parameter is required and the existing occurrence of `findText` will be replaced with the value of `text`.",
+  "enum": [
+    "append",
+    "prepend",
+    "replace",
+    "patch"
+  ]
+}

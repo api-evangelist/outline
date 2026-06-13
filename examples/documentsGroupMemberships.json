@@ -1,0 +1,35 @@
+{
+  "operationId": "documentsGroupMemberships",
+  "path": "/documents.group_memberships",
+  "method": "POST",
+  "summary": "List document group memberships",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the document. Either the UUID or the urlId is acceptable."
+          },
+          "query": {
+            "type": "string",
+            "description": "Filter memberships by group names"
+          },
+          "permission": {
+            "$ref": "#/components/schemas/Permission"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    ]
+  }
+}

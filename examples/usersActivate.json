@@ -1,0 +1,22 @@
+{
+  "operationId": "usersActivate",
+  "path": "/users.activate",
+  "method": "POST",
+  "summary": "Activate a user",
+  "tags": [
+    "Users"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the user.",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "operationId": "oauthClientsDelete",
+  "path": "/oauthClients.delete",
+  "method": "POST",
+  "summary": "Delete an OAuth client",
+  "tags": [
+    "OAuthClients"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the OAuth client.",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

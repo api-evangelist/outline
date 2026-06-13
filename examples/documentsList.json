@@ -1,0 +1,54 @@
+{
+  "operationId": "documentsList",
+  "path": "/documents.list",
+  "method": "POST",
+  "summary": "List all documents",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "$ref": "#/components/schemas/Sorting"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "collectionId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Optionally filter to a specific collection"
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Optionally filter to documents created by a specific user"
+          },
+          "backlinkDocumentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "parentDocumentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "statusFilter": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "draft",
+                "archived",
+                "published"
+              ]
+            },
+            "description": "Document statuses to include in results"
+          }
+        }
+      }
+    ]
+  }
+}

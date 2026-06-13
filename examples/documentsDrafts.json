@@ -1,0 +1,40 @@
+{
+  "operationId": "documentsDrafts",
+  "path": "/documents.drafts",
+  "method": "POST",
+  "summary": "List all draft documents",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "$ref": "#/components/schemas/Sorting"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "collectionId": {
+            "type": "string",
+            "description": "A collection to search within",
+            "format": "uuid"
+          },
+          "dateFilter": {
+            "type": "string",
+            "description": "Any documents that have not been updated within the specified period will be filtered out",
+            "example": "month",
+            "enum": [
+              "day",
+              "week",
+              "month",
+              "year"
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

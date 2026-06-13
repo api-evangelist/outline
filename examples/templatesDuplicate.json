@@ -1,0 +1,31 @@
+{
+  "operationId": "templatesDuplicate",
+  "path": "/templates.duplicate",
+  "method": "POST",
+  "summary": "Duplicate a template",
+  "tags": [
+    "Templates"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the template to duplicate. Either the UUID or the urlId is acceptable."
+      },
+      "title": {
+        "type": "string",
+        "description": "Override the title of the duplicated template."
+      },
+      "collectionId": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Identifier for the collection to place the duplicated template in. If not provided, uses the original template's collection.",
+        "nullable": true
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

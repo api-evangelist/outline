@@ -1,0 +1,19 @@
+{
+  "operationId": "documentsDeleted",
+  "path": "/documents.deleted",
+  "method": "POST",
+  "summary": "List all deleted documents",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "$ref": "#/components/schemas/Sorting"
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "operationId": "sharesCreate",
+  "path": "/shares.create",
+  "method": "POST",
+  "summary": "Create a share",
+  "tags": [
+    "Shares"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "documentId": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Identifier for the document to share. Mutually exclusive with `collectionId`."
+      },
+      "collectionId": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Identifier for the collection to share. Mutually exclusive with `documentId`."
+      }
+    },
+    "oneOf": [
+      {
+        "required": [
+          "documentId"
+        ]
+      },
+      {
+        "required": [
+          "collectionId"
+        ]
+      }
+    ]
+  }
+}

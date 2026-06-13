@@ -1,0 +1,47 @@
+{
+  "operationId": "eventsList",
+  "path": "/events.list",
+  "method": "POST",
+  "summary": "List all events",
+  "tags": [
+    "Events"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "$ref": "#/components/schemas/Sorting"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Filter to a specific event, e.g. \"collections.create\". Event names are in the format \"objects.verb\""
+          },
+          "actorId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Filter to events performed by the selected user"
+          },
+          "documentId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Filter to events performed in the selected document"
+          },
+          "collectionId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Filter to events performed in the selected collection"
+          },
+          "auditLog": {
+            "type": "boolean",
+            "description": "Whether to return detailed events suitable for an audit log. Without this flag less detailed event types will be returned."
+          }
+        }
+      }
+    ]
+  }
+}

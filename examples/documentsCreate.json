@@ -1,0 +1,98 @@
+{
+  "operationId": "documentsCreate",
+  "path": "/documents.create",
+  "method": "POST",
+  "summary": "Create a document",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Optional identifier for the document"
+      },
+      "title": {
+        "type": "string",
+        "example": "Welcome to Acme Inc"
+      },
+      "text": {
+        "type": "string",
+        "description": "The body of the document in markdown"
+      },
+      "icon": {
+        "type": "string",
+        "description": "Icon displayed alongside the document title"
+      },
+      "color": {
+        "type": "string",
+        "nullable": true,
+        "description": "Color for the document icon (hex format)"
+      },
+      "collectionId": {
+        "type": "string",
+        "format": "uuid",
+        "nullable": true,
+        "description": "Identifier for the collection. Required to publish unless parentDocumentId is provided"
+      },
+      "parentDocumentId": {
+        "type": "string",
+        "format": "uuid",
+        "nullable": true,
+        "description": "Identifier for the parent document. Required to publish unless collectionId is provided"
+      },
+      "templateId": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "publish": {
+        "type": "boolean",
+        "description": "Whether this document should be immediately published and made visible to other workspace members."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Whether the document should be displayed in full width"
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Optionally set the created date in the past"
+      },
+      "dataAttributes": {
+        "type": "array",
+        "description": "Data attributes to be included on the document.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "dataAttributeId": {
+              "type": "string",
+              "description": "Unique identifier for the data attribute.",
+              "format": "uuid"
+            },
+            "value": {
+              "description": "The value of the data attribute. Can be a string, boolean, or number depending on the data attribute type.",
+              "example": "In Progress",
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "required": [
+            "dataAttributeId",
+            "value"
+          ]
+        }
+      }
+    }
+  }
+}

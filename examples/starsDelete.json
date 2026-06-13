@@ -1,0 +1,21 @@
+{
+  "operationId": "starsDelete",
+  "path": "/stars.delete",
+  "method": "POST",
+  "summary": "Delete a star",
+  "tags": [
+    "Stars"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

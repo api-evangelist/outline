@@ -1,0 +1,34 @@
+{
+  "operationId": "documentsMove",
+  "path": "/documents.move",
+  "method": "POST",
+  "summary": "Move a document",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "example": "hDYep1TPAM",
+        "description": "Unique identifier for the document. Either the UUID or the urlId is acceptable."
+      },
+      "collectionId": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "parentDocumentId": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "index": {
+        "type": "number",
+        "description": "The position index in the collection structure"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

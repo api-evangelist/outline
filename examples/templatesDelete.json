@@ -1,0 +1,21 @@
+{
+  "operationId": "templatesDelete",
+  "path": "/templates.delete",
+  "method": "POST",
+  "summary": "Delete a template",
+  "tags": [
+    "Templates"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the template. Either the UUID or the urlId is acceptable."
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OAuthAuthentication",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the object.",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "oauthClientId": {
+      "type": "string",
+      "description": "Identifier for the associated OAuthClient.",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "oauthClient": {
+      "type": "object",
+      "readOnly": true,
+      "description": "A reduced, public representation of the associated OAuth client.",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string",
+          "nullable": true
+        },
+        "developerName": {
+          "type": "string",
+          "nullable": true
+        },
+        "developerUrl": {
+          "type": "string",
+          "nullable": true
+        },
+        "avatarUrl": {
+          "type": "string",
+          "nullable": true
+        },
+        "clientId": {
+          "type": "string"
+        },
+        "published": {
+          "type": "boolean"
+        }
+      }
+    },
+    "userId": {
+      "type": "string",
+      "description": "Identifier for the associated User.",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "scope": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lastActiveAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this authentication was last used",
+      "readOnly": true
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this authentication was created",
+      "readOnly": true
+    }
+  }
+}

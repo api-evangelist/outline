@@ -1,0 +1,21 @@
+{
+  "operationId": "viewsCreate",
+  "path": "/views.create",
+  "method": "POST",
+  "summary": "Create a view",
+  "tags": [
+    "Views"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "documentId": {
+        "type": "string",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "documentId"
+    ]
+  }
+}

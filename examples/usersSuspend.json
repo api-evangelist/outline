@@ -1,0 +1,22 @@
+{
+  "operationId": "usersSuspend",
+  "path": "/users.suspend",
+  "method": "POST",
+  "summary": "Suspend a user",
+  "tags": [
+    "Users"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the user.",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "operationId": "sharesInfo",
+  "path": "/shares.info",
+  "method": "POST",
+  "summary": "Retrieve a share object",
+  "tags": [
+    "Shares"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the share.",
+        "format": "uuid"
+      },
+      "documentId": {
+        "type": "string",
+        "description": "Unique identifier for a document. One of id or documentId must be provided.",
+        "format": "uuid"
+      }
+    }
+  }
+}

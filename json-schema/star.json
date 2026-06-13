@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Star",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the object.",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "index": {
+      "type": "string",
+      "description": "Index of the star in the list of stars."
+    },
+    "documentId": {
+      "type": "string",
+      "description": "Unique identifier for the starred document.",
+      "readOnly": true,
+      "format": "uuid",
+      "nullable": true
+    },
+    "collectionId": {
+      "type": "string",
+      "description": "Unique identifier for the starred collection.",
+      "readOnly": true,
+      "format": "uuid",
+      "nullable": true
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this star was created",
+      "readOnly": true
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this star was last changed",
+      "readOnly": true
+    }
+  }
+}

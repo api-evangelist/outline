@@ -1,0 +1,37 @@
+{
+  "operationId": "collectionsMemberships",
+  "path": "/collections.memberships",
+  "method": "POST",
+  "summary": "List all collection memberships",
+  "tags": [
+    "Collections"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifier for the collection",
+            "format": "uuid"
+          },
+          "query": {
+            "type": "string",
+            "description": "Filter memberships by user names",
+            "example": "jenny"
+          },
+          "permission": {
+            "$ref": "#/components/schemas/Permission"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    ]
+  }
+}

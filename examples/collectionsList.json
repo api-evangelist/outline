@@ -1,0 +1,35 @@
+{
+  "operationId": "collectionsList",
+  "path": "/collections.list",
+  "method": "POST",
+  "summary": "List all collections",
+  "tags": [
+    "Collections"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "$ref": "#/components/schemas/Sorting"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "If set, will filter the results by collection name."
+          },
+          "statusFilter": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollectionStatus"
+            },
+            "description": "An optional array of statuses to filter by."
+          }
+        }
+      }
+    ]
+  }
+}

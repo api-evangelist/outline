@@ -1,0 +1,24 @@
+{
+  "operationId": "accessRequestsInfo",
+  "path": "/accessRequests.info",
+  "method": "POST",
+  "summary": "Retrieve an access request",
+  "tags": [
+    "AccessRequests"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Unique identifier for the access request."
+      },
+      "documentId": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Identifier for the document to find a pending request for the current user."
+      }
+    }
+  }
+}

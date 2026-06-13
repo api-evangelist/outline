@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DataAttribute",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the object.",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of this data attribute.",
+      "example": "Status"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the data attribute.",
+      "example": "The current status of the document."
+    },
+    "dataType": {
+      "$ref": "#/components/schemas/DataAttributeDataType"
+    },
+    "options": {
+      "$ref": "#/components/schemas/DataAttributeOptions"
+    },
+    "pinned": {
+      "type": "boolean",
+      "description": "Whether this data attribute is pinned to the top of documents.",
+      "default": false
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "The date and time that this object was created",
+      "readOnly": true,
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "The date and time that this object was last changed",
+      "readOnly": true,
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "type": "string",
+      "nullable": true,
+      "description": "The date and time that this object was deleted",
+      "readOnly": true,
+      "format": "date-time"
+    }
+  }
+}

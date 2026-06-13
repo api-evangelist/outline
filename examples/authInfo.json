@@ -1,0 +1,9 @@
+{
+  "operationId": "authInfo",
+  "path": "/auth.info",
+  "method": "POST",
+  "summary": "Retrieve auth",
+  "tags": [
+    "Auth"
+  ]
+}

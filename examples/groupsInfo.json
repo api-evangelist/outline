@@ -1,0 +1,22 @@
+{
+  "operationId": "groupsInfo",
+  "path": "/groups.info",
+  "method": "POST",
+  "summary": "Retrieve a group",
+  "tags": [
+    "Groups"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the group.",
+        "format": "uuid"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

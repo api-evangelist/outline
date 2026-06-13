@@ -1,0 +1,9 @@
+{
+  "operationId": "documentsEmptyTrash",
+  "path": "/documents.empty_trash",
+  "method": "POST",
+  "summary": "Empty trash",
+  "tags": [
+    "Documents"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "operationId": "documentsUsers",
+  "path": "/documents.users",
+  "method": "POST",
+  "summary": "List document users",
+  "tags": [
+    "Documents"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "example": "hDYep1TPAM",
+        "description": "Unique identifier for the document. Either the UUID or the urlId is acceptable."
+      },
+      "query": {
+        "type": "string",
+        "description": "If set, will filter the results by user name."
+      },
+      "userId": {
+        "type": "string",
+        "format": "uuid",
+        "description": "If set, will filter the results to a specific user."
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}

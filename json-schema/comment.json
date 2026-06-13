@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Comment",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the object.",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "data": {
+      "type": "object",
+      "description": "The editor data representing this comment."
+    },
+    "documentId": {
+      "type": "string",
+      "description": "Identifier for the document this is related to.",
+      "format": "uuid"
+    },
+    "parentCommentId": {
+      "type": "string",
+      "description": "Identifier for the comment this is a child of, if any.",
+      "format": "uuid"
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "The date and time that this object was created",
+      "readOnly": true,
+      "format": "date-time"
+    },
+    "createdBy": {
+      "$ref": "#/components/schemas/User"
+    },
+    "createdById": {
+      "type": "string",
+      "description": "Identifier for the user who created this comment.",
+      "format": "uuid",
+      "readOnly": true
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "The date and time that this object was last changed",
+      "readOnly": true,
+      "format": "date-time"
+    },
+    "resolvedAt": {
+      "type": "string",
+      "description": "The date and time that this comment was resolved, if it has been.",
+      "format": "date-time",
+      "nullable": true,
+      "readOnly": true
+    },
+    "resolvedBy": {
+      "allOf": [
+        {
+          "nullable": true
+        },
+        {
+          "$ref": "#/components/schemas/User"
+        }
+      ]
+    },
+    "resolvedById": {
+      "type": "string",
+      "description": "Identifier for the user who resolved this comment, if any.",
+      "format": "uuid",
+      "nullable": true,
+      "readOnly": true
+    },
+    "reactions": {
+      "type": "array",
+      "description": "List of emoji reactions on this comment.",
+      "items": {
+        "type": "object"
+      },
+      "readOnly": true
+    },
+    "anchorText": {
+      "type": "string",
+      "description": "The document text that the comment is anchored to, only included if includeAnchorText=true.",
+      "readOnly": true
+    }
+  }
+}

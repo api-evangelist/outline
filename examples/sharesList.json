@@ -1,0 +1,28 @@
+{
+  "operationId": "sharesList",
+  "path": "/shares.list",
+  "method": "POST",
+  "summary": "List all shares",
+  "tags": [
+    "Shares"
+  ],
+  "requestSchema": {
+    "allOf": [
+      {
+        "$ref": "#/components/schemas/Pagination"
+      },
+      {
+        "$ref": "#/components/schemas/Sorting"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Filter to shared documents matching a search query"
+          }
+        }
+      }
+    ]
+  }
+}

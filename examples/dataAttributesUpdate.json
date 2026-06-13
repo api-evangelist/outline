@@ -1,0 +1,39 @@
+{
+  "operationId": "dataAttributesUpdate",
+  "path": "/dataAttributes.update",
+  "method": "POST",
+  "summary": "Update a data attribute",
+  "tags": [
+    "DataAttributes"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the data attribute.",
+        "format": "uuid"
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the data attribute.",
+        "example": "Status"
+      },
+      "description": {
+        "type": "string",
+        "description": "Description of the data attribute."
+      },
+      "options": {
+        "$ref": "#/components/schemas/DataAttributeOptions"
+      },
+      "pinned": {
+        "type": "boolean",
+        "description": "Whether the data attribute is pinned to the top of document."
+      }
+    },
+    "required": [
+      "id",
+      "name"
+    ]
+  }
+}

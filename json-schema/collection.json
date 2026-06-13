@@ -1,0 +1,134 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Collection",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the object.",
+      "readOnly": true,
+      "format": "uuid"
+    },
+    "url": {
+      "type": "string",
+      "description": "The relative URL path at which the collection can be accessed.",
+      "readOnly": true
+    },
+    "urlId": {
+      "type": "string",
+      "description": "A short unique identifier that can be used to identify the collection instead of the UUID.",
+      "readOnly": true,
+      "example": "hDYep1TPAM"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the collection.",
+      "example": "Human Resources"
+    },
+    "description": {
+      "type": "string",
+      "nullable": true,
+      "description": "A description of the collection, may contain markdown formatting",
+      "example": ""
+    },
+    "data": {
+      "type": "object",
+      "nullable": true,
+      "description": "The collection description as rich-text JSON, when available."
+    },
+    "sort": {
+      "type": "object",
+      "description": "The sort of documents in the collection. Note that not all API responses respect this and it is left as a frontend concern to implement.",
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        }
+      }
+    },
+    "index": {
+      "type": "string",
+      "nullable": true,
+      "description": "The position of the collection in the sidebar",
+      "example": "P"
+    },
+    "color": {
+      "type": "string",
+      "nullable": true,
+      "description": "A color representing the collection, this is used to help make collections more identifiable in the UI. It should be in HEX format including the #",
+      "example": "#123123"
+    },
+    "icon": {
+      "type": "string",
+      "nullable": true,
+      "description": "A string that represents an icon in the outline-icons package or an emoji"
+    },
+    "permission": {
+      "$ref": "#/components/schemas/Permission"
+    },
+    "templateManagement": {
+      "$ref": "#/components/schemas/Permission"
+    },
+    "sharing": {
+      "type": "boolean",
+      "description": "Whether public document sharing is enabled in this collection",
+      "default": false
+    },
+    "commenting": {
+      "type": "boolean",
+      "nullable": true,
+      "description": "Whether commenting is enabled in this collection"
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "The date and time that this object was created",
+      "readOnly": true,
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "The date and time that this object was last changed",
+      "readOnly": true,
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "type": "string",
+      "nullable": true,
+      "description": "The date and time that this object was deleted",
+      "readOnly": true,
+      "format": "date-time"
+    },
+    "archivedAt": {
+      "type": "string",
+      "nullable": true,
+      "description": "The date and time that this object was archived",
+      "readOnly": true,
+      "format": "date-time"
+    },
+    "archivedBy": {
+      "$ref": "#/components/schemas/User"
+    },
+    "sourceMetadata": {
+      "type": "object",
+      "nullable": true,
+      "description": "Metadata about the external source this collection was imported from, if any.",
+      "properties": {
+        "externalId": {
+          "type": "string"
+        },
+        "externalName": {
+          "type": "string"
+        },
+        "createdByName": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

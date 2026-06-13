@@ -1,0 +1,39 @@
+{
+  "operationId": "attachmentsCreate",
+  "path": "/attachments.create",
+  "method": "POST",
+  "summary": "Create an attachment",
+  "tags": [
+    "Attachments"
+  ],
+  "requestSchema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Name of the file attachment.",
+        "example": "image.png"
+      },
+      "documentId": {
+        "type": "string",
+        "description": "Identifier for the associated document, if any.",
+        "format": "uuid"
+      },
+      "contentType": {
+        "type": "string",
+        "description": "MIME type of the file attachment.",
+        "example": "image/png"
+      },
+      "size": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "Size of the file attachment in bytes."
+      }
+    },
+    "required": [
+      "name",
+      "contentType",
+      "size"
+    ]
+  }
+}
