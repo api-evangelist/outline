@@ -1,7 +1,7 @@
 aid: outline
 name: Outline
 description: Outline is an open-source team knowledge base and wiki with a fully featured RPC-style REST API for programmatically managing documents, collections, teams, users, groups, comments, shares, attachments, and importing or exporting organizational knowledge. The main application itself is built on the same API it exposes publicly.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/outline/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -17,7 +17,7 @@ apis:
   - aid: outline:outline-api
     name: Outline API
     description: An RPC-style REST API that enables programmatic access to all aspects of Outline data including documents, collections, users, groups, comments, shares, attachments, revisions, and file operations. Authentication via Bearer API keys or OAuth 2.0.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.getoutline.com/developers
     baseURL: https://app.getoutline.com/api
     tags:
