@@ -47,7 +47,7 @@ common:
     url: https://github.com/outline
   - type: GitHubRepository
     url: https://github.com/outline/outline
-  - type: Changelog
+  - type: ChangeLog
     url: https://www.getoutline.com/changelog
   - type: Status
     url: https://status.getoutline.com/
