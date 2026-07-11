@@ -39,6 +39,10 @@ apis:
       - type: GitHubRepository
         url: https://github.com/outline/openapi
 common:
+  - type: DomainSecurity
+    url: security/outline-domain-security.yml
+  - type: Authentication
+    url: authentication/outline-authentication.yml
   - type: OAuthScopes
     url: scopes/outline-scopes.yml
   - type: Documentation

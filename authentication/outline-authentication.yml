@@ -1,0 +1,25 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/outline-openapi.yml
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/outline-openapi.yml
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://app.getoutline.com/oauth/authorize
+    tokenUrl: https://app.getoutline.com/oauth/token
+    scopes: 2
+  sources:
+  - openapi/outline-openapi.yml
