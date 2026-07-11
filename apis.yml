@@ -39,6 +39,8 @@ apis:
       - type: GitHubRepository
         url: https://github.com/outline/openapi
 common:
+  - type: OAuthScopes
+    url: scopes/outline-scopes.yml
   - type: Documentation
     url: https://docs.getoutline.com/s/guide
   - type: OpenAPI
@@ -63,6 +65,8 @@ common:
     url: rate-limits/outline-rate-limits.yml
   - type: FinOps
     url: finops/outline-finops.yml
+  - url: https://www.getoutline.com/changelog
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
