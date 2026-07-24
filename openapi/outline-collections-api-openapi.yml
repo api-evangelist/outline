@@ -1,0 +1,1243 @@
+openapi: 3.0.0
+info:
+  title: Outline AccessRequests Collections API
+  description: "# Introduction\n\nThe Outline API is structured in an RPC style. It enables you to\nprogramatically interact with all aspects of Outline’s data – in fact, the\nmain application is built on exactly the same API.\n\nThe API structure is available as an\n[openapi specification](https://github.com/outline/openapi) if that’s your\njam – it can be used to generate clients for most programming languages.\n\n# Making requests\n\nOutline’s API follows simple RPC style conventions where each API endpoint is\na `POST` method on `https://app.getoutline.com/api/:method`. Only HTTPS is\nsupported and all response payloads are JSON.\n\nWhen making `POST` requests, request parameters are parsed depending on\nContent-Type header. To make a call using JSON payload, you must pass\nContent-Type: application/json header, here’s an example using CURL:\n\n```\ncurl https://app.getoutline.com/api/documents.info \\\n-X 'POST' \\\n-H 'authorization: Bearer MY_API_KEY' \\\n-H 'content-type: application/json' \\\n-H 'accept: application/json' \\\n-d '{\"id\": \"outline-api-NTpezNwhUP\"}'\n```\n\nOr, with JavaScript:\n\n```javascript\nconst response = await fetch(\"https://app.getoutline.com/api/documents.info\", {\n  method: \"POST\",\n  headers: {\n    Accept: \"application/json\",\n    \"Content-Type\": \"application/json\",\n    Authorization: \"Bearer MY_API_KEY\"\n  }\n})\n\nconst body = await response.json();\nconst document = body.data;\n```\n\n# Authentication\n\n## API key\n\nYou can create new API keys under **Settings => API & Apps**. Be\ncareful when handling your keys as they allow full access to your data,\nyou should treat them like passwords and they should never be committed to\nsource control.\n\n### Usage\n\nTo authenticate with API, you should supply the API key as a \"Bearer\" token in the `Authorization` header\n(`Authorization: Bearer YOUR_API_KEY`).\n\nAPI keys can be revoked at any time by the creating user or an administrator of the workspace. If an API\nkey is revoked, any requests made with that key will return a `401 Unauthenticated` response.\n\n### Format\n\nAll API keys always begin with `ol_api_` followed by a random string of 38 letters and numbers.\n\n## OAuth 2.0\n\nOAuth 2.0 is a widely used protocol for authorization and authentication. It allows users\nto grant third-party _or_ internal applications access to their resources without sharing\ntheir credentials. To use OAuth 2.0 you need to follow these steps:\n\n1. Register your application under **Settings => Applications**\n2. Obtain an access token by exchanging the client credentials for an access token\n3. Use the access token to authenticate requests to the API\n\nSome API endpoints allow unauthenticated requests for public resources and\nthey can be called without authentication.\n\n# Scopes\n\nScopes are used to limit the access of an API key or application to specific resources. For example,\nan application may only need access to read documents, but not write them. Scopes can be global in\nthe case of `read` and `write` scopes, scoped to a namespace, scoped to an API endpoint, or use\nwildcard scopes like `documents.*`. Some examples of scopes that can be used are:\n\n## Global\n\n- `read`: Allows all read actions\n- `write`: Allows all read and write actions\n\n## Namespaced\n\n- `documents:read`: Allows all document read actions\n- `collections:write`: Allows all collection write actions\n\n## Endpoints\n\n- `documents.info`: Allows only one specific API method\n- `documents.*`: Allows all document API methods\n- `users.*`: Allows all user API methods\n\n# Errors\n\nAll successful API requests will be returned with a 200 or 201 status code\nand `ok: true` in the response payload. If there’s an error while making the\nrequest, the appropriate status code is returned with the error message:\n\n```\n{\n  \"ok\": false,\n  \"error\": \"Not Found\"\n}\n```\n\n# Pagination\n\nMost top-level API resources have support for \"list\" API methods. For instance,\nyou can list users, documents, and collections. These list methods share\ncommon parameters, taking both `limit` and `offset`.\n\nResponses will echo these parameters in the root `pagination` key, and also\ninclude a `nextPath` key which can be used as a handy shortcut to fetch the\nnext page of results. For example:\n\n```\n{\n  ok: true,\n  status: 200,\n  data: […],\n  pagination: {\n    limit: 25,\n    offset: 0,\n    nextPath: \"/api/documents.list?limit=25&offset=25\"\n  }\n}\n```\n\n# Rate limits\n\nLike most APIs, Outline has rate limits in place to prevent abuse. Endpoints\nthat mutate data are more restrictive than read-only endpoints. If you exceed\nthe rate limit for a given endpoint, you will receive a `429 Too Many Requests`\nstatus code.\n\nThe response will include a `Retry-After` header that indicates how many seconds\nyou should wait before making another request.\n\n# Policies\n\nMost API resources have associated \"policies\", these objects describe the\ncurrent authentications authorized actions related to an individual resource. It\nshould be noted that the policy \"id\" is identical to the resource it is\nrelated to, policies themselves do not have unique identifiers.\n\nFor most usecases of the API, policies can be safely ignored. Calling\nunauthorized methods will result in the appropriate response code – these can\nbe used in an interface to adjust which elements are visible.\n"
+  version: 0.1.0
+  contact:
+    email: hello@getoutline.com
+  license:
+    name: BSD-3-Clause
+    url: https://github.com/outline/openapi/blob/main/LICENSE
+servers:
+- url: https://app.getoutline.com/api
+  description: Cloud hosted
+- url: https://{domain}/api
+  description: Self-hosted on your own server
+  variables:
+    domain:
+      default: example.com
+security:
+- BearerAuth: []
+- OAuth2:
+  - read
+  - write
+tags:
+- name: Collections
+  description: '`Collections` represent grouping of documents in the knowledge base, they
+
+    offer a way to structure information in a nested hierarchy and a level
+
+    at which read and write permissions can be granted to individual users or
+
+    groups of users.
+
+    '
+paths:
+  /collections.info:
+    post:
+      tags:
+      - Collections
+      summary: Retrieve a collection
+      description: Retrieve the details of a collection by its unique identifier.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Unique identifier for the collection.
+                  format: uuid
+              required:
+              - id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Collection'
+                  policies:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Policy'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      operationId: collectionsInfo
+  /collections.documents:
+    post:
+      tags:
+      - Collections
+      summary: Retrieve a collections document structure
+      description: Returns the document structure of a collection as a tree of navigation nodes, representing the hierarchy of documents within the collection.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Unique identifier for the collection.
+                  format: uuid
+              required:
+              - id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NavigationNode'
+                    example: []
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      operationId: collectionsDocuments
+  /collections.list:
+    post:
+      tags:
+      - Collections
+      summary: List all collections
+      description: List all collections that the authenticated user has access to.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/Pagination'
+              - $ref: '#/components/schemas/Sorting'
+              - type: object
+                properties:
+                  query:
+                    type: string
+                    description: If set, will filter the results by collection name.
+                  statusFilter:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CollectionStatus'
+                    description: An optional array of statuses to filter by.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Collection'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  policies:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Policy'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      operationId: collectionsList
+  /collections.create:
+    post:
+      tags:
+      - Collections
+      summary: Create a collection
+      description: Create a new collection with the specified name, description, icon, color, and permission settings. Collections are used to organize documents.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Human Resources
+                description:
+                  type: string
+                  description: A brief description of the collection, markdown supported. Only one of `description` or `data` may be provided.
+                  example: HR documentation is confidential and should be handled with care.
+                data:
+                  type: object
+                  description: The collection description as a rich-text ProseMirror JSON document. Only one of `description` or `data` may be provided.
+                permission:
+                  $ref: '#/components/schemas/Permission'
+                icon:
+                  type: string
+                  description: A string that represents an icon in the outline-icons package or an emoji
+                color:
+                  type: string
+                  description: A hex color code for the collection icon
+                  example: '#123123'
+                sharing:
+                  type: boolean
+                  description: Whether public sharing of documents is allowed
+                  example: false
+              required:
+              - name
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Collection'
+                  policies:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Policy'
+        '400':
+          $ref: '#/components/responses/Validation'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      operationId: collectionsCreate
+  /collections.update:
+    post:
+      tags:
+      - Collections
+      summary: Update a collection
+      description: Update an existing collection's properties such as name, description, icon, color, sharing settings, or permission level.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                name:
+                  type: string
+                  example: Human Resources
+                description:
+                  type: string
+                  description: A brief description of the collection, markdown supported. Only one of `description` or `data` may be provided.
+                  example: HR documentation is confidential and should be handled with care.
+                data:
+                  type: object
+                  description: The collection description as a rich-text ProseMirror JSON document. Only one of `description` or `data` may be provided.
+                permission:
+                  $ref: '#/components/schemas/Permission'
+                icon:
+                  type: string
+                  description: A string that represents an icon in the outline-icons package or an emoji
+                color:
+                  type: string
+                  description: A hex color code for the collection icon
+                  example: '#123123'
+                sharing:
+                  type: boolean
+                  description: Whether public sharing of documents is allowed
+                  example: false
+              required:
+              - id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Collection'
+                  policies:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Policy'
+        '400':
+          $ref: '#/components/responses/Validation'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      operationId: collectionsUpdate
+  /collections.add_user:
+    post:
+      tags:
+      - Collections
+      summary: Add a collection user
+      description: This method allows you to add a user membership to the specified collection.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Identifier for the collection
+                  format: uuid
+                userId:
+                  type: string
+                  description: Identifier for the user to add to the collection
+                  format: uuid
+                permission:
+                  $ref: '#/components/schemas/Permission'
+              required:
+              - id
+              - userId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      users:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/User'
+                      memberships:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Membership'
+        '400':
+          $ref: '#/components/responses/Validation'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      operationId: collectionsAddUser
+  /collections.remove_user:
+    post:
+      tags:
+      - Collections
+      summary: Remove a collection user
+      description: This method allows you to remove a user from the specified collection.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Identifier for the collection
+                  format: uuid
+                userId:
+                  type: string
+                  description: Identifier for the user to remove from the collection
+                  format: uuid
+              required:
+              - id
+              - userId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+        '400':
+          $ref: '#/components/responses/Validation'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      operationId: collectionsRemoveUser
+  /collections.memberships:
+    post:
+      tags:
+      - Collections
+      summary: List all collection memberships
+      description: This method allows you to list a collections individual memberships. It's important to note that memberships returned from this endpoint do not include group memberships.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/Pagination'
+              - type: object
+                properties:
+                  id:
+                    type: string
+                    description: Identifier for the collection
+                    format: uuid
+                  query:
+                    type: string
+                    description: Filter memberships by user names
+                    example: jenny
+                  permission:
+                    $ref: '#/components/schemas/Permission'
+                required:
+                - id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      users:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/User'
+                      memberships:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Membership'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '400':
+          $ref: '#/components/responses/Validation'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      operationId: collectionsMemberships
+  /collections.add_group:
+    post:
+      tags:
+      - Collections
+      summary: Add a group to a collection
+      description: This method allows you to give all members in a group access to a collection.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                groupId:
+                  type: string
+                  format: uuid
+                permission:
+                  $ref: '#/components/schemas/Permission'
+              required:
+              - id
+              - groupId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      collectionGroupMemberships:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/CollectionGroupMembership'
+        '400':
+          $ref: '#/components/responses/Validation'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      operationId: collectionsAddGroup
+  /collections.remove_group:
+    post:
+      tags:
+      - Collections
+      summary: Remove a collection group
+      description: This method allows you to revoke all members in a group access to a collection. Note that members of the group may still retain access through other groups or individual memberships.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Identifier for the collection
+                  format: uuid
+                groupId:
+                  type: string
+                  format: uuid
+              required:
+              - id
+              - groupId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+        '400':
+          $ref: '#/components/responses/Validation'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      operationId: collectionsRemoveGroup
+  /collections.group_memberships:
+    post:
+      tags:
+      - Collections
+      summary: List all collection group members
+      description: This method allows you to list a collections group memberships. This is the list of groups that have been given access to the collection.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/Pagination'
+              - type: object
+                properties:
+                  id:
+                    type: string
+                    description: Identifier for the collection
+                    format: uuid
+                  query:
+                    type: string
+                    description: Filter memberships by group names
+                    example: developers
+                  permission:
+                    $ref: '#/components/schemas/Permission'
+                required:
+                - id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      groups:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Group'
+                      collectionGroupMemberships:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/CollectionGroupMembership'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '400':
+          $ref: '#/components/responses/Validation'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      operationId: collectionsGroupMemberships
+  /collections.delete:
+    post:
+      tags:
+      - Collections
+      summary: Delete a collection
+      description: Delete a collection and all of its documents. This action can’t be undone so please be careful.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+              required:
+              - id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      operationId: collectionsDelete
+  /collections.export:
+    post:
+      tags:
+      - Collections
+      summary: Export a collection
+      description: Triggers a bulk export of the collection in markdown format and their attachments. If documents are nested then they will be nested in folders inside the zip file. The endpoint returns a `FileOperation` that can be queried to track the progress of the export and get the url for the final file.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                format:
+                  type: string
+                  enum:
+                  - outline-markdown
+                  - json
+                  - html
+                id:
+                  type: string
+                  format: uuid
+              required:
+              - id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      fileOperation:
+                        $ref: '#/components/schemas/FileOperation'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      operationId: collectionsExport
+  /collections.export_all:
+    post:
+      tags:
+      - Collections
+      summary: Export all collections
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                format:
+                  type: string
+                  enum:
+                  - outline-markdown
+                  - json
+                  - html
+                includeAttachments:
+                  type: boolean
+                  description: Whether to include attachments in the export.
+                  default: true
+                includePrivate:
+                  type: boolean
+                  description: Whether to include private collections in the export.
+                  default: true
+      description: Triggers a bulk export of multiple collections and their documents. The endpoint returns a `FileOperation` that can be queried through the fileOperations endpoint to track the progress of the export and get the url for the final file.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      fileOperation:
+                        $ref: '#/components/schemas/FileOperation'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      operationId: collectionsExportAll
+components:
+  responses:
+    RateLimited:
+      description: The request was rate limited.
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+        RateLimit-Limit:
+          $ref: '#/components/headers/RateLimit-Limit'
+        RateLimit-Remaining:
+          $ref: '#/components/headers/RateLimit-Remaining'
+        RateLimit-Reset:
+          $ref: '#/components/headers/RateLimit-Reset'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: rate_limit_exceeded
+              status:
+                type: number
+                example: 429
+    Validation:
+      description: The request failed one or more validations.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthenticated:
+      description: The API key is missing or otherwise invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The current API key is not authorized to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Ability:
+      description: A single permission granted by a policy
+      example: true
+      oneOf:
+      - type: array
+        items:
+          type: string
+      - type: boolean
+    FileOperation:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          readOnly: true
+          format: uuid
+        type:
+          type: string
+          example: export
+          description: The type of file operation.
+          readOnly: true
+          enum:
+          - import
+          - export
+        format:
+          type: string
+          description: The file format of the resulting file.
+          example: outline-markdown
+          readOnly: true
+        name:
+          type: string
+          description: The name of the file operation, derived from the collection name, document title, or file name.
+          readOnly: true
+        state:
+          type: string
+          description: The state of the file operation.
+          example: complete
+          readOnly: true
+          enum:
+          - creating
+          - uploading
+          - complete
+          - error
+          - expired
+        error:
+          type: string
+          nullable: true
+          description: An error message if the file operation failed.
+          readOnly: true
+        size:
+          type: string
+          description: The size of the resulting file in bytes. Returned as a string as the value may exceed the safe integer range.
+          readOnly: true
+          example: '2048'
+        collectionId:
+          type: string
+          nullable: true
+          description: Identifier for the associated collection, if the file operation is scoped to a single collection.
+          readOnly: true
+          format: uuid
+        documentId:
+          type: string
+          nullable: true
+          description: Identifier for the associated document, if the file operation is scoped to a single document.
+          readOnly: true
+          format: uuid
+        user:
+          $ref: '#/components/schemas/User'
+        createdAt:
+          type: string
+          description: The date and time that this object was created
+          readOnly: true
+          format: date-time
+        updatedAt:
+          type: string
+          description: The date and time that this object was last changed
+          readOnly: true
+          format: date-time
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: number
+          example: 0
+        limit:
+          type: number
+          example: 25
+    CollectionStatus:
+      type: string
+      enum:
+      - archived
+    UserRole:
+      type: string
+      enum:
+      - admin
+      - member
+      - viewer
+      - guest
+    Collection:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          readOnly: true
+          format: uuid
+        url:
+          type: string
+          description: The relative URL path at which the collection can be accessed.
+          readOnly: true
+        urlId:
+          type: string
+          description: A short unique identifier that can be used to identify the collection instead of the UUID.
+          readOnly: true
+          example: hDYep1TPAM
+        name:
+          type: string
+          description: The name of the collection.
+          example: Human Resources
+        description:
+          type: string
+          nullable: true
+          description: A description of the collection, may contain markdown formatting
+          example: ''
+        data:
+          type: object
+          nullable: true
+          description: The collection description as rich-text JSON, when available.
+        sort:
+          type: object
+          description: The sort of documents in the collection. Note that not all API responses respect this and it is left as a frontend concern to implement.
+          properties:
+            field:
+              type: string
+            direction:
+              type: string
+              enum:
+              - asc
+              - desc
+        index:
+          type: string
+          nullable: true
+          description: The position of the collection in the sidebar
+          example: P
+        color:
+          type: string
+          nullable: true
+          description: 'A color representing the collection, this is used to help make collections more identifiable in the UI. It should be in HEX format including the #'
+          example: '#123123'
+        icon:
+          type: string
+          nullable: true
+          description: A string that represents an icon in the outline-icons package or an emoji
+        permission:
+          $ref: '#/components/schemas/Permission'
+        templateManagement:
+          $ref: '#/components/schemas/Permission'
+        sharing:
+          type: boolean
+          description: Whether public document sharing is enabled in this collection
+          default: false
+        commenting:
+          type: boolean
+          nullable: true
+          description: Whether commenting is enabled in this collection
+        createdAt:
+          type: string
+          description: The date and time that this object was created
+          readOnly: true
+          format: date-time
+        updatedAt:
+          type: string
+          description: The date and time that this object was last changed
+          readOnly: true
+          format: date-time
+        deletedAt:
+          type: string
+          nullable: true
+          description: The date and time that this object was deleted
+          readOnly: true
+          format: date-time
+        archivedAt:
+          type: string
+          nullable: true
+          description: The date and time that this object was archived
+          readOnly: true
+          format: date-time
+        archivedBy:
+          $ref: '#/components/schemas/User'
+        sourceMetadata:
+          type: object
+          nullable: true
+          description: Metadata about the external source this collection was imported from, if any.
+          properties:
+            externalId:
+              type: string
+            externalName:
+              type: string
+            createdByName:
+              type: string
+    Group:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          readOnly: true
+          format: uuid
+        name:
+          type: string
+          description: The name of this group.
+          example: Engineering
+        description:
+          type: string
+          nullable: true
+          description: A short description of this group.
+        externalId:
+          type: string
+          nullable: true
+          description: An identifier for this group in an external system, if linked.
+        disableMentions:
+          type: boolean
+          description: Whether mentioning this group is disabled.
+        externalGroup:
+          type: object
+          nullable: true
+          description: Details of the linked external group, if any.
+        memberCount:
+          type: number
+          description: The number of users that are members of the group
+          example: 11
+          readOnly: true
+        createdAt:
+          type: string
+          description: The date and time that this object was created
+          readOnly: true
+          format: date-time
+        updatedAt:
+          type: string
+          description: The date and time that this object was last changed
+          readOnly: true
+          format: date-time
+    NavigationNode:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the document.
+          format: uuid
+        title:
+          type: string
+        url:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/NavigationNode'
+    Sorting:
+      type: object
+      properties:
+        sort:
+          type: string
+          example: updatedAt
+        direction:
+          type: string
+          example: DESC
+          enum:
+          - ASC
+          - DESC
+    Permission:
+      type: string
+      enum:
+      - read
+      - read_write
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          readOnly: true
+          format: uuid
+        name:
+          type: string
+          description: The name of this user, it is migrated from Slack or Google Workspace when the SSO connection is made but can be changed if necessary.
+          example: Jane Doe
+        avatarUrl:
+          type: string
+          format: uri
+          description: The URL for the image associated with this user, it will be displayed in the application UI and email notifications.
+        color:
+          type: string
+          description: A color representing the user, used in the UI for avatars without an image.
+          readOnly: true
+        email:
+          type: string
+          description: The email associated with this user, it is migrated from Slack or Google Workspace when the SSO connection is made but can be changed if necessary.
+          format: email
+          readOnly: true
+        role:
+          $ref: '#/components/schemas/UserRole'
+        isSuspended:
+          type: boolean
+          description: Whether this user has been suspended.
+          readOnly: true
+        lastActiveAt:
+          type: string
+          nullable: true
+          description: The last time this user made an API request, this value is updated at most every 5 minutes.
+          readOnly: true
+          format: date-time
+        timezone:
+          type: string
+          nullable: true
+          description: The timezone this user has registered.
+        createdAt:
+          type: string
+          description: The date and time that this user first signed in or was invited as a guest.
+          readOnly: true
+          format: date-time
+        updatedAt:
+          type: string
+          description: The date and time that this user was last updated.
+          readOnly: true
+          format: date-time
+        deletedAt:
+          type: string
+          nullable: true
+          description: The date and time that this user was deleted, if applicable.
+          readOnly: true
+          format: date-time
+    Membership:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          readOnly: true
+        userId:
+          type: string
+          description: Identifier for the associated user.
+          readOnly: true
+          format: uuid
+        documentId:
+          type: string
+          description: Identifier for the associated document, if any.
+          readOnly: true
+          format: uuid
+          nullable: true
+        collectionId:
+          type: string
+          description: Identifier for the associated collection, if any.
+          readOnly: true
+          format: uuid
+          nullable: true
+        permission:
+          $ref: '#/components/schemas/Permission'
+        createdById:
+          type: string
+          description: Identifier for the user who created this membership.
+          readOnly: true
+          format: uuid
+        sourceId:
+          type: string
+          description: Identifier for the membership this one was inherited from, if any.
+          readOnly: true
+          format: uuid
+          nullable: true
+        index:
+          type: string
+          description: The position of the collection in the user's sidebar.
+          nullable: true
+    Error:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          example: false
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: number
+        data:
+          type: object
+    CollectionGroupMembership:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          readOnly: true
+        groupId:
+          type: string
+          description: Identifier for the associated group.
+          readOnly: true
+          format: uuid
+        documentId:
+          type: string
+          description: Identifier for the associated document, if any.
+          readOnly: true
+          format: uuid
+          nullable: true
+        collectionId:
+          type: string
+          description: Identifier for the associated collection, if any.
+          readOnly: true
+          format: uuid
+          nullable: true
+        permission:
+          $ref: '#/components/schemas/Permission'
+        sourceId:
+          type: string
+          description: Identifier for the membership this one was inherited from, if any.
+          readOnly: true
+          format: uuid
+          nullable: true
+    Policy:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object this policy references.
+          format: uuid
+          readOnly: true
+        abilities:
+          type: object
+          description: The abilities that are allowed by this policy, if an array is returned then the individual ID's in the array represent the memberships that grant the ability.
+          additionalProperties:
+            $ref: '#/components/schemas/Ability'
+          example:
+            read: true
+            update: true
+            delete: false
+  headers:
+    RateLimit-Limit:
+      schema:
+        type: integer
+      description: The maximum requests available in the current duration.
+    RateLimit-Remaining:
+      schema:
+        type: integer
+      description: How many requests are left in the current duration.
+    RateLimit-Reset:
+      schema:
+        type: string
+      description: Timestamp in the future the duration will reset.
+    Retry-After:
+      schema:
+        type: integer
+      description: Seconds in the future to retry the request, if rate limited.
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://app.getoutline.com/oauth/authorize
+          tokenUrl: https://app.getoutline.com/oauth/token
+          refreshUrl: https://app.getoutline.com/oauth/token
+          scopes:
+            read: Read access
+            write: Write access

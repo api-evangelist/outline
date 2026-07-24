@@ -1,0 +1,300 @@
+openapi: 3.0.0
+info:
+  title: Outline AccessRequests Views API
+  description: "# Introduction\n\nThe Outline API is structured in an RPC style. It enables you to\nprogramatically interact with all aspects of Outline’s data – in fact, the\nmain application is built on exactly the same API.\n\nThe API structure is available as an\n[openapi specification](https://github.com/outline/openapi) if that’s your\njam – it can be used to generate clients for most programming languages.\n\n# Making requests\n\nOutline’s API follows simple RPC style conventions where each API endpoint is\na `POST` method on `https://app.getoutline.com/api/:method`. Only HTTPS is\nsupported and all response payloads are JSON.\n\nWhen making `POST` requests, request parameters are parsed depending on\nContent-Type header. To make a call using JSON payload, you must pass\nContent-Type: application/json header, here’s an example using CURL:\n\n```\ncurl https://app.getoutline.com/api/documents.info \\\n-X 'POST' \\\n-H 'authorization: Bearer MY_API_KEY' \\\n-H 'content-type: application/json' \\\n-H 'accept: application/json' \\\n-d '{\"id\": \"outline-api-NTpezNwhUP\"}'\n```\n\nOr, with JavaScript:\n\n```javascript\nconst response = await fetch(\"https://app.getoutline.com/api/documents.info\", {\n  method: \"POST\",\n  headers: {\n    Accept: \"application/json\",\n    \"Content-Type\": \"application/json\",\n    Authorization: \"Bearer MY_API_KEY\"\n  }\n})\n\nconst body = await response.json();\nconst document = body.data;\n```\n\n# Authentication\n\n## API key\n\nYou can create new API keys under **Settings => API & Apps**. Be\ncareful when handling your keys as they allow full access to your data,\nyou should treat them like passwords and they should never be committed to\nsource control.\n\n### Usage\n\nTo authenticate with API, you should supply the API key as a \"Bearer\" token in the `Authorization` header\n(`Authorization: Bearer YOUR_API_KEY`).\n\nAPI keys can be revoked at any time by the creating user or an administrator of the workspace. If an API\nkey is revoked, any requests made with that key will return a `401 Unauthenticated` response.\n\n### Format\n\nAll API keys always begin with `ol_api_` followed by a random string of 38 letters and numbers.\n\n## OAuth 2.0\n\nOAuth 2.0 is a widely used protocol for authorization and authentication. It allows users\nto grant third-party _or_ internal applications access to their resources without sharing\ntheir credentials. To use OAuth 2.0 you need to follow these steps:\n\n1. Register your application under **Settings => Applications**\n2. Obtain an access token by exchanging the client credentials for an access token\n3. Use the access token to authenticate requests to the API\n\nSome API endpoints allow unauthenticated requests for public resources and\nthey can be called without authentication.\n\n# Scopes\n\nScopes are used to limit the access of an API key or application to specific resources. For example,\nan application may only need access to read documents, but not write them. Scopes can be global in\nthe case of `read` and `write` scopes, scoped to a namespace, scoped to an API endpoint, or use\nwildcard scopes like `documents.*`. Some examples of scopes that can be used are:\n\n## Global\n\n- `read`: Allows all read actions\n- `write`: Allows all read and write actions\n\n## Namespaced\n\n- `documents:read`: Allows all document read actions\n- `collections:write`: Allows all collection write actions\n\n## Endpoints\n\n- `documents.info`: Allows only one specific API method\n- `documents.*`: Allows all document API methods\n- `users.*`: Allows all user API methods\n\n# Errors\n\nAll successful API requests will be returned with a 200 or 201 status code\nand `ok: true` in the response payload. If there’s an error while making the\nrequest, the appropriate status code is returned with the error message:\n\n```\n{\n  \"ok\": false,\n  \"error\": \"Not Found\"\n}\n```\n\n# Pagination\n\nMost top-level API resources have support for \"list\" API methods. For instance,\nyou can list users, documents, and collections. These list methods share\ncommon parameters, taking both `limit` and `offset`.\n\nResponses will echo these parameters in the root `pagination` key, and also\ninclude a `nextPath` key which can be used as a handy shortcut to fetch the\nnext page of results. For example:\n\n```\n{\n  ok: true,\n  status: 200,\n  data: […],\n  pagination: {\n    limit: 25,\n    offset: 0,\n    nextPath: \"/api/documents.list?limit=25&offset=25\"\n  }\n}\n```\n\n# Rate limits\n\nLike most APIs, Outline has rate limits in place to prevent abuse. Endpoints\nthat mutate data are more restrictive than read-only endpoints. If you exceed\nthe rate limit for a given endpoint, you will receive a `429 Too Many Requests`\nstatus code.\n\nThe response will include a `Retry-After` header that indicates how many seconds\nyou should wait before making another request.\n\n# Policies\n\nMost API resources have associated \"policies\", these objects describe the\ncurrent authentications authorized actions related to an individual resource. It\nshould be noted that the policy \"id\" is identical to the resource it is\nrelated to, policies themselves do not have unique identifiers.\n\nFor most usecases of the API, policies can be safely ignored. Calling\nunauthorized methods will result in the appropriate response code – these can\nbe used in an interface to adjust which elements are visible.\n"
+  version: 0.1.0
+  contact:
+    email: hello@getoutline.com
+  license:
+    name: BSD-3-Clause
+    url: https://github.com/outline/openapi/blob/main/LICENSE
+servers:
+- url: https://app.getoutline.com/api
+  description: Cloud hosted
+- url: https://{domain}/api
+  description: Self-hosted on your own server
+  variables:
+    domain:
+      default: example.com
+security:
+- BearerAuth: []
+- OAuth2:
+  - read
+  - write
+tags:
+- name: Views
+  description: '`Views` represent a compressed record of an individual users views of a
+
+    document. Individual views are not recorded but a first, last and total
+
+    is kept per user.
+
+    '
+paths:
+  /views.list:
+    post:
+      tags:
+      - Views
+      summary: List all views
+      description: List all users that have viewed a document and the overall view count.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                documentId:
+                  type: string
+                  format: uuid
+                  description: The document ID to retrieve views for
+                includeSuspended:
+                  type: boolean
+                  description: Whether to include views from suspended users
+                  default: false
+              required:
+              - documentId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/View'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      operationId: viewsList
+  /views.create:
+    post:
+      tags:
+      - Views
+      summary: Create a view
+      description: Creates a new view for a document. This is documented in the interests of thoroughness however it is recommended that views are not created from outside of the Outline UI.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                documentId:
+                  type: string
+                  format: uuid
+              required:
+              - documentId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/View'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      operationId: viewsCreate
+components:
+  headers:
+    RateLimit-Reset:
+      schema:
+        type: string
+      description: Timestamp in the future the duration will reset.
+    RateLimit-Remaining:
+      schema:
+        type: integer
+      description: How many requests are left in the current duration.
+    Retry-After:
+      schema:
+        type: integer
+      description: Seconds in the future to retry the request, if rate limited.
+    RateLimit-Limit:
+      schema:
+        type: integer
+      description: The maximum requests available in the current duration.
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          readOnly: true
+          format: uuid
+        name:
+          type: string
+          description: The name of this user, it is migrated from Slack or Google Workspace when the SSO connection is made but can be changed if necessary.
+          example: Jane Doe
+        avatarUrl:
+          type: string
+          format: uri
+          description: The URL for the image associated with this user, it will be displayed in the application UI and email notifications.
+        color:
+          type: string
+          description: A color representing the user, used in the UI for avatars without an image.
+          readOnly: true
+        email:
+          type: string
+          description: The email associated with this user, it is migrated from Slack or Google Workspace when the SSO connection is made but can be changed if necessary.
+          format: email
+          readOnly: true
+        role:
+          $ref: '#/components/schemas/UserRole'
+        isSuspended:
+          type: boolean
+          description: Whether this user has been suspended.
+          readOnly: true
+        lastActiveAt:
+          type: string
+          nullable: true
+          description: The last time this user made an API request, this value is updated at most every 5 minutes.
+          readOnly: true
+          format: date-time
+        timezone:
+          type: string
+          nullable: true
+          description: The timezone this user has registered.
+        createdAt:
+          type: string
+          description: The date and time that this user first signed in or was invited as a guest.
+          readOnly: true
+          format: date-time
+        updatedAt:
+          type: string
+          description: The date and time that this user was last updated.
+          readOnly: true
+          format: date-time
+        deletedAt:
+          type: string
+          nullable: true
+          description: The date and time that this user was deleted, if applicable.
+          readOnly: true
+          format: date-time
+    UserRole:
+      type: string
+      enum:
+      - admin
+      - member
+      - viewer
+      - guest
+    Error:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          example: false
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: number
+        data:
+          type: object
+    View:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          readOnly: true
+        documentId:
+          type: string
+          description: Identifier for the associated document.
+          readOnly: true
+          format: uuid
+        firstViewedAt:
+          type: string
+          description: When the document was first viewed by the user
+          readOnly: true
+          format: date-time
+        lastViewedAt:
+          type: string
+          description: When the document was last viewed by the user
+          readOnly: true
+          format: date-time
+        count:
+          type: number
+          description: The number of times the user has viewed the document.
+          example: 22
+          readOnly: true
+        userId:
+          type: string
+          format: uuid
+          description: Identifier of the user who viewed the document.
+          readOnly: true
+        user:
+          $ref: '#/components/schemas/User'
+  responses:
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthenticated:
+      description: The API key is missing or otherwise invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: The request was rate limited.
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+        RateLimit-Limit:
+          $ref: '#/components/headers/RateLimit-Limit'
+        RateLimit-Remaining:
+          $ref: '#/components/headers/RateLimit-Remaining'
+        RateLimit-Reset:
+          $ref: '#/components/headers/RateLimit-Reset'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: rate_limit_exceeded
+              status:
+                type: number
+                example: 429
+    Unauthorized:
+      description: The current API key is not authorized to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://app.getoutline.com/oauth/authorize
+          tokenUrl: https://app.getoutline.com/oauth/token
+          refreshUrl: https://app.getoutline.com/oauth/token
+          scopes:
+            read: Read access
+            write: Write access
