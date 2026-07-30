@@ -1,7 +1,20 @@
 aid: outline
 name: Outline
 description: Outline is an open-source team knowledge base and wiki with a fully featured RPC-style REST API for programmatically managing documents, collections, teams, users, groups, comments, shares, attachments, and importing or exporting organizational knowledge. The main application itself is built on the same API it exposes publicly.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/outline.png
 url: https://raw.githubusercontent.com/api-evangelist/outline/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -14,30 +27,344 @@ tags:
   - Open Source
   - Team
 apis:
-  - aid: outline:outline-api
-    name: Outline API
-    description: An RPC-style REST API that enables programmatic access to all aspects of Outline data including documents, collections, users, groups, comments, shares, attachments, revisions, and file operations. Authentication via Bearer API keys or OAuth 2.0.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://www.getoutline.com/developers
-    baseURL: https://app.getoutline.com/api
-    tags:
-      - Documents
-      - Collections
-      - Users
-      - Groups
-      - Comments
-      - Shares
-      - Attachments
-      - Revisions
-      - Webhooks
-      - OAuth
-    properties:
-      - type: Documentation
-        url: https://www.getoutline.com/developers
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/outline/openapi/main/spec3.yml
-      - type: GitHubRepository
-        url: https://github.com/outline/openapi
+- aid: outline:outline-accessrequests-api
+  name: Outline AccessRequests API
+  description: >-
+    `AccessRequests` represent a request by a user for access to a document
+
+    they do not currently have permission to view. The request can be approved
+
+    or dismissed by a user with permission to share the document.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - AccessRequests
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-accessrequests-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-attachments-api
+  name: Outline Attachments API
+  description: >-
+    `Attachments` represent a file uploaded to cloud storage. They are created
+
+    before the upload happens from the client and store all the meta information
+
+    such as file type, size, and location.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - Attachments
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-attachments-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-auth-api
+  name: Outline Auth API
+  description: >-
+    `Auth` represents the current API Keys authentication details. It can be
+
+    used to check that a token is still valid and load the IDs for the current
+
+    user and workspace.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-auth-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-collections-api
+  name: Outline Collections API
+  description: >-
+    `Collections` represent grouping of documents in the knowledge base, they
+
+    offer a way to structure information in a nested hierarchy and a level
+
+    at which read and write permissions can be granted to individual users or
+
+    groups of users.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-collections-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-comments-api
+  name: Outline Comments API
+  description: >-
+    `Comments` represent a comment either on a selection of text in a document
+
+    or on the document itself.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - Comments
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-comments-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-dataattributes-api
+  name: Outline DataAttributes API
+  description: >-
+    `DataAttributes` represent custom metadata fields that can be attached to
+
+    documents. They allow workspaces to add structured data like status, priority,
+
+    or any other custom properties to their documents.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - DataAttributes
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-dataattributes-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-documents-api
+  name: Outline Documents API
+  description: >-
+    `Documents` are what everything else revolves around. A document represents
+
+    a single page of information and always returns the latest version of the
+
+    content. Documents are stored in [Markdown](https://spec.commonmark.org/)
+
+    formatting.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-documents-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-events-api
+  name: Outline Events API
+  description: >-
+    `Events` represent an artifact of an action. Whether it is creating a user,
+
+    editing a document, changing permissions, or any other action – an event
+
+    is created that can be used as an audit trail or activity stream.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-events-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-fileoperations-api
+  name: Outline FileOperations API
+  description: >-
+    `FileOperations` represent background jobs for importing or exporting files.
+
+    You can query the file operation to find the state of progress and any
+
+    resulting output.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - FileOperations
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-fileoperations-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-groups-api
+  name: Outline Groups API
+  description: >-
+    `Groups` represent a list of users that logically belong together, for
+
+    example there might be groups for each department in your organization.
+
+    Groups can be granted access to collections with read or write permissions.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-groups-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-oauthauthentications-api
+  name: Outline OAuthAuthentications API
+  description: >-
+    `OAuthAuthentications` represent individual scoped authentications between
+
+    Outline and an `OAuthClient`.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - OAuthAuthentications
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-oauthauthentications-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-oauthclients-api
+  name: Outline OAuthClients API
+  description: >-
+    `OAuthClients` represent OAuth clients that can be used to authenticate
+
+    users with third-party services.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - OAuthClients
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-oauthclients-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-revisions-api
+  name: Outline Revisions API
+  description: >-
+    `Revisions` represent a snapshot of a document at a point in time. They
+
+    are used to keep track of editing and collaboration history – a document
+
+    can also be restored to a previous revision if necessary.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - Revisions
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-revisions-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-shares-api
+  name: Outline Shares API
+  description: >-
+    `Shares` represent authorization to view a document without being a member
+
+    of the workspace. Shares are created in order to give access to documents publicly.
+
+    Each user that shares a document will have a unique share object.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - Shares
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-shares-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-stars-api
+  name: Outline Stars API
+  description: >-
+    `Stars` represent a favorited document or collection in the application sidebar.
+
+    Each user has their own collection of starred items.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - Stars
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-stars-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-templates-api
+  name: Outline Templates API
+  description: >-
+    `Templates` represent reusable document templates that can be used as a
+
+    starting point when creating new documents. Templates can be scoped to a
+
+    specific collection or available workspace-wide.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-templates-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-users-api
+  name: Outline Users API
+  description: >-
+    `Users` represent an individual with access to the knowledge base. Users
+
+    can be created automatically when signing in with SSO or when a user is
+
+    invited via email.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-users-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-views-api
+  name: Outline Views API
+  description: >-
+    `Views` represent a compressed record of an individual users views of a
+
+    document. Individual views are not recorded but a first, last and total
+
+    is kept per user.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - Views
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-views-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
 common:
   - type: AgenticAccess
     url: agentic-access/outline-agentic-access.yml
