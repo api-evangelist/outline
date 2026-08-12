@@ -366,6 +366,9 @@ apis:
   - type: GitHubRepository
     url: https://github.com/outline/openapi
 common:
+  - type: License
+    name: BSD-3-Clause
+    url: https://github.com/outline/openapi/blob/main/LICENSE
   - type: AgenticAccess
     url: agentic-access/outline-agentic-access.yml
   - type: DomainSecurity
