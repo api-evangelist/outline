@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Outline AccessRequests OAuthClients API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAuthClients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve an OAuth client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/oauthClients.info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "To retrieve information about an OAuth client you must pass either an `id` or a `clientId`."
+        },
+        {
+          "info": {
+            "name": "List accessible OAuth clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/oauthClients.list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List all OAuth clients that the authenticated user has access to. This includes both clients created by the user and published clients available to the workspace."
+        },
+        {
+          "info": {
+            "name": "Create an OAuth client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/oauthClients.create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new OAuth client application that can be used to authenticate users and access the API on their behalf."
+        },
+        {
+          "info": {
+            "name": "Update an OAuth client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/oauthClients.update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing OAuth client's properties such as name, description, redirect URIs, or published status."
+        },
+        {
+          "info": {
+            "name": "Rotate the secret for an OAuth client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/oauthClients.rotate_secret",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a new client secret for an OAuth client. The old secret will be invalidated immediately, so ensure your application is updated to use the new secret."
+        },
+        {
+          "info": {
+            "name": "Delete an OAuth client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/oauthClients.delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Permanently delete an OAuth client and revoke all associated access tokens. This action cannot be undone."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

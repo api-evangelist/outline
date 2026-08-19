@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Outline AccessRequests Users API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Invite users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/users.invite",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send email invitations to one or more users to join the workspace. Invitations include a link to create an account and join the workspace."
+        },
+        {
+          "info": {
+            "name": "Retrieve a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/users.info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve the details of a user by their unique identifier, including their name, email, avatar, and role within the workspace."
+        },
+        {
+          "info": {
+            "name": "List all users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/users.list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List and filter all the users in the workspace"
+        },
+        {
+          "info": {
+            "name": "Update a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/users.update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a users name or avatar. If no `id` is passed then the user associated with the authentication will be updated by default."
+        },
+        {
+          "info": {
+            "name": "Change a users role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/users.update_role",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change the role of a user, only available to admin authorization."
+        },
+        {
+          "info": {
+            "name": "Suspend a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/users.suspend",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Suspending a user prevents the user from signing in. Users that are suspended are also not counted against billing totals in the hosted version."
+        },
+        {
+          "info": {
+            "name": "Activate a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/users.activate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Activating a previously suspended user allows them to signin again. Users that are activated will cause billing totals to be re-calculated in the hosted version."
+        },
+        {
+          "info": {
+            "name": "Delete a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/users.delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deleting a user removes the object entirely. In almost every circumstance it is preferable to suspend a user, as a deleted user can be recreated by signing in with SSO again."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

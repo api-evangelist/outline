@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Outline AccessRequests FileOperations API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FileOperations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a file operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/fileOperations.info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve the details and current status of a file operation by its unique identifier. File operations represent long-running import or export tasks."
+        },
+        {
+          "info": {
+            "name": "Delete a file operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/fileOperations.delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete a file operation and its associated files. This is useful for cleaning up completed or failed import/export operations."
+        },
+        {
+          "info": {
+            "name": "Retrieve the file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/fileOperations.redirect",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Load the resulting file from where it is stored based on the id. A temporary, signed url with embedded credentials is generated on demand."
+        },
+        {
+          "info": {
+            "name": "List all file operations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/fileOperations.list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List all file operations for the current workspace, filtered by type (import or export)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

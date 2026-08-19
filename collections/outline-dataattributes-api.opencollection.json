@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Outline AccessRequests DataAttributes API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DataAttributes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a data attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/dataAttributes.info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a data attribute by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "List all data attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/dataAttributes.list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List all data attributes."
+        },
+        {
+          "info": {
+            "name": "Create a data attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/dataAttributes.create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new data attribute. Only admins can create data attributes."
+        },
+        {
+          "info": {
+            "name": "Update a data attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/dataAttributes.update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing data attribute. Only admins can update data attributes. Note that the dataType cannot be changed after creation."
+        },
+        {
+          "info": {
+            "name": "Delete a data attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/dataAttributes.delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete a data attribute. Only admins can delete data attributes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

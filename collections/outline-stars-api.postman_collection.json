@@ -1,0 +1,1451 @@
+{
+  "item": [
+    {
+      "id": "377f3864-b470-461c-b1ac-4652c872971d",
+      "name": "Stars",
+      "description": {
+        "content": "`Stars` represent a favorited document or collection in the application sidebar.\nEach user has their own collection of starred items.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "27b217c5-a084-4373-beb8-43b78acab107",
+          "name": "Create a star",
+          "request": {
+            "name": "Create a star",
+            "description": {
+              "content": "Stars a document or collection so it appears in the users sidebar. One of either `documentId` or `collectionId` must be provided.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stars.create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"documentId\": \"<uuid>\",\n  \"collectionId\": \"<uuid>\",\n  \"index\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8753b967-0fa9-4dbf-95a9-ee8339476069",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentId\": \"<uuid>\",\n  \"collectionId\": \"<uuid>\",\n  \"index\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"d66d0e61-165c-80da-7769-93a2b40a2c44\",\n    \"index\": \"string\",\n    \"documentId\": \"dc59b8ea-5cc0-603c-25e8-c6db10df8304\",\n    \"collectionId\": \"b10d8bec-d314-ad26-9149-c9a56edd5c10\",\n    \"createdAt\": \"2017-04-15T02:51:07.324Z\",\n    \"updatedAt\": \"1954-01-30T00:28:54.211Z\"\n  },\n  \"policies\": [\n    {\n      \"id\": \"6d177a6f-47e0-2750-d760-393bcaf6f565\",\n      \"abilities\": {\n        \"key_0\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_1\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_2\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_3\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    },\n    {\n      \"id\": \"a5f32d52-4739-733f-44d0-fafb738fd965\",\n      \"abilities\": {\n        \"key_0\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_1\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2fb769b-92b0-4dc1-b0b2-76315f454e07",
+              "name": "The request failed one or more validations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentId\": \"<uuid>\",\n  \"collectionId\": \"<uuid>\",\n  \"index\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 3683.0549806981317,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7692275e-06c1-4ef3-a970-db4a9bef36a6",
+              "name": "The API key is missing or otherwise invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentId\": \"<uuid>\",\n  \"collectionId\": \"<uuid>\",\n  \"index\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 3683.0549806981317,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48a7e2be-b5df-4982-8d26-60321c032643",
+              "name": "The current API key is not authorized to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentId\": \"<uuid>\",\n  \"collectionId\": \"<uuid>\",\n  \"index\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 3683.0549806981317,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "396d8299-dc53-4a0a-98f8-486702b29c8f",
+              "name": "The specified resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentId\": \"<uuid>\",\n  \"collectionId\": \"<uuid>\",\n  \"index\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 3683.0549806981317,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f38c4354-83a4-4038-973e-f9a5bc0b611f",
+              "name": "The request was rate limited.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentId\": \"<uuid>\",\n  \"collectionId\": \"<uuid>\",\n  \"index\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds in the future to retry the request, if rate limited.",
+                  "key": "Retry-After",
+                  "value": "6753"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum requests available in the current duration.",
+                  "key": "RateLimit-Limit",
+                  "value": "6753"
+                },
+                {
+                  "disabled": false,
+                  "description": "How many requests are left in the current duration.",
+                  "key": "RateLimit-Remaining",
+                  "value": "6753"
+                },
+                {
+                  "disabled": false,
+                  "description": "Timestamp in the future the duration will reset.",
+                  "key": "RateLimit-Reset",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"rate_limit_exceeded\",\n  \"status\": 429\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c83fb52-7c29-4ff4-b8e1-2f5ee98f39b5",
+          "name": "List all stars",
+          "request": {
+            "name": "List all stars",
+            "description": {
+              "content": "List all starred documents for the authenticated user. Stars allow users to bookmark important documents for quick access in the sidebar.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stars.list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"offset\": \"<number>\",\n  \"limit\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4e689838-f0b5-491d-9f2a-04052c520d13",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offset\": 0,\n  \"limit\": 25\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"stars\": [\n      {\n        \"id\": \"953aefad-5d18-e1f8-7f57-cf0a9bdc245e\",\n        \"index\": \"string\",\n        \"documentId\": \"4238211a-d3ad-25ec-8024-6708c45ef23a\",\n        \"collectionId\": \"5624f3de-66d6-0b28-4629-d92340ade14c\",\n        \"createdAt\": \"2021-12-17T01:57:34.822Z\",\n        \"updatedAt\": \"2006-01-08T12:15:07.145Z\"\n      },\n      {\n        \"id\": \"3c296b57-736f-b695-3b80-9f96a35d2879\",\n        \"index\": \"string\",\n        \"documentId\": \"767723a2-6c5b-ef26-02a4-0f909bf6949a\",\n        \"collectionId\": \"0c77e5cb-9305-aa26-4ef2-012814a3918b\",\n        \"createdAt\": \"2004-11-13T06:07:43.319Z\",\n        \"updatedAt\": \"2025-11-14T19:29:52.681Z\"\n      }\n    ],\n    \"documents\": [\n      {\n        \"id\": \"7c3b11f9-ee3c-2a87-ab1d-4f20eba61df5\",\n        \"collectionId\": \"5e04f5f2-812f-c2f6-6f89-6237df964ba6\",\n        \"parentDocumentId\": \"bd8c9c85-e4f3-e86f-8945-cda6bb78cbd5\",\n        \"title\": \"Welcome to Acme Inc\",\n        \"fullWidth\": true,\n        \"icon\": \"🎉\",\n        \"color\": \"string\",\n        \"text\": \"…\",\n        \"data\": {},\n        \"url\": \"string\",\n        \"urlId\": \"hDYep1TPAM\",\n        \"collaboratorIds\": [\n          \"0cc85763-5b5b-889c-3d37-f44d593470b2\",\n          \"6e0c072d-f149-9426-c0cc-cfb3427f9d30\"\n        ],\n        \"tasks\": {\n          \"completed\": 9632.315072025505,\n          \"total\": 4621.172021252236\n        },\n        \"templateId\": \"244674cc-b76a-b6ba-bc84-0d8c80137f2b\",\n        \"revision\": 5303.867906227546,\n        \"createdAt\": \"2019-09-02T00:30:29.086Z\",\n        \"createdBy\": {\n          \"id\": \"f88dd9fe-cce0-f68b-64ab-a66fc7dc8bf1\",\n          \"name\": \"Jane Doe\",\n          \"avatarUrl\": \"https://ihambhamWTdWzhxGVsb.njghyVZsIxNjc5Xp+Lw0KNFKWCg1QWhKAX6CPxzlRu6Tv8wGa\",\n          \"color\": \"string\",\n          \"email\": \"HoopNYAh1E-4F@AghggWRGvBYoVdppedyFAxWsSLyCA.vg\",\n          \"role\": \"admin\",\n          \"isSuspended\": true,\n          \"lastActiveAt\": \"1979-02-25T18:22:30.359Z\",\n          \"timezone\": \"string\",\n          \"createdAt\": \"2009-07-25T06:53:30.618Z\",\n          \"updatedAt\": \"1951-07-20T16:07:43.060Z\",\n          \"deletedAt\": \"1953-08-12T22:54:47.022Z\"\n        },\n        \"updatedAt\": \"2012-04-14T01:25:37.179Z\",\n        \"updatedBy\": {\n          \"id\": \"b26c3db9-229c-4f67-d344-d99c62030d0f\",\n          \"name\": \"Jane Doe\",\n          \"avatarUrl\": \"https://ELJKBWzxWhDXAuOVoYiSxzGHz.jkh3YR4QAarpU.Yhaxca51MJOX35kfiy8qSz4b3RusLg97,csaeIrB4shCCRHR\",\n          \"color\": \"string\",\n          \"email\": \"7hJ@MNiryjyCKWvnHkXAHXPkRK.zvse\",\n          \"role\": \"admin\",\n          \"isSuspended\": true,\n          \"lastActiveAt\": \"1999-07-01T08:02:54.439Z\",\n          \"timezone\": \"string\",\n          \"createdAt\": \"2023-04-18T11:31:47.526Z\",\n          \"updatedAt\": \"1962-06-05T12:02:32.916Z\",\n          \"deletedAt\": \"2023-02-02T11:36:46.039Z\"\n        },\n        \"publishedAt\": \"2011-11-23T23:03:04.593Z\",\n        \"dataAttributes\": [\n          {\n            \"dataAttributeId\": \"f8a80975-84c2-62a3-936f-25f2b8224b69\",\n            \"value\": \"string\",\n            \"updatedAt\": \"1954-04-20T11:00:27.726Z\"\n          },\n          {\n            \"dataAttributeId\": \"32bb4b13-4b78-f62f-992a-2051e0d20fdc\",\n            \"value\": \"string\",\n            \"updatedAt\": \"2001-07-02T21:46:32.161Z\"\n          }\n        ],\n        \"archivedAt\": \"2010-07-03T00:15:28.569Z\",\n        \"deletedAt\": \"1993-08-28T20:52:39.373Z\"\n      },\n      {\n        \"id\": \"c74ffb30-c195-fb44-1f14-4efe8cb2af5b\",\n        \"collectionId\": \"4a6b1f13-b122-8301-6b0d-60cf6da7fd95\",\n        \"parentDocumentId\": \"5203f89a-aa9d-2ad0-9ea5-b7b4c13a0b4a\",\n        \"title\": \"Welcome to Acme Inc\",\n        \"fullWidth\": false,\n        \"icon\": \"🎉\",\n        \"color\": \"string\",\n        \"text\": \"…\",\n        \"data\": {},\n        \"url\": \"string\",\n        \"urlId\": \"hDYep1TPAM\",\n        \"collaboratorIds\": [\n          \"1fb87290-9c4e-6620-75bb-db092a44aec3\",\n          \"8815b60d-2dbe-7009-e93c-35b82240c394\"\n        ],\n        \"tasks\": {\n          \"completed\": 2114.982871947806,\n          \"total\": 747.0357350275647\n        },\n        \"templateId\": \"d3c1ba08-431e-7e07-3a18-b7bee7df04c2\",\n        \"revision\": 408.83509298411224,\n        \"createdAt\": \"1992-10-01T05:23:14.313Z\",\n        \"createdBy\": {\n          \"id\": \"eae81417-169a-f123-7c02-164464b2e42e\",\n          \"name\": \"Jane Doe\",\n          \"avatarUrl\": \"https://OZgrYjbvrihqyyUtg.rsynUwSFc,aFHo85m0tqOV7sFLBNdtMD0EF6RSY7AOJiYN4E5Cjb+iFFQ4Kt9mMv7Hug\",\n          \"color\": \"string\",\n          \"email\": \"JfzWPbflNt8@DGdKPfGiVMaRfKMzrVoT.qloz\",\n          \"role\": \"admin\",\n          \"isSuspended\": true,\n          \"lastActiveAt\": \"1955-02-08T18:35:05.890Z\",\n          \"timezone\": \"string\",\n          \"createdAt\": \"1954-02-21T19:40:30.601Z\",\n          \"updatedAt\": \"2006-04-23T19:40:14.434Z\",\n          \"deletedAt\": \"2020-03-25T07:20:20.320Z\"\n        },\n        \"updatedAt\": \"1984-10-30T00:12:52.705Z\",\n        \"updatedBy\": {\n          \"id\": \"6d90547d-0473-8f9f-3a2c-56838938ad3f\",\n          \"name\": \"Jane Doe\",\n          \"avatarUrl\": \"https://pNeoJjiKarTuNVyMbEhhmCydsPcw.ljpgHl2Mm+Ad-NcaurU1R4DogkmWeYbxid1WIiW\",\n          \"color\": \"string\",\n          \"email\": \"oHrtDQ2SlG@b.aaad\",\n          \"role\": \"viewer\",\n          \"isSuspended\": true,\n          \"lastActiveAt\": \"1989-08-11T19:57:09.274Z\",\n          \"timezone\": \"string\",\n          \"createdAt\": \"1965-09-10T08:18:23.408Z\",\n          \"updatedAt\": \"1991-07-17T15:23:51.413Z\",\n          \"deletedAt\": \"2016-12-25T16:37:58.515Z\"\n        },\n        \"publishedAt\": \"1950-11-29T11:50:22.715Z\",\n        \"dataAttributes\": [\n          {\n            \"dataAttributeId\": \"d5b45279-0cea-873f-cb99-7afede0bf3dd\",\n            \"value\": \"string\",\n            \"updatedAt\": \"1987-07-09T15:42:52.968Z\"\n          },\n          {\n            \"dataAttributeId\": \"d3ab251c-9e13-8a72-1edf-7a15f519af64\",\n            \"value\": \"string\",\n            \"updatedAt\": \"2021-04-16T05:09:55.112Z\"\n          }\n        ],\n        \"archivedAt\": \"1978-06-24T02:09:01.948Z\",\n        \"deletedAt\": \"2005-05-16T18:24:30.633Z\"\n      }\n    ]\n  },\n  \"pagination\": {\n    \"offset\": 0,\n    \"limit\": 25\n  },\n  \"policies\": [\n    {\n      \"id\": \"d2048843-b7d0-e785-1daa-d79b439eb2ac\",\n      \"abilities\": {\n        \"key_0\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_1\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_2\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    },\n    {\n      \"id\": \"91ce8c5a-d1e7-cece-3ff7-d964a0335947\",\n      \"abilities\": {\n        \"key_0\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_1\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_2\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72035d90-0db4-4f8f-be5e-0f09c9786acb",
+              "name": "The API key is missing or otherwise invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offset\": 0,\n  \"limit\": 25\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 3683.0549806981317,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b02a992e-5ede-4502-b0aa-4a6601abe147",
+              "name": "The current API key is not authorized to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offset\": 0,\n  \"limit\": 25\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 3683.0549806981317,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b938e2ed-1412-4947-a3e4-470aed2c7958",
+              "name": "The request was rate limited.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offset\": 0,\n  \"limit\": 25\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds in the future to retry the request, if rate limited.",
+                  "key": "Retry-After",
+                  "value": "6753"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum requests available in the current duration.",
+                  "key": "RateLimit-Limit",
+                  "value": "6753"
+                },
+                {
+                  "disabled": false,
+                  "description": "How many requests are left in the current duration.",
+                  "key": "RateLimit-Remaining",
+                  "value": "6753"
+                },
+                {
+                  "disabled": false,
+                  "description": "Timestamp in the future the duration will reset.",
+                  "key": "RateLimit-Reset",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"rate_limit_exceeded\",\n  \"status\": 429\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5367530a-89d0-4f5a-9a25-b4ea5a98ee10",
+          "name": "Update a stars order in the sidebar",
+          "request": {
+            "name": "Update a stars order in the sidebar",
+            "description": {
+              "content": "Update the position of a starred document in the sidebar. The index parameter determines the display order relative to other starred documents.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stars.update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"index\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "666a7ac0-9c65-4f19-b527-b5448882341b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"index\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"351cdd83-ff13-86f6-5c10-b93e68b97919\",\n    \"index\": \"string\",\n    \"documentId\": \"e8a3a96f-62d6-dacc-ae29-06c3fd3d22ae\",\n    \"collectionId\": \"2691ba93-b339-6bd1-fa05-aa3202caf74e\",\n    \"createdAt\": \"1982-06-08T18:49:13.042Z\",\n    \"updatedAt\": \"2016-05-28T02:02:50.623Z\"\n  },\n  \"policies\": [\n    {\n      \"id\": \"1dd3c5e3-0ed7-fe80-3970-5b0189ca6342\",\n      \"abilities\": {\n        \"key_0\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    },\n    {\n      \"id\": \"0b984b5e-9b7c-d317-d0d3-6a3f2f5e42ff\",\n      \"abilities\": {\n        \"key_0\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_1\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_2\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb0c8607-07eb-4f94-96f3-9df8a38bac3c",
+              "name": "The request failed one or more validations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"index\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 3683.0549806981317,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d977fc5-4dd3-486a-a996-0ba08ecfe002",
+              "name": "The API key is missing or otherwise invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"index\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 3683.0549806981317,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89c3bf30-e3e3-44c2-8a9b-4f13ee57fcc0",
+              "name": "The current API key is not authorized to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"index\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 3683.0549806981317,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d0efeec-9713-4738-abeb-e72ef85d4893",
+              "name": "The specified resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"index\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 3683.0549806981317,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89595928-5059-4282-9547-b3a8adc779d1",
+              "name": "The request was rate limited.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"index\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds in the future to retry the request, if rate limited.",
+                  "key": "Retry-After",
+                  "value": "6753"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum requests available in the current duration.",
+                  "key": "RateLimit-Limit",
+                  "value": "6753"
+                },
+                {
+                  "disabled": false,
+                  "description": "How many requests are left in the current duration.",
+                  "key": "RateLimit-Remaining",
+                  "value": "6753"
+                },
+                {
+                  "disabled": false,
+                  "description": "Timestamp in the future the duration will reset.",
+                  "key": "RateLimit-Reset",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"rate_limit_exceeded\",\n  \"status\": 429\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e3e59cb-93d7-49d8-873b-264a672a2c8b",
+          "name": "Delete a star",
+          "request": {
+            "name": "Delete a star",
+            "description": {
+              "content": "Remove a star from a document, removing it from the user's starred documents list in the sidebar.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stars.delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "28d91f93-7e23-48f2-9ca2-db53ce0c3453",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e81ef977-c3ea-4bf9-b6f2-830ce8465e53",
+              "name": "The request failed one or more validations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 3683.0549806981317,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21dcc1d8-0149-4312-aafb-0db11560171e",
+              "name": "The API key is missing or otherwise invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 3683.0549806981317,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1baef61c-369b-47a0-889c-56e2b784ba32",
+              "name": "The current API key is not authorized to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 3683.0549806981317,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b002e29-5a44-4454-ae54-31f72bfcf460",
+              "name": "The specified resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 3683.0549806981317,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae4d91cd-6f19-4c6c-a8e7-fc26f32c24a6",
+              "name": "The request was rate limited.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stars.delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds in the future to retry the request, if rate limited.",
+                  "key": "Retry-After",
+                  "value": "6753"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum requests available in the current duration.",
+                  "key": "RateLimit-Limit",
+                  "value": "6753"
+                },
+                {
+                  "disabled": false,
+                  "description": "How many requests are left in the current duration.",
+                  "key": "RateLimit-Remaining",
+                  "value": "6753"
+                },
+                {
+                  "disabled": false,
+                  "description": "Timestamp in the future the duration will reset.",
+                  "key": "RateLimit-Reset",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"rate_limit_exceeded\",\n  \"status\": 429\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.getoutline.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "86ce4ecd-b82c-4e5c-96a9-8ef0b8c31f3a",
+    "name": "Outline AccessRequests Stars API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\n\nThe Outline API is structured in an RPC style. It enables you to\nprogramatically interact with all aspects of Outline’s data – in fact, the\nmain application is built on exactly the same API.\n\nThe API structure is available as an\n[openapi specification](https://github.com/outline/openapi) if that’s your\njam – it can be used to generate clients for most programming languages.\n\n# Making requests\n\nOutline’s API follows simple RPC style conventions where each API endpoint is\na `POST` method on `https://app.getoutline.com/api/:method`. Only HTTPS is\nsupported and all response payloads are JSON.\n\nWhen making `POST` requests, request parameters are parsed depending on\nContent-Type header. To make a call using JSON payload, you must pass\nContent-Type: application/json header, here’s an example using CURL:\n\n```\ncurl https://app.getoutline.com/api/documents.info \\\n-X 'POST' \\\n-H 'authorization: Bearer MY_API_KEY' \\\n-H 'content-type: application/json' \\\n-H 'accept: application/json' \\\n-d '{\"id\": \"outline-api-NTpezNwhUP\"}'\n```\n\nOr, with JavaScript:\n\n```javascript\nconst response = await fetch(\"https://app.getoutline.com/api/documents.info\", {\n  method: \"POST\",\n  headers: {\n    Accept: \"application/json\",\n    \"Content-Type\": \"application/json\",\n    Authorization: \"Bearer MY_API_KEY\"\n  }\n})\n\nconst body = await response.json();\nconst document = body.data;\n```\n\n# Authentication\n\n## API key\n\nYou can create new API keys under **Settings => API & Apps**. Be\ncareful when handling your keys as they allow full access to your data,\nyou should treat them like passwords and they should never be committed to\nsource control.\n\n### Usage\n\nTo authenticate with API, you should supply the API key as a \"Bearer\" token in the `Authorization` header\n(`Authorization: Bearer YOUR_API_KEY`).\n\nAPI keys can be revoked at any time by the creating user or an administrator of the workspace. If an API\nkey is revoked, any requests made with that key will return a `401 Unauthenticated` response.\n\n### Format\n\nAll API keys always begin with `ol_api_` followed by a random string of 38 letters and numbers.\n\n## OAuth 2.0\n\nOAuth 2.0 is a widely used protocol for authorization and authentication. It allows users\nto grant third-party _or_ internal applications access to their resources without sharing\ntheir credentials. To use OAuth 2.0 you need to follow these steps:\n\n1. Register your application under **Settings => Applications**\n2. Obtain an access token by exchanging the client credentials for an access token\n3. Use the access token to authenticate requests to the API\n\nSome API endpoints allow unauthenticated requests for public resources and\nthey can be called without authentication.\n\n# Scopes\n\nScopes are used to limit the access of an API key or application to specific resources. For example,\nan application may only need access to read documents, but not write them. Scopes can be global in\nthe case of `read` and `write` scopes, scoped to a namespace, scoped to an API endpoint, or use\nwildcard scopes like `documents.*`. Some examples of scopes that can be used are:\n\n## Global\n\n- `read`: Allows all read actions\n- `write`: Allows all read and write actions\n\n## Namespaced\n\n- `documents:read`: Allows all document read actions\n- `collections:write`: Allows all collection write actions\n\n## Endpoints\n\n- `documents.info`: Allows only one specific API method\n- `documents.*`: Allows all document API methods\n- `users.*`: Allows all user API methods\n\n# Errors\n\nAll successful API requests will be returned with a 200 or 201 status code\nand `ok: true` in the response payload. If there’s an error while making the\nrequest, the appropriate status code is returned with the error message:\n\n```\n{\n  \"ok\": false,\n  \"error\": \"Not Found\"\n}\n```\n\n# Pagination\n\nMost top-level API resources have support for \"list\" API methods. For instance,\nyou can list users, documents, and collections. These list methods share\ncommon parameters, taking both `limit` and `offset`.\n\nResponses will echo these parameters in the root `pagination` key, and also\ninclude a `nextPath` key which can be used as a handy shortcut to fetch the\nnext page of results. For example:\n\n```\n{\n  ok: true,\n  status: 200,\n  data: […],\n  pagination: {\n    limit: 25,\n    offset: 0,\n    nextPath: \"/api/documents.list?limit=25&offset=25\"\n  }\n}\n```\n\n# Rate limits\n\nLike most APIs, Outline has rate limits in place to prevent abuse. Endpoints\nthat mutate data are more restrictive than read-only endpoints. If you exceed\nthe rate limit for a given endpoint, you will receive a `429 Too Many Requests`\nstatus code.\n\nThe response will include a `Retry-After` header that indicates how many seconds\nyou should wait before making another request.\n\n# Policies\n\nMost API resources have associated \"policies\", these objects describe the\ncurrent authentications authorized actions related to an individual resource. It\nshould be noted that the policy \"id\" is identical to the resource it is\nrelated to, policies themselves do not have unique identifiers.\n\nFor most usecases of the API, policies can be safely ignored. Calling\nunauthorized methods will result in the appropriate response code – these can\nbe used in an interface to adjust which elements are visible.\n\n\nContact Support:\n Email: hello@getoutline.com",
+      "type": "text/plain"
+    }
+  }
+}

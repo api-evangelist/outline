@@ -1,0 +1,644 @@
+{
+  "item": [
+    {
+      "id": "2d714c0a-c185-4788-afb3-bd97361968d5",
+      "name": "Revisions",
+      "description": {
+        "content": "`Revisions` represent a snapshot of a document at a point in time. They\nare used to keep track of editing and collaboration history – a document\ncan also be restored to a previous revision if necessary.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bd49c782-bd57-4de7-8a16-e03755d517d5",
+          "name": "Retrieve a revision",
+          "request": {
+            "name": "Retrieve a revision",
+            "description": {
+              "content": "A revision is a snapshot of a document at a specific point in time. This endpoint allows you to retrieve a specific version of a document by its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "revisions.info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "53dbc315-37e4-4b41-85b8-14e07ca818c9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revisions.info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"31008c6b-a09e-2f81-5604-fd82f54d4f69\",\n    \"documentId\": \"bc6293e3-e521-fbf6-7ae5-6bb98ad805b9\",\n    \"title\": \"string\",\n    \"name\": \"string\",\n    \"data\": {},\n    \"text\": \"string\",\n    \"icon\": \"string\",\n    \"color\": \"string\",\n    \"collaborators\": [\n      {\n        \"id\": \"42f381ee-0163-778c-c57f-17f616677827\",\n        \"name\": \"Jane Doe\",\n        \"avatarUrl\": \"http://cdppxyiVYD.wodlfmwrHFjBMKHPdeWjS+nIZ6\",\n        \"color\": \"string\",\n        \"email\": \"pC7YWzrW4Lgldm@aismuZCWQhJnJBAmIdZFUBgCmLaXmZRg.uax\",\n        \"role\": \"member\",\n        \"isSuspended\": false,\n        \"lastActiveAt\": \"2018-06-13T08:52:01.613Z\",\n        \"timezone\": \"string\",\n        \"createdAt\": \"1947-06-18T21:50:40.915Z\",\n        \"updatedAt\": \"1964-10-09T20:16:17.930Z\",\n        \"deletedAt\": \"1963-08-13T11:05:43.950Z\"\n      },\n      {\n        \"id\": \"9a2f9e93-7cb8-2102-d6ad-29536418e3ea\",\n        \"name\": \"Jane Doe\",\n        \"avatarUrl\": \"http://wOANOPwGHGjtyqWEfYJKkoYHUoXW.mmniSUyh0DrYwWN,.3fpClA.s92YK97Pj9,fHB5,YbVYVEzBpOMauxN-GBnItdRC0\",\n        \"color\": \"string\",\n        \"email\": \"n32v07vXz5Y@ULTqiKqGnISQc.tyr\",\n        \"role\": \"admin\",\n        \"isSuspended\": true,\n        \"lastActiveAt\": \"1948-08-06T22:10:21.716Z\",\n        \"timezone\": \"string\",\n        \"createdAt\": \"1979-03-17T21:13:59.463Z\",\n        \"updatedAt\": \"2024-03-25T02:47:40.542Z\",\n        \"deletedAt\": \"1965-10-23T19:50:49.347Z\"\n      }\n    ],\n    \"createdAt\": \"1988-10-10T00:21:44.495Z\",\n    \"createdBy\": {\n      \"id\": \"f3f35edf-5030-5515-7dd9-69a5f0905620\",\n      \"name\": \"Jane Doe\",\n      \"avatarUrl\": \"https://EPuACp.mcZjC1FiAKYN,F5xG\",\n      \"color\": \"string\",\n      \"email\": \"w-2V@XKeHzEvymXVprjNrxrvdjDxOHa.qbl\",\n      \"role\": \"admin\",\n      \"isSuspended\": false,\n      \"lastActiveAt\": \"1988-06-04T11:00:12.507Z\",\n      \"timezone\": \"string\",\n      \"createdAt\": \"2004-07-16T22:39:26.256Z\",\n      \"updatedAt\": \"1947-09-30T22:57:03.951Z\",\n      \"deletedAt\": \"2006-08-19T01:06:43.274Z\"\n    },\n    \"createdById\": \"2260e6a1-283b-a41b-a46b-aa75704e6b99\",\n    \"deletedAt\": \"1952-09-13T22:49:01.800Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60841069-c89b-4b18-8e75-8939a876a2d9",
+              "name": "The API key is missing or otherwise invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revisions.info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 1407.3602096180239,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52fd5d51-ac3c-4571-8e34-7cc337a81143",
+              "name": "The current API key is not authorized to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revisions.info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 1407.3602096180239,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d7c398b-38d9-4b74-9d3a-fcd45249fa9d",
+              "name": "The specified resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revisions.info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 1407.3602096180239,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c1f66a4-7ba1-4919-82e2-6944d17fc303",
+              "name": "The request was rate limited.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revisions.info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds in the future to retry the request, if rate limited.",
+                  "key": "Retry-After",
+                  "value": "319"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum requests available in the current duration.",
+                  "key": "RateLimit-Limit",
+                  "value": "319"
+                },
+                {
+                  "disabled": false,
+                  "description": "How many requests are left in the current duration.",
+                  "key": "RateLimit-Remaining",
+                  "value": "319"
+                },
+                {
+                  "disabled": false,
+                  "description": "Timestamp in the future the duration will reset.",
+                  "key": "RateLimit-Reset",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"rate_limit_exceeded\",\n  \"status\": 429\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae4ee20f-08b5-4da9-98e1-f63f075ac55c",
+          "name": "List all revisions",
+          "request": {
+            "name": "List all revisions",
+            "description": {
+              "content": "List all revisions for a specific document. Revisions represent historical snapshots of a document's content and can be used to track changes over time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "revisions.list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"offset\": \"<number>\",\n  \"limit\": \"<number>\",\n  \"sort\": \"<string>\",\n  \"direction\": \"<string>\",\n  \"documentId\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "39cbf55b-67b3-4b3d-8c1d-7065e3f3014a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revisions.list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offset\": 0,\n  \"limit\": 25,\n  \"sort\": \"updatedAt\",\n  \"direction\": \"DESC\",\n  \"documentId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"6181316d-c4c8-2a94-712a-1bc43aadfcf2\",\n      \"documentId\": \"7d4f3909-66fe-07ab-95fb-bca7f1ffffa7\",\n      \"title\": \"string\",\n      \"name\": \"string\",\n      \"data\": {},\n      \"text\": \"string\",\n      \"icon\": \"string\",\n      \"color\": \"string\",\n      \"collaborators\": [\n        {\n          \"id\": \"f5900eac-66cf-0961-7a57-74e531b4fd29\",\n          \"name\": \"Jane Doe\",\n          \"avatarUrl\": \"http://muAbbEmfOuBoQ.uqzgvg-vaQMVyCyaz2.1F8TBC,ITOgMgSNP7t1cdVjH7QmCJ44ZuV-4X\",\n          \"color\": \"string\",\n          \"email\": \"JvnmT6BaA@z.zztj\",\n          \"role\": \"guest\",\n          \"isSuspended\": false,\n          \"lastActiveAt\": \"1965-11-18T12:39:18.734Z\",\n          \"timezone\": \"string\",\n          \"createdAt\": \"1955-03-16T09:13:14.814Z\",\n          \"updatedAt\": \"1979-01-04T19:35:45.266Z\",\n          \"deletedAt\": \"1967-04-15T10:27:05.380Z\"\n        },\n        {\n          \"id\": \"f8309fd7-9da5-52fc-63e1-a3a2db17242c\",\n          \"name\": \"Jane Doe\",\n          \"avatarUrl\": \"https://kQAxrejIUVsMkU.semyEUael-rcsMIIMKZSe2X2dJv2Gao1NhXhW\",\n          \"color\": \"string\",\n          \"email\": \"IG67ClTRJ@qrKZDJv.cjm\",\n          \"role\": \"guest\",\n          \"isSuspended\": false,\n          \"lastActiveAt\": \"2025-10-07T16:27:08.413Z\",\n          \"timezone\": \"string\",\n          \"createdAt\": \"1980-09-29T07:06:06.945Z\",\n          \"updatedAt\": \"1972-06-02T00:22:30.101Z\",\n          \"deletedAt\": \"1999-12-23T18:07:32.293Z\"\n        }\n      ],\n      \"createdAt\": \"1983-02-01T10:08:59.467Z\",\n      \"createdBy\": {\n        \"id\": \"7f8eac09-8b42-a0e8-4a70-be11275f4000\",\n        \"name\": \"Jane Doe\",\n        \"avatarUrl\": \"https://FZcgOmIeDNIDoso.pxaYYGuheR,D36TKcqGJXkn.ILlhQrkcwHCnB0MlvVyzkt4bwfPXLnkaPZqpNv2Y7tq8zBm\",\n        \"color\": \"string\",\n        \"email\": \"7s5g@SyvPktdREkYUNBdwsKqoWyCPgSu.ba\",\n        \"role\": \"guest\",\n        \"isSuspended\": true,\n        \"lastActiveAt\": \"1989-06-26T19:34:55.652Z\",\n        \"timezone\": \"string\",\n        \"createdAt\": \"1976-02-01T09:31:47.912Z\",\n        \"updatedAt\": \"1986-04-21T01:09:25.084Z\",\n        \"deletedAt\": \"1951-08-11T21:09:26.610Z\"\n      },\n      \"createdById\": \"bb050aa9-80af-574a-1904-350b8b5f1ccd\",\n      \"deletedAt\": \"1988-07-14T16:40:57.065Z\"\n    },\n    {\n      \"id\": \"fca0c7f3-6179-964f-221e-6e53ac1b2760\",\n      \"documentId\": \"13f2cea6-470f-d349-031f-5179f2e6d516\",\n      \"title\": \"string\",\n      \"name\": \"string\",\n      \"data\": {},\n      \"text\": \"string\",\n      \"icon\": \"string\",\n      \"color\": \"string\",\n      \"collaborators\": [\n        {\n          \"id\": \"b940d8f8-a7fc-5c5e-e088-539ce4a3ff97\",\n          \"name\": \"Jane Doe\",\n          \"avatarUrl\": \"http://RJdTkuJqYnpHWMGpCynVoou.rvdV,6vtky\",\n          \"color\": \"string\",\n          \"email\": \"YY6H5lavnEL@nUWsMZwExr.hwp\",\n          \"role\": \"member\",\n          \"isSuspended\": true,\n          \"lastActiveAt\": \"2024-04-26T16:47:50.562Z\",\n          \"timezone\": \"string\",\n          \"createdAt\": \"2004-12-10T02:20:41.005Z\",\n          \"updatedAt\": \"2003-07-08T14:41:23.379Z\",\n          \"deletedAt\": \"1997-04-04T14:20:26.417Z\"\n        },\n        {\n          \"id\": \"5c4312d4-615c-5af6-8f6b-cf77e4930d90\",\n          \"name\": \"Jane Doe\",\n          \"avatarUrl\": \"https://akKYbBCA.guaWTZsTxMerGjPK6myDWzvGjU2cma5QLxpSV2\",\n          \"color\": \"string\",\n          \"email\": \"qHjWw7RdC@UaMgzjtHXKkXXgEYXsz.mo\",\n          \"role\": \"member\",\n          \"isSuspended\": false,\n          \"lastActiveAt\": \"1987-12-28T23:18:15.475Z\",\n          \"timezone\": \"string\",\n          \"createdAt\": \"1991-11-19T15:16:39.700Z\",\n          \"updatedAt\": \"2013-09-19T11:18:53.886Z\",\n          \"deletedAt\": \"1978-08-03T06:26:54.689Z\"\n        }\n      ],\n      \"createdAt\": \"2007-09-03T11:08:57.089Z\",\n      \"createdBy\": {\n        \"id\": \"eddab907-6614-9c48-7320-7f1baf6dcb09\",\n        \"name\": \"Jane Doe\",\n        \"avatarUrl\": \"http://icYfclPFHEGTiiQqPxMqSnRIBWvRemZ.hqCeplnhJs4Abdv-SkSBsc81CZSLiTzHxkezr0\",\n        \"color\": \"string\",\n        \"email\": \"urO5IXcCrE@qPDAQOAxKdqFBYz.rap\",\n        \"role\": \"member\",\n        \"isSuspended\": true,\n        \"lastActiveAt\": \"1989-07-05T12:12:44.157Z\",\n        \"timezone\": \"string\",\n        \"createdAt\": \"2002-04-10T09:28:48.358Z\",\n        \"updatedAt\": \"1968-02-29T16:39:53.226Z\",\n        \"deletedAt\": \"2003-04-13T05:26:01.941Z\"\n      },\n      \"createdById\": \"f4f2f9bd-517f-2a04-ff6c-c4ddfdd4a611\",\n      \"deletedAt\": \"1986-09-06T04:12:45.559Z\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 0,\n    \"limit\": 25\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf643e19-c719-4fa9-85aa-4b82256cadbd",
+              "name": "The API key is missing or otherwise invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revisions.list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offset\": 0,\n  \"limit\": 25,\n  \"sort\": \"updatedAt\",\n  \"direction\": \"DESC\",\n  \"documentId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 1407.3602096180239,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38e55d7c-fd11-4852-96e1-4b9de783fea3",
+              "name": "The current API key is not authorized to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revisions.list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offset\": 0,\n  \"limit\": 25,\n  \"sort\": \"updatedAt\",\n  \"direction\": \"DESC\",\n  \"documentId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 1407.3602096180239,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33a278db-4df7-4bbc-a1a7-bbabb3aac8c3",
+              "name": "The request was rate limited.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revisions.list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offset\": 0,\n  \"limit\": 25,\n  \"sort\": \"updatedAt\",\n  \"direction\": \"DESC\",\n  \"documentId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds in the future to retry the request, if rate limited.",
+                  "key": "Retry-After",
+                  "value": "319"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum requests available in the current duration.",
+                  "key": "RateLimit-Limit",
+                  "value": "319"
+                },
+                {
+                  "disabled": false,
+                  "description": "How many requests are left in the current duration.",
+                  "key": "RateLimit-Remaining",
+                  "value": "319"
+                },
+                {
+                  "disabled": false,
+                  "description": "Timestamp in the future the duration will reset.",
+                  "key": "RateLimit-Reset",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"rate_limit_exceeded\",\n  \"status\": 429\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.getoutline.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3f8e7716-63b9-4103-9054-4cd800c68ec5",
+    "name": "Outline AccessRequests Revisions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\n\nThe Outline API is structured in an RPC style. It enables you to\nprogramatically interact with all aspects of Outline’s data – in fact, the\nmain application is built on exactly the same API.\n\nThe API structure is available as an\n[openapi specification](https://github.com/outline/openapi) if that’s your\njam – it can be used to generate clients for most programming languages.\n\n# Making requests\n\nOutline’s API follows simple RPC style conventions where each API endpoint is\na `POST` method on `https://app.getoutline.com/api/:method`. Only HTTPS is\nsupported and all response payloads are JSON.\n\nWhen making `POST` requests, request parameters are parsed depending on\nContent-Type header. To make a call using JSON payload, you must pass\nContent-Type: application/json header, here’s an example using CURL:\n\n```\ncurl https://app.getoutline.com/api/documents.info \\\n-X 'POST' \\\n-H 'authorization: Bearer MY_API_KEY' \\\n-H 'content-type: application/json' \\\n-H 'accept: application/json' \\\n-d '{\"id\": \"outline-api-NTpezNwhUP\"}'\n```\n\nOr, with JavaScript:\n\n```javascript\nconst response = await fetch(\"https://app.getoutline.com/api/documents.info\", {\n  method: \"POST\",\n  headers: {\n    Accept: \"application/json\",\n    \"Content-Type\": \"application/json\",\n    Authorization: \"Bearer MY_API_KEY\"\n  }\n})\n\nconst body = await response.json();\nconst document = body.data;\n```\n\n# Authentication\n\n## API key\n\nYou can create new API keys under **Settings => API & Apps**. Be\ncareful when handling your keys as they allow full access to your data,\nyou should treat them like passwords and they should never be committed to\nsource control.\n\n### Usage\n\nTo authenticate with API, you should supply the API key as a \"Bearer\" token in the `Authorization` header\n(`Authorization: Bearer YOUR_API_KEY`).\n\nAPI keys can be revoked at any time by the creating user or an administrator of the workspace. If an API\nkey is revoked, any requests made with that key will return a `401 Unauthenticated` response.\n\n### Format\n\nAll API keys always begin with `ol_api_` followed by a random string of 38 letters and numbers.\n\n## OAuth 2.0\n\nOAuth 2.0 is a widely used protocol for authorization and authentication. It allows users\nto grant third-party _or_ internal applications access to their resources without sharing\ntheir credentials. To use OAuth 2.0 you need to follow these steps:\n\n1. Register your application under **Settings => Applications**\n2. Obtain an access token by exchanging the client credentials for an access token\n3. Use the access token to authenticate requests to the API\n\nSome API endpoints allow unauthenticated requests for public resources and\nthey can be called without authentication.\n\n# Scopes\n\nScopes are used to limit the access of an API key or application to specific resources. For example,\nan application may only need access to read documents, but not write them. Scopes can be global in\nthe case of `read` and `write` scopes, scoped to a namespace, scoped to an API endpoint, or use\nwildcard scopes like `documents.*`. Some examples of scopes that can be used are:\n\n## Global\n\n- `read`: Allows all read actions\n- `write`: Allows all read and write actions\n\n## Namespaced\n\n- `documents:read`: Allows all document read actions\n- `collections:write`: Allows all collection write actions\n\n## Endpoints\n\n- `documents.info`: Allows only one specific API method\n- `documents.*`: Allows all document API methods\n- `users.*`: Allows all user API methods\n\n# Errors\n\nAll successful API requests will be returned with a 200 or 201 status code\nand `ok: true` in the response payload. If there’s an error while making the\nrequest, the appropriate status code is returned with the error message:\n\n```\n{\n  \"ok\": false,\n  \"error\": \"Not Found\"\n}\n```\n\n# Pagination\n\nMost top-level API resources have support for \"list\" API methods. For instance,\nyou can list users, documents, and collections. These list methods share\ncommon parameters, taking both `limit` and `offset`.\n\nResponses will echo these parameters in the root `pagination` key, and also\ninclude a `nextPath` key which can be used as a handy shortcut to fetch the\nnext page of results. For example:\n\n```\n{\n  ok: true,\n  status: 200,\n  data: […],\n  pagination: {\n    limit: 25,\n    offset: 0,\n    nextPath: \"/api/documents.list?limit=25&offset=25\"\n  }\n}\n```\n\n# Rate limits\n\nLike most APIs, Outline has rate limits in place to prevent abuse. Endpoints\nthat mutate data are more restrictive than read-only endpoints. If you exceed\nthe rate limit for a given endpoint, you will receive a `429 Too Many Requests`\nstatus code.\n\nThe response will include a `Retry-After` header that indicates how many seconds\nyou should wait before making another request.\n\n# Policies\n\nMost API resources have associated \"policies\", these objects describe the\ncurrent authentications authorized actions related to an individual resource. It\nshould be noted that the policy \"id\" is identical to the resource it is\nrelated to, policies themselves do not have unique identifiers.\n\nFor most usecases of the API, policies can be safely ignored. Calling\nunauthorized methods will result in the appropriate response code – these can\nbe used in an interface to adjust which elements are visible.\n\n\nContact Support:\n Email: hello@getoutline.com",
+      "type": "text/plain"
+    }
+  }
+}

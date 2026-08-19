@@ -1,0 +1,317 @@
+{
+  "item": [
+    {
+      "id": "4e0334b2-49e6-4777-9a5c-8a659c1bac34",
+      "name": "Events",
+      "description": {
+        "content": "`Events` represent an artifact of an action. Whether it is creating a user,\nediting a document, changing permissions, or any other action – an event\nis created that can be used as an audit trail or activity stream.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "221dfa36-fc0f-4d62-809e-e12809ee0f59",
+          "name": "List all events",
+          "request": {
+            "name": "List all events",
+            "description": {
+              "content": "Events are an audit trail of important events that happen in the knowledge base.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events.list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"offset\": \"<number>\",\n  \"limit\": \"<number>\",\n  \"sort\": \"<string>\",\n  \"direction\": \"<string>\",\n  \"name\": \"<string>\",\n  \"actorId\": \"<uuid>\",\n  \"documentId\": \"<uuid>\",\n  \"collectionId\": \"<uuid>\",\n  \"auditLog\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "90b0b0bb-0397-48be-a44e-ccab9a7c5300",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events.list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offset\": 0,\n  \"limit\": 25,\n  \"sort\": \"updatedAt\",\n  \"direction\": \"DESC\",\n  \"name\": \"<string>\",\n  \"actorId\": \"<uuid>\",\n  \"documentId\": \"<uuid>\",\n  \"collectionId\": \"<uuid>\",\n  \"auditLog\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"a59af19d-4360-9323-4063-da36046bac99\",\n      \"name\": \"documents.create\",\n      \"modelId\": \"7171d839-004a-9548-c5fe-099addc9dc23\",\n      \"userId\": \"b3b44f49-8a30-96d8-5132-2f3f81990d60\",\n      \"actorId\": \"a0e89445-bbd0-1808-a04b-c478fbb10463\",\n      \"actorIpAddress\": \"60.169.88.100\",\n      \"collectionId\": \"bc3dfa0d-5829-67d7-0780-ac53bbfbc82a\",\n      \"documentId\": \"d2e5e8a7-0e1f-3e7d-899b-98c2673217d3\",\n      \"createdAt\": \"1980-08-29T04:26:36.885Z\",\n      \"data\": {\n        \"name\": \"Equipment list\"\n      },\n      \"changes\": {},\n      \"actor\": {\n        \"id\": \"1a247426-b17d-54a9-deda-6a98bd0ee0f9\",\n        \"name\": \"Jane Doe\",\n        \"avatarUrl\": \"https://LJOucHqRJlYLH.hnpMUAuO2u7wADB-tRFAtk-QM+dJ.d\",\n        \"color\": \"string\",\n        \"email\": \"vxtYSlxOU@EPyKZCtTOksdmBahZSUDmsTrtuaNQ.tdw\",\n        \"role\": \"guest\",\n        \"isSuspended\": false,\n        \"lastActiveAt\": \"1969-08-05T09:14:43.879Z\",\n        \"timezone\": \"string\",\n        \"createdAt\": \"2014-02-16T20:44:37.343Z\",\n        \"updatedAt\": \"1949-09-10T22:01:25.613Z\",\n        \"deletedAt\": \"1980-08-12T02:08:30.113Z\"\n      }\n    },\n    {\n      \"id\": \"7b229495-7dc1-5188-8763-bbb458f406c3\",\n      \"name\": \"documents.create\",\n      \"modelId\": \"73d144ed-206f-bce2-f8b0-5a79c6fb2f00\",\n      \"userId\": \"48c3f75d-d102-0304-4567-9a4636ef77dd\",\n      \"actorId\": \"da8f6390-7bd2-cd98-289a-788b19d86d0d\",\n      \"actorIpAddress\": \"60.169.88.100\",\n      \"collectionId\": \"81ba529f-cb5e-4336-a10c-3c5cbeaec8d3\",\n      \"documentId\": \"3d819bfe-396b-be5a-6435-e36e28b8ffac\",\n      \"createdAt\": \"2014-11-14T23:22:17.436Z\",\n      \"data\": {\n        \"name\": \"Equipment list\"\n      },\n      \"changes\": {},\n      \"actor\": {\n        \"id\": \"b37076b6-c254-0a60-0f12-19da073ea24c\",\n        \"name\": \"Jane Doe\",\n        \"avatarUrl\": \"https://NiiDAGMSzIVPFBArxHyolMAFByWD.jrgjr88fBmMG.DfYViWhT27uajF4JFO6nPRYRchiz-yQuvvFCpvj9\",\n        \"color\": \"string\",\n        \"email\": \"aJsX1kfJKJBt@h.ukw\",\n        \"role\": \"member\",\n        \"isSuspended\": true,\n        \"lastActiveAt\": \"1996-05-14T23:34:00.664Z\",\n        \"timezone\": \"string\",\n        \"createdAt\": \"1947-05-02T12:16:03.114Z\",\n        \"updatedAt\": \"1977-08-18T22:25:34.636Z\",\n        \"deletedAt\": \"2009-10-20T22:44:02.101Z\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 0,\n    \"limit\": 25\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0bac2f30-7bdc-4c51-853d-ec00e38c7f0f",
+              "name": "The API key is missing or otherwise invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events.list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offset\": 0,\n  \"limit\": 25,\n  \"sort\": \"updatedAt\",\n  \"direction\": \"DESC\",\n  \"name\": \"<string>\",\n  \"actorId\": \"<uuid>\",\n  \"documentId\": \"<uuid>\",\n  \"collectionId\": \"<uuid>\",\n  \"auditLog\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 1528.0634156187389,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c3e4ec6-6da1-42bf-a212-04978fe8cccc",
+              "name": "The current API key is not authorized to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events.list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offset\": 0,\n  \"limit\": 25,\n  \"sort\": \"updatedAt\",\n  \"direction\": \"DESC\",\n  \"name\": \"<string>\",\n  \"actorId\": \"<uuid>\",\n  \"documentId\": \"<uuid>\",\n  \"collectionId\": \"<uuid>\",\n  \"auditLog\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 1528.0634156187389,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8badad2e-f8b3-463f-9ca6-6ede2e93d9e1",
+              "name": "The request was rate limited.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events.list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offset\": 0,\n  \"limit\": 25,\n  \"sort\": \"updatedAt\",\n  \"direction\": \"DESC\",\n  \"name\": \"<string>\",\n  \"actorId\": \"<uuid>\",\n  \"documentId\": \"<uuid>\",\n  \"collectionId\": \"<uuid>\",\n  \"auditLog\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds in the future to retry the request, if rate limited.",
+                  "key": "Retry-After",
+                  "value": "1224"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum requests available in the current duration.",
+                  "key": "RateLimit-Limit",
+                  "value": "1224"
+                },
+                {
+                  "disabled": false,
+                  "description": "How many requests are left in the current duration.",
+                  "key": "RateLimit-Remaining",
+                  "value": "1224"
+                },
+                {
+                  "disabled": false,
+                  "description": "Timestamp in the future the duration will reset.",
+                  "key": "RateLimit-Reset",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"rate_limit_exceeded\",\n  \"status\": 429\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.getoutline.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6c38d6d2-cc90-4eda-8840-6aca153a6a70",
+    "name": "Outline AccessRequests Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\n\nThe Outline API is structured in an RPC style. It enables you to\nprogramatically interact with all aspects of Outline’s data – in fact, the\nmain application is built on exactly the same API.\n\nThe API structure is available as an\n[openapi specification](https://github.com/outline/openapi) if that’s your\njam – it can be used to generate clients for most programming languages.\n\n# Making requests\n\nOutline’s API follows simple RPC style conventions where each API endpoint is\na `POST` method on `https://app.getoutline.com/api/:method`. Only HTTPS is\nsupported and all response payloads are JSON.\n\nWhen making `POST` requests, request parameters are parsed depending on\nContent-Type header. To make a call using JSON payload, you must pass\nContent-Type: application/json header, here’s an example using CURL:\n\n```\ncurl https://app.getoutline.com/api/documents.info \\\n-X 'POST' \\\n-H 'authorization: Bearer MY_API_KEY' \\\n-H 'content-type: application/json' \\\n-H 'accept: application/json' \\\n-d '{\"id\": \"outline-api-NTpezNwhUP\"}'\n```\n\nOr, with JavaScript:\n\n```javascript\nconst response = await fetch(\"https://app.getoutline.com/api/documents.info\", {\n  method: \"POST\",\n  headers: {\n    Accept: \"application/json\",\n    \"Content-Type\": \"application/json\",\n    Authorization: \"Bearer MY_API_KEY\"\n  }\n})\n\nconst body = await response.json();\nconst document = body.data;\n```\n\n# Authentication\n\n## API key\n\nYou can create new API keys under **Settings => API & Apps**. Be\ncareful when handling your keys as they allow full access to your data,\nyou should treat them like passwords and they should never be committed to\nsource control.\n\n### Usage\n\nTo authenticate with API, you should supply the API key as a \"Bearer\" token in the `Authorization` header\n(`Authorization: Bearer YOUR_API_KEY`).\n\nAPI keys can be revoked at any time by the creating user or an administrator of the workspace. If an API\nkey is revoked, any requests made with that key will return a `401 Unauthenticated` response.\n\n### Format\n\nAll API keys always begin with `ol_api_` followed by a random string of 38 letters and numbers.\n\n## OAuth 2.0\n\nOAuth 2.0 is a widely used protocol for authorization and authentication. It allows users\nto grant third-party _or_ internal applications access to their resources without sharing\ntheir credentials. To use OAuth 2.0 you need to follow these steps:\n\n1. Register your application under **Settings => Applications**\n2. Obtain an access token by exchanging the client credentials for an access token\n3. Use the access token to authenticate requests to the API\n\nSome API endpoints allow unauthenticated requests for public resources and\nthey can be called without authentication.\n\n# Scopes\n\nScopes are used to limit the access of an API key or application to specific resources. For example,\nan application may only need access to read documents, but not write them. Scopes can be global in\nthe case of `read` and `write` scopes, scoped to a namespace, scoped to an API endpoint, or use\nwildcard scopes like `documents.*`. Some examples of scopes that can be used are:\n\n## Global\n\n- `read`: Allows all read actions\n- `write`: Allows all read and write actions\n\n## Namespaced\n\n- `documents:read`: Allows all document read actions\n- `collections:write`: Allows all collection write actions\n\n## Endpoints\n\n- `documents.info`: Allows only one specific API method\n- `documents.*`: Allows all document API methods\n- `users.*`: Allows all user API methods\n\n# Errors\n\nAll successful API requests will be returned with a 200 or 201 status code\nand `ok: true` in the response payload. If there’s an error while making the\nrequest, the appropriate status code is returned with the error message:\n\n```\n{\n  \"ok\": false,\n  \"error\": \"Not Found\"\n}\n```\n\n# Pagination\n\nMost top-level API resources have support for \"list\" API methods. For instance,\nyou can list users, documents, and collections. These list methods share\ncommon parameters, taking both `limit` and `offset`.\n\nResponses will echo these parameters in the root `pagination` key, and also\ninclude a `nextPath` key which can be used as a handy shortcut to fetch the\nnext page of results. For example:\n\n```\n{\n  ok: true,\n  status: 200,\n  data: […],\n  pagination: {\n    limit: 25,\n    offset: 0,\n    nextPath: \"/api/documents.list?limit=25&offset=25\"\n  }\n}\n```\n\n# Rate limits\n\nLike most APIs, Outline has rate limits in place to prevent abuse. Endpoints\nthat mutate data are more restrictive than read-only endpoints. If you exceed\nthe rate limit for a given endpoint, you will receive a `429 Too Many Requests`\nstatus code.\n\nThe response will include a `Retry-After` header that indicates how many seconds\nyou should wait before making another request.\n\n# Policies\n\nMost API resources have associated \"policies\", these objects describe the\ncurrent authentications authorized actions related to an individual resource. It\nshould be noted that the policy \"id\" is identical to the resource it is\nrelated to, policies themselves do not have unique identifiers.\n\nFor most usecases of the API, policies can be safely ignored. Calling\nunauthorized methods will result in the appropriate response code – these can\nbe used in an interface to adjust which elements are visible.\n\n\nContact Support:\n Email: hello@getoutline.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1625 @@
+{
+  "item": [
+    {
+      "id": "68aaa5fb-5972-48e1-be0f-83b83dfe7ab2",
+      "name": "Comments",
+      "description": {
+        "content": "`Comments` represent a comment either on a selection of text in a document\nor on the document itself.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ae419cd4-36af-4730-a92b-dcb730028555",
+          "name": "Create a comment",
+          "request": {
+            "name": "Create a comment",
+            "description": {
+              "content": "Add a comment or reply to a document, either `data` or `text` is required. Provide `anchorText` to create an inline comment attached to a specific text range in the document.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "comments.create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"documentId\": \"<uuid>\",\n  \"id\": \"<uuid>\",\n  \"parentCommentId\": \"<uuid>\",\n  \"data\": \"<object>\",\n  \"text\": \"<string>\",\n  \"anchorText\": \"<string>\",\n  \"anchorPrefix\": \"<string>\",\n  \"anchorSuffix\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e85228fb-9795-4858-8be9-9c1150d25ebe",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentId\": \"<uuid>\",\n  \"id\": \"<uuid>\",\n  \"parentCommentId\": \"<uuid>\",\n  \"data\": \"<object>\",\n  \"text\": \"Sounds great\",\n  \"anchorText\": \"<string>\",\n  \"anchorPrefix\": \"<string>\",\n  \"anchorSuffix\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"58a8498a-74eb-8f66-11da-0441e1c803f3\",\n    \"data\": {},\n    \"documentId\": \"38083492-f901-2978-bb16-eaefc127963a\",\n    \"parentCommentId\": \"3688a612-6424-3195-50db-cf2c594a64da\",\n    \"createdAt\": \"1954-10-13T20:05:12.312Z\",\n    \"createdBy\": {\n      \"id\": \"03454a0b-20ca-f20f-856e-2ee994bdf19a\",\n      \"name\": \"Jane Doe\",\n      \"avatarUrl\": \"http://fFPlCuoMVopxmvktwtilPvY.ztzUc+fIMObE7NMInmm1HjiZP095gkBQnv\",\n      \"color\": \"string\",\n      \"email\": \"ZOQSW7Jhc3V@vpJezJDRNWukXobZ.xxsz\",\n      \"role\": \"guest\",\n      \"isSuspended\": false,\n      \"lastActiveAt\": \"1948-11-09T15:16:45.980Z\",\n      \"timezone\": \"string\",\n      \"createdAt\": \"2008-12-08T20:48:45.814Z\",\n      \"updatedAt\": \"1974-11-12T18:26:07.536Z\",\n      \"deletedAt\": \"1990-09-19T02:36:27.866Z\"\n    },\n    \"createdById\": \"8b8a3ba6-4537-6621-7082-bd0c8e1958a1\",\n    \"updatedAt\": \"2011-07-23T21:46:59.899Z\",\n    \"resolvedAt\": \"2020-02-19T13:23:28.961Z\",\n    \"resolvedBy\": {\n      \"id\": \"9a0e6626-6966-bb9d-07af-dd1e4e7da66a\",\n      \"name\": \"Jane Doe\",\n      \"avatarUrl\": \"https://jeaNhVH.zqjLP9XWBss,QrJ.se6M2tTj\",\n      \"color\": \"string\",\n      \"email\": \"cR-cKmecD0Xmqwq@hDOhhekEuZtPnuhXOEptvqBZNd.hksn\",\n      \"role\": \"guest\",\n      \"isSuspended\": true,\n      \"lastActiveAt\": \"1953-07-29T07:31:48.484Z\",\n      \"timezone\": \"string\",\n      \"createdAt\": \"1995-12-20T16:55:08.384Z\",\n      \"updatedAt\": \"2015-02-25T09:17:30.605Z\",\n      \"deletedAt\": \"1971-07-10T05:19:44.875Z\"\n    },\n    \"resolvedById\": \"706855ad-3aa5-92ff-2480-0aa6fdb3b722\",\n    \"anchorText\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "053c8409-67b1-403d-a1da-730a2f504861",
+              "name": "The API key is missing or otherwise invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentId\": \"<uuid>\",\n  \"id\": \"<uuid>\",\n  \"parentCommentId\": \"<uuid>\",\n  \"data\": \"<object>\",\n  \"text\": \"Sounds great\",\n  \"anchorText\": \"<string>\",\n  \"anchorPrefix\": \"<string>\",\n  \"anchorSuffix\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 7474.358593545565,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53a8eaec-e550-4244-9271-f7e76435f5e1",
+              "name": "The current API key is not authorized to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentId\": \"<uuid>\",\n  \"id\": \"<uuid>\",\n  \"parentCommentId\": \"<uuid>\",\n  \"data\": \"<object>\",\n  \"text\": \"Sounds great\",\n  \"anchorText\": \"<string>\",\n  \"anchorPrefix\": \"<string>\",\n  \"anchorSuffix\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 7474.358593545565,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70e98479-5912-4279-920c-e2ef90079d38",
+              "name": "The specified resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentId\": \"<uuid>\",\n  \"id\": \"<uuid>\",\n  \"parentCommentId\": \"<uuid>\",\n  \"data\": \"<object>\",\n  \"text\": \"Sounds great\",\n  \"anchorText\": \"<string>\",\n  \"anchorPrefix\": \"<string>\",\n  \"anchorSuffix\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 7474.358593545565,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cebe7e8c-89c2-485f-a175-749a24b6b07a",
+              "name": "The request was rate limited.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentId\": \"<uuid>\",\n  \"id\": \"<uuid>\",\n  \"parentCommentId\": \"<uuid>\",\n  \"data\": \"<object>\",\n  \"text\": \"Sounds great\",\n  \"anchorText\": \"<string>\",\n  \"anchorPrefix\": \"<string>\",\n  \"anchorSuffix\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds in the future to retry the request, if rate limited.",
+                  "key": "Retry-After",
+                  "value": "4119"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum requests available in the current duration.",
+                  "key": "RateLimit-Limit",
+                  "value": "4119"
+                },
+                {
+                  "disabled": false,
+                  "description": "How many requests are left in the current duration.",
+                  "key": "RateLimit-Remaining",
+                  "value": "4119"
+                },
+                {
+                  "disabled": false,
+                  "description": "Timestamp in the future the duration will reset.",
+                  "key": "RateLimit-Reset",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"rate_limit_exceeded\",\n  \"status\": 429\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "88c4c5a0-2431-44cf-91ec-e7df8883fdf6",
+          "name": "Retrieve a comment",
+          "request": {
+            "name": "Retrieve a comment",
+            "description": {
+              "content": "Retrieve a comment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "comments.info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"includeAnchorText\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be3d8418-7975-4aab-a543-cf5475dfc865",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"includeAnchorText\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"4bc93c8f-dd49-017d-e606-900093c9360e\",\n    \"data\": {},\n    \"documentId\": \"ae6f93f4-e141-dec4-38ff-1f28b7dd3039\",\n    \"parentCommentId\": \"38d38f24-071c-9991-a54a-1b459470cef6\",\n    \"createdAt\": \"1977-03-28T04:31:02.071Z\",\n    \"createdBy\": {\n      \"id\": \"244c5f30-0eb3-3f63-ffb0-0fcfd14abb96\",\n      \"name\": \"Jane Doe\",\n      \"avatarUrl\": \"https://EDTadBAvBxiWXfxO.dgnmAz5KE5bZjpdXdbYXVIlA7+F3\",\n      \"color\": \"string\",\n      \"email\": \"FgA2bYHeopgzo@svrNaZZ.wxf\",\n      \"role\": \"guest\",\n      \"isSuspended\": false,\n      \"lastActiveAt\": \"2020-01-27T08:28:24.445Z\",\n      \"timezone\": \"string\",\n      \"createdAt\": \"2014-03-10T03:12:20.902Z\",\n      \"updatedAt\": \"1973-05-17T11:35:15.748Z\",\n      \"deletedAt\": \"1985-07-20T21:02:29.858Z\"\n    },\n    \"createdById\": \"2442674f-36df-94f3-7c63-2bcd078aae78\",\n    \"updatedAt\": \"1955-07-10T17:38:06.776Z\",\n    \"resolvedAt\": \"1970-08-04T16:43:32.302Z\",\n    \"resolvedBy\": {\n      \"id\": \"408d9e87-40f7-a027-6f46-91fc17cbda1d\",\n      \"name\": \"Jane Doe\",\n      \"avatarUrl\": \"http://ErSsglvQScpDoGGwGkIgJqfsMd.mcdfBx,g06cyd5rk6HJVrh6AxnnejuX7,TMdo4k3jSjSZO,RwXrgjM4LKolLBHVbnqz5c5MTRy\",\n      \"color\": \"string\",\n      \"email\": \"sUMj9p@RflFxqOrymurjFHAIWePInIieo.hhe\",\n      \"role\": \"member\",\n      \"isSuspended\": false,\n      \"lastActiveAt\": \"1995-12-19T19:16:26.579Z\",\n      \"timezone\": \"string\",\n      \"createdAt\": \"2002-03-14T03:16:14.216Z\",\n      \"updatedAt\": \"1980-06-23T06:24:38.266Z\",\n      \"deletedAt\": \"1950-04-29T06:46:17.923Z\"\n    },\n    \"resolvedById\": \"44a8181e-1d10-ef91-af2c-d97162fcb1b5\",\n    \"anchorText\": \"string\"\n  },\n  \"policies\": [\n    {\n      \"id\": \"245be66e-9d15-d087-d70d-7d27b7cef67f\",\n      \"abilities\": {\n        \"key_0\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_1\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_2\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    },\n    {\n      \"id\": \"9eb04973-fac9-7dce-05a8-44c1319d6219\",\n      \"abilities\": {\n        \"key_0\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b35402a7-2bcd-4757-a60b-51329a69bcfb",
+              "name": "The API key is missing or otherwise invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"includeAnchorText\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 7474.358593545565,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c357fd8-797d-4998-9320-589551ed5379",
+              "name": "The current API key is not authorized to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"includeAnchorText\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 7474.358593545565,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5da4ee61-4df6-4f59-b6ec-5ed5c57135f5",
+              "name": "The specified resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"includeAnchorText\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 7474.358593545565,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a1e2341-e2b1-4ec7-b00f-406ddd08f5f6",
+              "name": "The request was rate limited.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"includeAnchorText\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds in the future to retry the request, if rate limited.",
+                  "key": "Retry-After",
+                  "value": "4119"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum requests available in the current duration.",
+                  "key": "RateLimit-Limit",
+                  "value": "4119"
+                },
+                {
+                  "disabled": false,
+                  "description": "How many requests are left in the current duration.",
+                  "key": "RateLimit-Remaining",
+                  "value": "4119"
+                },
+                {
+                  "disabled": false,
+                  "description": "Timestamp in the future the duration will reset.",
+                  "key": "RateLimit-Reset",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"rate_limit_exceeded\",\n  \"status\": 429\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "25edc340-e462-4e54-8ba6-99b33700b76a",
+          "name": "Update a comment",
+          "request": {
+            "name": "Update a comment",
+            "description": {
+              "content": "Update a comment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "comments.update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"data\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8d42bd47-2832-49f3-b3e0-4f96c9ca8a28",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"data\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"a89f8b1c-3a90-fdf2-dafd-1334f901d6b9\",\n    \"data\": {},\n    \"documentId\": \"2aec5935-7b56-7697-c861-bde32decb390\",\n    \"parentCommentId\": \"fd072788-6c76-1264-8649-eb1c3c7f1633\",\n    \"createdAt\": \"1950-04-15T10:54:06.383Z\",\n    \"createdBy\": {\n      \"id\": \"06b3e22a-e7d7-ecca-c875-526f80763db1\",\n      \"name\": \"Jane Doe\",\n      \"avatarUrl\": \"https://jnmRoKQzzKEqXIQjaAAledEvYDF.xlB7rrs.WpdtB3-D9zdw89Z-YQ9akl0imoucvOWtUfxtEg\",\n      \"color\": \"string\",\n      \"email\": \"WB5DE4Mjs9Ba@AgziJKfMUiALjGKHmrVQRtlNZqetPsZ.zejb\",\n      \"role\": \"guest\",\n      \"isSuspended\": true,\n      \"lastActiveAt\": \"2002-02-28T06:19:28.492Z\",\n      \"timezone\": \"string\",\n      \"createdAt\": \"2021-02-02T14:22:08.467Z\",\n      \"updatedAt\": \"1995-09-06T13:00:37.036Z\",\n      \"deletedAt\": \"1959-03-08T12:31:20.131Z\"\n    },\n    \"createdById\": \"0a6e81f3-084c-6cae-7da2-e52e3100271d\",\n    \"updatedAt\": \"1995-11-15T23:20:00.699Z\",\n    \"resolvedAt\": \"1970-08-10T08:26:49.925Z\",\n    \"resolvedBy\": {\n      \"id\": \"9efac0b0-c3ae-9e1e-945a-757804ce5370\",\n      \"name\": \"Jane Doe\",\n      \"avatarUrl\": \"http://fsTrlXTjHMkmNLmlNfHJZYzImPpgrHk.orcxoHSa6SIuXVLkfIkmi4-bbMnc.D2gUuYlLNNGHP,Si1QFmm9InW9\",\n      \"color\": \"string\",\n      \"email\": \"5lx6z5spJgyx8@BnRsbvDjognUAZDoHERWun.evbu\",\n      \"role\": \"admin\",\n      \"isSuspended\": true,\n      \"lastActiveAt\": \"1983-12-25T09:24:24.905Z\",\n      \"timezone\": \"string\",\n      \"createdAt\": \"1947-06-29T11:48:19.763Z\",\n      \"updatedAt\": \"1988-03-03T22:09:21.482Z\",\n      \"deletedAt\": \"1992-02-22T11:00:45.095Z\"\n    },\n    \"resolvedById\": \"77b3ec40-0626-4214-526a-7a7cf4de3c02\",\n    \"anchorText\": \"string\"\n  },\n  \"policies\": [\n    {\n      \"id\": \"6c3006d4-6fea-92b8-ea0d-6d44866e4ac3\",\n      \"abilities\": {\n        \"key_0\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_1\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    },\n    {\n      \"id\": \"39352da9-4527-aab1-7991-1c1d1dbc2c37\",\n      \"abilities\": {\n        \"key_0\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_1\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_2\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b08452b-1716-422b-8901-98d9a1aeba3a",
+              "name": "The API key is missing or otherwise invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"data\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 7474.358593545565,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4ddb6eb-153a-4bcd-ae91-5e8747c00411",
+              "name": "The current API key is not authorized to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"data\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 7474.358593545565,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b44e259-7d31-4763-8b62-e774f1ad86dd",
+              "name": "The specified resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"data\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 7474.358593545565,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "594ad456-a300-4f4d-8be4-99ac3d1d08e3",
+              "name": "The request was rate limited.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"data\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds in the future to retry the request, if rate limited.",
+                  "key": "Retry-After",
+                  "value": "4119"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum requests available in the current duration.",
+                  "key": "RateLimit-Limit",
+                  "value": "4119"
+                },
+                {
+                  "disabled": false,
+                  "description": "How many requests are left in the current duration.",
+                  "key": "RateLimit-Remaining",
+                  "value": "4119"
+                },
+                {
+                  "disabled": false,
+                  "description": "Timestamp in the future the duration will reset.",
+                  "key": "RateLimit-Reset",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"rate_limit_exceeded\",\n  \"status\": 429\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da32155c-bf3e-4493-a5e9-886c32c4a477",
+          "name": "Delete a comment",
+          "request": {
+            "name": "Delete a comment",
+            "description": {
+              "content": "Deletes a comment. If the comment is a top-level comment, all its children will be deleted as well.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "comments.delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8e58fd74-ce06-4cc1-969b-9e0208766c49",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77b49492-a71a-49c9-9e18-2dfda95eb5bb",
+              "name": "The API key is missing or otherwise invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 7474.358593545565,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e62993a6-a4f2-4441-8369-b30f6eb2298a",
+              "name": "The current API key is not authorized to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 7474.358593545565,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bf321c8-5cf3-486c-8bf7-9c645e7b4bf2",
+              "name": "The specified resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 7474.358593545565,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2843400a-6d17-4beb-b50d-64659c1eb0e3",
+              "name": "The request was rate limited.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds in the future to retry the request, if rate limited.",
+                  "key": "Retry-After",
+                  "value": "4119"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum requests available in the current duration.",
+                  "key": "RateLimit-Limit",
+                  "value": "4119"
+                },
+                {
+                  "disabled": false,
+                  "description": "How many requests are left in the current duration.",
+                  "key": "RateLimit-Remaining",
+                  "value": "4119"
+                },
+                {
+                  "disabled": false,
+                  "description": "Timestamp in the future the duration will reset.",
+                  "key": "RateLimit-Reset",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"rate_limit_exceeded\",\n  \"status\": 429\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee3d54cd-1891-4f31-a298-6bfa85b52d2f",
+          "name": "List all comments",
+          "request": {
+            "name": "List all comments",
+            "description": {
+              "content": "This method will list all comments matching the given properties.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "comments.list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"offset\": \"<number>\",\n  \"limit\": \"<number>\",\n  \"sort\": \"<string>\",\n  \"direction\": \"<string>\",\n  \"documentId\": \"<uuid>\",\n  \"collectionId\": \"<uuid>\",\n  \"includeAnchorText\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8b5e45ca-a73e-4c54-8f75-55eab4c3e5b5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offset\": 0,\n  \"limit\": 25,\n  \"sort\": \"updatedAt\",\n  \"direction\": \"DESC\",\n  \"documentId\": \"<uuid>\",\n  \"collectionId\": \"<uuid>\",\n  \"includeAnchorText\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"92883eb1-cb76-cd38-0da1-4ba7d98fe224\",\n      \"data\": {},\n      \"documentId\": \"f38b7732-174c-e18e-da23-e33ef77513d6\",\n      \"parentCommentId\": \"617f5600-ee6e-5cce-78b8-a07ff63039ce\",\n      \"createdAt\": \"2016-03-08T18:47:29.560Z\",\n      \"createdBy\": {\n        \"id\": \"f54c2997-6ad2-567a-baf1-249d611ce23c\",\n        \"name\": \"Jane Doe\",\n        \"avatarUrl\": \"https://WPiTZTRUascMsoIKGwhPe.hyaANB8pjmNEfH,Ug\",\n        \"color\": \"string\",\n        \"email\": \"SCfyh@xYgTfSG.dnaf\",\n        \"role\": \"member\",\n        \"isSuspended\": false,\n        \"lastActiveAt\": \"2009-01-04T08:48:52.180Z\",\n        \"timezone\": \"string\",\n        \"createdAt\": \"1987-12-30T09:59:58.351Z\",\n        \"updatedAt\": \"1955-01-04T16:11:27.426Z\",\n        \"deletedAt\": \"1984-06-14T13:13:19.117Z\"\n      },\n      \"createdById\": \"5f9e287e-7aa1-678a-d865-fe8b2af0d4bd\",\n      \"updatedAt\": \"2017-06-18T16:04:36.582Z\",\n      \"resolvedAt\": \"1998-04-12T21:41:11.936Z\",\n      \"resolvedBy\": {\n        \"id\": \"a698c1ce-efcf-d098-312d-15a582031963\",\n        \"name\": \"Jane Doe\",\n        \"avatarUrl\": \"http://uflJcaibMVMJrLRpk.kziquyC+ux\",\n        \"color\": \"string\",\n        \"email\": \"BcrWs8DK2QL3@ma.eopy\",\n        \"role\": \"admin\",\n        \"isSuspended\": false,\n        \"lastActiveAt\": \"2014-10-29T14:23:49.085Z\",\n        \"timezone\": \"string\",\n        \"createdAt\": \"2004-12-19T04:15:39.736Z\",\n        \"updatedAt\": \"1999-12-07T10:27:22.507Z\",\n        \"deletedAt\": \"1967-01-10T06:14:27.092Z\"\n      },\n      \"resolvedById\": \"a7c7c660-4018-4cb3-a7a3-4e0ca27a7867\",\n      \"anchorText\": \"string\"\n    },\n    {\n      \"id\": \"bd01599c-67e9-49ac-8782-016b4f14e499\",\n      \"data\": {},\n      \"documentId\": \"ffce37b0-2eec-8b42-0912-03e891542ddf\",\n      \"parentCommentId\": \"6807e886-ce3d-3d3e-7676-efce81d321f8\",\n      \"createdAt\": \"1949-02-24T23:07:11.320Z\",\n      \"createdBy\": {\n        \"id\": \"709136d5-4aef-c819-4392-196a364814eb\",\n        \"name\": \"Jane Doe\",\n        \"avatarUrl\": \"https://mcllPHNzNVouJOXTrLeyXjbo.laggdMsxUmugljNMSjiEbN1-o4tfajkLOT2wI5CZXq+B,Xnx6qgzBUmIev+JttoqetzetA3ZXD2kW\",\n        \"color\": \"string\",\n        \"email\": \"REriI6ZDWlB@tAdFUVAnhV.suwb\",\n        \"role\": \"viewer\",\n        \"isSuspended\": false,\n        \"lastActiveAt\": \"2014-11-07T04:29:57.553Z\",\n        \"timezone\": \"string\",\n        \"createdAt\": \"2024-01-02T17:03:11.833Z\",\n        \"updatedAt\": \"1960-02-10T10:16:45.119Z\",\n        \"deletedAt\": \"1998-05-09T08:15:46.253Z\"\n      },\n      \"createdById\": \"ff247267-2f48-6734-7c27-cccc8e8437cd\",\n      \"updatedAt\": \"2000-07-17T01:00:41.858Z\",\n      \"resolvedAt\": \"2015-03-19T13:39:37.751Z\",\n      \"resolvedBy\": {\n        \"id\": \"73c2a6c1-f654-5c68-edb7-7e2b8b408096\",\n        \"name\": \"Jane Doe\",\n        \"avatarUrl\": \"http://ibcdzzApwnaqMBGCFAAhhLuXdmYHza.uflf7nRlDPKAYeQ4g8.JAwLXFZ3R,q1OS4ucpQmalJY9GDKtC9FC9PMv\",\n        \"color\": \"string\",\n        \"email\": \"uF--YWoeZaXlcK@LIvdGsTVWBKNtbrrrSeCICOHwdIQ.idh\",\n        \"role\": \"member\",\n        \"isSuspended\": false,\n        \"lastActiveAt\": \"1964-10-08T16:56:54.389Z\",\n        \"timezone\": \"string\",\n        \"createdAt\": \"1951-08-23T06:14:22.090Z\",\n        \"updatedAt\": \"2006-01-18T17:23:44.223Z\",\n        \"deletedAt\": \"1959-06-04T04:05:55.036Z\"\n      },\n      \"resolvedById\": \"9fd65307-6103-5d91-e477-8b675b1074e9\",\n      \"anchorText\": \"string\"\n    }\n  ],\n  \"policies\": [\n    {\n      \"id\": \"ae922270-0f76-258d-d221-716b249a355f\",\n      \"abilities\": {\n        \"key_0\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_1\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    },\n    {\n      \"id\": \"46aa799f-0e30-c1c3-b14d-b814ccd04819\",\n      \"abilities\": {\n        \"key_0\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_1\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_2\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 0,\n    \"limit\": 25\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aae0f7e6-556e-4398-9331-8d39c1ff5ad0",
+              "name": "The API key is missing or otherwise invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offset\": 0,\n  \"limit\": 25,\n  \"sort\": \"updatedAt\",\n  \"direction\": \"DESC\",\n  \"documentId\": \"<uuid>\",\n  \"collectionId\": \"<uuid>\",\n  \"includeAnchorText\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 7474.358593545565,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67505074-0a2a-4253-be81-262c907b0e2d",
+              "name": "The current API key is not authorized to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offset\": 0,\n  \"limit\": 25,\n  \"sort\": \"updatedAt\",\n  \"direction\": \"DESC\",\n  \"documentId\": \"<uuid>\",\n  \"collectionId\": \"<uuid>\",\n  \"includeAnchorText\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"status\": 7474.358593545565,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69c7ea27-b214-48ba-a439-2422a0391dc7",
+              "name": "The request was rate limited.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments.list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offset\": 0,\n  \"limit\": 25,\n  \"sort\": \"updatedAt\",\n  \"direction\": \"DESC\",\n  \"documentId\": \"<uuid>\",\n  \"collectionId\": \"<uuid>\",\n  \"includeAnchorText\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds in the future to retry the request, if rate limited.",
+                  "key": "Retry-After",
+                  "value": "4119"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum requests available in the current duration.",
+                  "key": "RateLimit-Limit",
+                  "value": "4119"
+                },
+                {
+                  "disabled": false,
+                  "description": "How many requests are left in the current duration.",
+                  "key": "RateLimit-Remaining",
+                  "value": "4119"
+                },
+                {
+                  "disabled": false,
+                  "description": "Timestamp in the future the duration will reset.",
+                  "key": "RateLimit-Reset",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"error\": \"rate_limit_exceeded\",\n  \"status\": 429\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.getoutline.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a8dbafc3-3db2-42e9-85f9-63bc19caec5f",
+    "name": "Outline AccessRequests Comments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\n\nThe Outline API is structured in an RPC style. It enables you to\nprogramatically interact with all aspects of Outline’s data – in fact, the\nmain application is built on exactly the same API.\n\nThe API structure is available as an\n[openapi specification](https://github.com/outline/openapi) if that’s your\njam – it can be used to generate clients for most programming languages.\n\n# Making requests\n\nOutline’s API follows simple RPC style conventions where each API endpoint is\na `POST` method on `https://app.getoutline.com/api/:method`. Only HTTPS is\nsupported and all response payloads are JSON.\n\nWhen making `POST` requests, request parameters are parsed depending on\nContent-Type header. To make a call using JSON payload, you must pass\nContent-Type: application/json header, here’s an example using CURL:\n\n```\ncurl https://app.getoutline.com/api/documents.info \\\n-X 'POST' \\\n-H 'authorization: Bearer MY_API_KEY' \\\n-H 'content-type: application/json' \\\n-H 'accept: application/json' \\\n-d '{\"id\": \"outline-api-NTpezNwhUP\"}'\n```\n\nOr, with JavaScript:\n\n```javascript\nconst response = await fetch(\"https://app.getoutline.com/api/documents.info\", {\n  method: \"POST\",\n  headers: {\n    Accept: \"application/json\",\n    \"Content-Type\": \"application/json\",\n    Authorization: \"Bearer MY_API_KEY\"\n  }\n})\n\nconst body = await response.json();\nconst document = body.data;\n```\n\n# Authentication\n\n## API key\n\nYou can create new API keys under **Settings => API & Apps**. Be\ncareful when handling your keys as they allow full access to your data,\nyou should treat them like passwords and they should never be committed to\nsource control.\n\n### Usage\n\nTo authenticate with API, you should supply the API key as a \"Bearer\" token in the `Authorization` header\n(`Authorization: Bearer YOUR_API_KEY`).\n\nAPI keys can be revoked at any time by the creating user or an administrator of the workspace. If an API\nkey is revoked, any requests made with that key will return a `401 Unauthenticated` response.\n\n### Format\n\nAll API keys always begin with `ol_api_` followed by a random string of 38 letters and numbers.\n\n## OAuth 2.0\n\nOAuth 2.0 is a widely used protocol for authorization and authentication. It allows users\nto grant third-party _or_ internal applications access to their resources without sharing\ntheir credentials. To use OAuth 2.0 you need to follow these steps:\n\n1. Register your application under **Settings => Applications**\n2. Obtain an access token by exchanging the client credentials for an access token\n3. Use the access token to authenticate requests to the API\n\nSome API endpoints allow unauthenticated requests for public resources and\nthey can be called without authentication.\n\n# Scopes\n\nScopes are used to limit the access of an API key or application to specific resources. For example,\nan application may only need access to read documents, but not write them. Scopes can be global in\nthe case of `read` and `write` scopes, scoped to a namespace, scoped to an API endpoint, or use\nwildcard scopes like `documents.*`. Some examples of scopes that can be used are:\n\n## Global\n\n- `read`: Allows all read actions\n- `write`: Allows all read and write actions\n\n## Namespaced\n\n- `documents:read`: Allows all document read actions\n- `collections:write`: Allows all collection write actions\n\n## Endpoints\n\n- `documents.info`: Allows only one specific API method\n- `documents.*`: Allows all document API methods\n- `users.*`: Allows all user API methods\n\n# Errors\n\nAll successful API requests will be returned with a 200 or 201 status code\nand `ok: true` in the response payload. If there’s an error while making the\nrequest, the appropriate status code is returned with the error message:\n\n```\n{\n  \"ok\": false,\n  \"error\": \"Not Found\"\n}\n```\n\n# Pagination\n\nMost top-level API resources have support for \"list\" API methods. For instance,\nyou can list users, documents, and collections. These list methods share\ncommon parameters, taking both `limit` and `offset`.\n\nResponses will echo these parameters in the root `pagination` key, and also\ninclude a `nextPath` key which can be used as a handy shortcut to fetch the\nnext page of results. For example:\n\n```\n{\n  ok: true,\n  status: 200,\n  data: […],\n  pagination: {\n    limit: 25,\n    offset: 0,\n    nextPath: \"/api/documents.list?limit=25&offset=25\"\n  }\n}\n```\n\n# Rate limits\n\nLike most APIs, Outline has rate limits in place to prevent abuse. Endpoints\nthat mutate data are more restrictive than read-only endpoints. If you exceed\nthe rate limit for a given endpoint, you will receive a `429 Too Many Requests`\nstatus code.\n\nThe response will include a `Retry-After` header that indicates how many seconds\nyou should wait before making another request.\n\n# Policies\n\nMost API resources have associated \"policies\", these objects describe the\ncurrent authentications authorized actions related to an individual resource. It\nshould be noted that the policy \"id\" is identical to the resource it is\nrelated to, policies themselves do not have unique identifiers.\n\nFor most usecases of the API, policies can be safely ignored. Calling\nunauthorized methods will result in the appropriate response code – these can\nbe used in an interface to adjust which elements are visible.\n\n\nContact Support:\n Email: hello@getoutline.com",
+      "type": "text/plain"
+    }
+  }
+}

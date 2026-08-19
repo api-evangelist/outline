@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Outline AccessRequests Stars API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stars",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a star",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/stars.create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stars a document or collection so it appears in the users sidebar. One of either `documentId` or `collectionId` must be provided."
+        },
+        {
+          "info": {
+            "name": "List all stars",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/stars.list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List all starred documents for the authenticated user. Stars allow users to bookmark important documents for quick access in the sidebar."
+        },
+        {
+          "info": {
+            "name": "Update a stars order in the sidebar",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/stars.update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the position of a starred document in the sidebar. The index parameter determines the display order relative to other starred documents."
+        },
+        {
+          "info": {
+            "name": "Delete a star",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/stars.delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove a star from a document, removing it from the user's starred documents list in the sidebar."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

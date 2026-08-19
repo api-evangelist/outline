@@ -1,0 +1,491 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Outline AccessRequests Documents API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a document by its `UUID`, `urlId`, or `shareId`. At least one of these parameters must be provided."
+        },
+        {
+          "info": {
+            "name": "Retrieve insights for a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.insights",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a chronologically sorted array of activity rollups (views, comments, reactions, revisions, editors) for a document. Recent activity is returned as daily rollups, while older activity is aggregated into weekly rollups. Insights must be enabled on the document. Defaults to the last 30 days when no date range is provided."
+        },
+        {
+          "info": {
+            "name": "Import a file as a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.import",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "collectionId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "parentDocumentId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "publish",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "This method allows you to create a new document by importing an existing file. By default a document is set to the collection root. If you want to create a nested/child document, you should pass parentDocumentId to set the parent document."
+        },
+        {
+          "info": {
+            "name": "Export a document.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.export",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Export a document in Markdown, HTML, or PDF format. The response format is determined by the Accept header. Optionally include child documents in the export as a zip file."
+        },
+        {
+          "info": {
+            "name": "List all documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method will list all published documents and draft documents belonging to the current user."
+        },
+        {
+          "info": {
+            "name": "Retrieve a document's child structure",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.documents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method returns the nested document structure (tree) for the children of the specified document."
+        },
+        {
+          "info": {
+            "name": "List all draft documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.drafts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method will list all draft documents belonging to the current user."
+        },
+        {
+          "info": {
+            "name": "List all recently viewed documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.viewed",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method will list all documents recently viewed by the current user."
+        },
+        {
+          "info": {
+            "name": "Query documents with natural language",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.answerQuestion",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method allows asking direct questions of your documents – where possible an answer will be provided. Search results will be restricted to those accessible by the current access token. Note that \"AI answers\" must be enabled for the workspace."
+        },
+        {
+          "info": {
+            "name": "Search document titles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.search_titles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method allows you to search document titles with keywords. Unlike documents.search, this only searches titles and returns faster results."
+        },
+        {
+          "info": {
+            "name": "Search all documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This methods allows you to search your workspace's documents with keywords. Note that search results will be restricted to those accessible by the current access token."
+        },
+        {
+          "info": {
+            "name": "Create a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method allows you to create or publish a new document. By default a document is set to the collection root. If you want to create a nested/child document, you should pass parentDocumentId to set the parent document."
+        },
+        {
+          "info": {
+            "name": "Update a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method allows you to modify an already created document"
+        },
+        {
+          "info": {
+            "name": "Create a template from a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.templatize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method allows you to create a new template using an existing document as the basis"
+        },
+        {
+          "info": {
+            "name": "Unpublish a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.unpublish",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unpublishing a document moves it back to a draft status and out of the collection."
+        },
+        {
+          "info": {
+            "name": "Move a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.move",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Move a document to a new location or collection. If no parent document is provided, the document will be moved to the collection root."
+        },
+        {
+          "info": {
+            "name": "Archive a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.archive",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Archiving a document allows outdated information to be moved out of sight whilst retaining the ability to optionally search and restore it later."
+        },
+        {
+          "info": {
+            "name": "Restore a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.restore",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "If a document has been archived or deleted, it can be restored. Optionally a revision can be passed to restore the document to a previous point in time."
+        },
+        {
+          "info": {
+            "name": "Delete a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deleting a document moves it to the trash. If not restored within 30 days it is permanently deleted."
+        },
+        {
+          "info": {
+            "name": "List document users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "All users with access to a document. To list only users with direct membership to the document use `documents.memberships`"
+        },
+        {
+          "info": {
+            "name": "List document memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.memberships",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Users with direct membership to a document. To list all users with access to a document use `documents.users`."
+        },
+        {
+          "info": {
+            "name": "Add a document user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.add_user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method allows you to add a user membership to the specified document."
+        },
+        {
+          "info": {
+            "name": "Remove a document user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.remove_user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method allows you to remove a user membership from the specified document."
+        },
+        {
+          "info": {
+            "name": "List all archived documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.archived",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method will list all archived documents belonging to the workspace that the current user has access to."
+        },
+        {
+          "info": {
+            "name": "List all deleted documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.deleted",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method will list all deleted documents belonging to the workspace that the current user has access to."
+        },
+        {
+          "info": {
+            "name": "Duplicate a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.duplicate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method allows you to duplicate an existing document and optionally all of its child documents."
+        },
+        {
+          "info": {
+            "name": "Add a group to a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.add_group",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method allows you to give all members in a group access to a document."
+        },
+        {
+          "info": {
+            "name": "Remove a group from a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.remove_group",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method allows you to revoke all members in a group access to a document."
+        },
+        {
+          "info": {
+            "name": "List document group memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.group_memberships",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method allows you to list a document's group memberships."
+        },
+        {
+          "info": {
+            "name": "Empty trash",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/documents.empty_trash"
+          },
+          "docs": "Permanently delete all documents in the trash. This action is irreversible. Only available to admin users."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

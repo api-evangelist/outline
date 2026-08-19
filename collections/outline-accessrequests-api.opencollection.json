@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Outline AccessRequests API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AccessRequests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an access request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/accessRequests.create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request access to a document. The request will be sent to users with permission to share the document for approval or dismissal."
+        },
+        {
+          "info": {
+            "name": "Retrieve an access request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/accessRequests.info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve information about an access request by `id`, or the current user's pending request for a document by `documentId`. At least one of these parameters must be provided."
+        },
+        {
+          "info": {
+            "name": "Approve an access request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/accessRequests.approve",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Approve a pending access request, granting the requesting user a membership on the document with the specified permission."
+        },
+        {
+          "info": {
+            "name": "Dismiss an access request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.getoutline.com/api/accessRequests.dismiss",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Dismiss a pending access request without granting the requesting user access to the document."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
