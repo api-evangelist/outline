@@ -24,6 +24,13 @@ tags:
   - Wiki
   - Documents
   - Collaboration
+  - Open-Source
+  - Team
+tags_raw:
+  - Knowledge Base
+  - Wiki
+  - Documents
+  - Collaboration
   - Open Source
   - Team
 apis:
@@ -76,6 +83,8 @@ apis:
   humanURL: https://www.getoutline.com/developers
   baseURL: https://app.getoutline.com/api
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
@@ -97,6 +106,8 @@ apis:
   humanURL: https://www.getoutline.com/developers
   baseURL: https://app.getoutline.com/api
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
@@ -173,6 +184,8 @@ apis:
   humanURL: https://www.getoutline.com/developers
   baseURL: https://app.getoutline.com/api
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -192,6 +205,8 @@ apis:
   humanURL: https://www.getoutline.com/developers
   baseURL: https://app.getoutline.com/api
   tags:
+  - File Operations
+  tags_raw:
   - FileOperations
   properties:
   - type: OpenAPI
@@ -211,6 +226,8 @@ apis:
   humanURL: https://www.getoutline.com/developers
   baseURL: https://app.getoutline.com/api
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -245,6 +262,8 @@ apis:
   humanURL: https://www.getoutline.com/developers
   baseURL: https://app.getoutline.com/api
   tags:
+  - OAuth Clients
+  tags_raw:
   - OAuthClients
   properties:
   - type: OpenAPI
@@ -338,6 +357,8 @@ apis:
   humanURL: https://www.getoutline.com/developers
   baseURL: https://app.getoutline.com/api
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
