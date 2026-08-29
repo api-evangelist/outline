@@ -1,6 +1,20 @@
 aid: outline
 name: Outline
 description: Outline is an open-source team knowledge base and wiki with a fully featured RPC-style REST API for programmatically managing documents, collections, teams, users, groups, comments, shares, attachments, and importing or exporting organizational knowledge. The main application itself is built on the same API it exposes publicly.
+deliveryModel:
+  model: open-core
+  license: BSD-3-Clause
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
@@ -387,6 +401,8 @@ apis:
   - type: GitHubRepository
     url: https://github.com/outline/openapi
 common:
+  - type: IssueTracker
+    url: https://github.com/outline/openapi/issues
   - type: License
     name: BSD-3-Clause
     url: https://github.com/outline/openapi/blob/main/LICENSE
