@@ -219,7 +219,7 @@ apis:
   humanURL: https://www.getoutline.com/developers
   baseURL: https://app.getoutline.com/api
   tags:
-  - File Operations
+  - FileOperations
   tags_raw:
   - FileOperations
   properties:
@@ -276,7 +276,7 @@ apis:
   humanURL: https://www.getoutline.com/developers
   baseURL: https://app.getoutline.com/api
   tags:
-  - OAuth Clients
+  - OAuthClients
   tags_raw:
   - OAuthClients
   properties:
