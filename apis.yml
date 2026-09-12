@@ -401,6 +401,8 @@ apis:
   - type: GitHubRepository
     url: https://github.com/outline/openapi
 common:
+  - type: Website
+    url: https://www.getoutline.com/
   - type: IssueTracker
     url: https://github.com/outline/openapi/issues
   - type: License
