@@ -48,25 +48,6 @@ tags_raw:
   - Open Source
   - Team
 apis:
-- aid: outline:outline-accessrequests-api
-  name: Outline AccessRequests API
-  description: >-
-    `AccessRequests` represent a request by a user for access to a document
-
-    they do not currently have permission to view. The request can be approved
-
-    or dismissed by a user with permission to share the document.
-  humanURL: https://www.getoutline.com/developers
-  baseURL: https://app.getoutline.com/api
-  tags:
-  - AccessRequests
-  properties:
-  - type: OpenAPI
-    url: openapi/outline-accessrequests-api-openapi.yml
-  - type: Documentation
-    url: https://www.getoutline.com/developers
-  - type: GitHubRepository
-    url: https://github.com/outline/openapi
 - aid: outline:outline-attachments-api
   name: Outline Attachments API
   description: >-
@@ -208,27 +189,6 @@ apis:
     url: https://www.getoutline.com/developers
   - type: GitHubRepository
     url: https://github.com/outline/openapi
-- aid: outline:outline-fileoperations-api
-  name: Outline FileOperations API
-  description: >-
-    `FileOperations` represent background jobs for importing or exporting files.
-
-    You can query the file operation to find the state of progress and any
-
-    resulting output.
-  humanURL: https://www.getoutline.com/developers
-  baseURL: https://app.getoutline.com/api
-  tags:
-  - File Operations
-  tags_raw:
-  - FileOperations
-  properties:
-  - type: OpenAPI
-    url: openapi/outline-fileoperations-api-openapi.yml
-  - type: Documentation
-    url: https://www.getoutline.com/developers
-  - type: GitHubRepository
-    url: https://github.com/outline/openapi
 - aid: outline:outline-groups-api
   name: Outline Groups API
   description: >-
@@ -263,25 +223,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/outline-oauthauthentications-api-openapi.yml
-  - type: Documentation
-    url: https://www.getoutline.com/developers
-  - type: GitHubRepository
-    url: https://github.com/outline/openapi
-- aid: outline:outline-oauthclients-api
-  name: Outline OAuthClients API
-  description: >-
-    `OAuthClients` represent OAuth clients that can be used to authenticate
-
-    users with third-party services.
-  humanURL: https://www.getoutline.com/developers
-  baseURL: https://app.getoutline.com/api
-  tags:
-  - OAuth Clients
-  tags_raw:
-  - OAuthClients
-  properties:
-  - type: OpenAPI
-    url: openapi/outline-oauthclients-api-openapi.yml
   - type: Documentation
     url: https://www.getoutline.com/developers
   - type: GitHubRepository
@@ -396,6 +337,61 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/outline-views-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-access-requests-api
+  name: Outline Access Requests API
+  description: >-
+    `AccessRequests` represent a request by a user for access to a document
+
+    they do not currently have permission to view. The request can be approved
+
+    or dismissed by a user with permission to share the document.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - Access Requests
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-access-requests-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-file-operations-api
+  name: Outline File Operations API
+  description: >-
+    `FileOperations` represent background jobs for importing or exporting files.
+
+    You can query the file operation to find the state of progress and any
+
+    resulting output.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - File Operations
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-file-operations-api-openapi.yml
+  - type: Documentation
+    url: https://www.getoutline.com/developers
+  - type: GitHubRepository
+    url: https://github.com/outline/openapi
+- aid: outline:outline-oauth-clients-api
+  name: Outline OAuth Clients API
+  description: >-
+    `OAuthClients` represent OAuth clients that can be used to authenticate
+
+    users with third-party services.
+  humanURL: https://www.getoutline.com/developers
+  baseURL: https://app.getoutline.com/api
+  tags:
+  - OAuth Clients
+  properties:
+  - type: OpenAPI
+    url: openapi/outline-oauth-clients-api-openapi.yml
   - type: Documentation
     url: https://www.getoutline.com/developers
   - type: GitHubRepository
