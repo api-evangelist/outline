@@ -1,24 +1,7 @@
 {
   "provider": "outline",
   "sources": [
-    "outline-accessrequests-api-openapi.yml",
-    "outline-attachments-api-openapi.yml",
-    "outline-auth-api-openapi.yml",
-    "outline-collections-api-openapi.yml",
-    "outline-comments-api-openapi.yml",
-    "outline-dataattributes-api-openapi.yml",
-    "outline-documents-api-openapi.yml",
-    "outline-events-api-openapi.yml",
-    "outline-fileoperations-api-openapi.yml",
-    "outline-groups-api-openapi.yml",
-    "outline-oauthauthentications-api-openapi.yml",
-    "outline-oauthclients-api-openapi.yml",
-    "outline-revisions-api-openapi.yml",
-    "outline-shares-api-openapi.yml",
-    "outline-stars-api-openapi.yml",
-    "outline-templates-api-openapi.yml",
-    "outline-users-api-openapi.yml",
-    "outline-views-api-openapi.yml"
+    "_original/outline-openapi.yml"
   ],
   "outputs": [
     "outline-accessrequests-api-openapi.yml",
@@ -40,9 +23,35 @@
     "outline-users-api-openapi.yml",
     "outline-views-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 3 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "outline-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: outline-access-requests-api-openapi.yml, outline-file-operations-api-openapi.yml, outline-oauth-clients-api-openapi.yml",
+    "apis.yml register: written (+3 apis, 18 total)"
+  ],
+  "skipped": [
+    "outline-access-requests-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "outline-attachments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "outline-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "outline-collections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "outline-comments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "outline-dataattributes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "outline-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "outline-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "outline-file-operations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "outline-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "outline-oauth-clients-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "outline-oauthauthentications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "outline-revisions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "outline-shares-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "outline-stars-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "outline-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "outline-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "outline-views-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
