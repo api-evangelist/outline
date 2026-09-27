@@ -262,11 +262,65 @@ paths:
           $ref: '#/components/responses/RateLimited'
       operationId: sharesRevoke
 components:
+  responses:
+    RateLimited:
+      description: The request was rate limited.
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+        RateLimit-Limit:
+          $ref: '#/components/headers/RateLimit-Limit'
+        RateLimit-Remaining:
+          $ref: '#/components/headers/RateLimit-Remaining'
+        RateLimit-Reset:
+          $ref: '#/components/headers/RateLimit-Reset'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: rate_limit_exceeded
+              status:
+                type: number
+                example: 429
+    Unauthorized:
+      description: The current API key is not authorized to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthenticated:
+      description: The API key is missing or otherwise invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Validation:
+      description: The request failed one or more validations.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   headers:
     RateLimit-Remaining:
       schema:
         type: integer
       description: How many requests are left in the current duration.
+    RateLimit-Reset:
+      schema:
+        type: string
+      description: Timestamp in the future the duration will reset.
     RateLimit-Limit:
       schema:
         type: integer
@@ -275,10 +329,6 @@ components:
       schema:
         type: integer
       description: Seconds in the future to retry the request, if rate limited.
-    RateLimit-Reset:
-      schema:
-        type: string
-      description: Timestamp in the future the duration will reset.
   schemas:
     UserRole:
       type: string
@@ -287,44 +337,6 @@ components:
       - member
       - viewer
       - guest
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: number
-          example: 0
-        limit:
-          type: number
-          example: 25
-    Policy:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object this policy references.
-          format: uuid
-          readOnly: true
-        abilities:
-          type: object
-          description: The abilities that are allowed by this policy, if an array is returned then the individual ID's in the array represent the memberships that grant the ability.
-          additionalProperties:
-            $ref: '#/components/schemas/Ability'
-          example:
-            read: true
-            update: true
-            delete: false
-    Sorting:
-      type: object
-      properties:
-        sort:
-          type: string
-          example: updatedAt
-        direction:
-          type: string
-          example: DESC
-          enum:
-          - ASC
-          - DESC
     Error:
       type: object
       properties:
@@ -339,6 +351,23 @@ components:
           type: number
         data:
           type: object
+    Ability:
+      description: A single permission granted by a policy
+      example: true
+      oneOf:
+      - type: array
+        items:
+          type: string
+      - type: boolean
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: number
+          example: 0
+        limit:
+          type: number
+          example: 25
     Share:
       type: object
       properties:
@@ -452,6 +481,23 @@ components:
           format: date-time
           description: Date and time when this share was last viewed. Only returned to workspace admins.
           readOnly: true
+    Policy:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object this policy references.
+          format: uuid
+          readOnly: true
+        abilities:
+          type: object
+          description: The abilities that are allowed by this policy, if an array is returned then the individual ID's in the array represent the memberships that grant the ability.
+          additionalProperties:
+            $ref: '#/components/schemas/Ability'
+          example:
+            read: true
+            update: true
+            delete: false
     User:
       type: object
       properties:
@@ -512,64 +558,18 @@ components:
           description: The date and time that this user was deleted, if applicable.
           readOnly: true
           format: date-time
-    Ability:
-      description: A single permission granted by a policy
-      example: true
-      oneOf:
-      - type: array
-        items:
+    Sorting:
+      type: object
+      properties:
+        sort:
           type: string
-      - type: boolean
-  responses:
-    Validation:
-      description: The request failed one or more validations.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RateLimited:
-      description: The request was rate limited.
-      headers:
-        Retry-After:
-          $ref: '#/components/headers/Retry-After'
-        RateLimit-Limit:
-          $ref: '#/components/headers/RateLimit-Limit'
-        RateLimit-Remaining:
-          $ref: '#/components/headers/RateLimit-Remaining'
-        RateLimit-Reset:
-          $ref: '#/components/headers/RateLimit-Reset'
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              ok:
-                type: boolean
-                example: false
-              error:
-                type: string
-                example: rate_limit_exceeded
-              status:
-                type: number
-                example: 429
-    Unauthorized:
-      description: The current API key is not authorized to perform this action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthenticated:
-      description: The API key is missing or otherwise invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+          example: updatedAt
+        direction:
+          type: string
+          example: DESC
+          enum:
+          - ASC
+          - DESC
   securitySchemes:
     BearerAuth:
       type: http

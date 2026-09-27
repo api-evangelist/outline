@@ -38,7 +38,7 @@ tags:
   - Wiki
   - Documents
   - Collaboration
-  - Open-Source
+  - Open Source
   - Team
 tags_raw:
   - Knowledge Base
@@ -47,6 +47,7 @@ tags_raw:
   - Collaboration
   - Open Source
   - Team
+  - Open-Source
 apis:
 - aid: outline:outline-attachments-api
   name: Outline Attachments API
@@ -354,8 +355,6 @@ apis:
   humanURL: https://www.getoutline.com/developers
   baseURL: https://app.getoutline.com/api
   tags:
-  - AccessRequests
-  tags_raw:
   - Access Requests
   properties:
   - type: OpenAPI

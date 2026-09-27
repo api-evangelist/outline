@@ -215,11 +215,65 @@ paths:
           $ref: '#/components/responses/RateLimited'
       operationId: accessRequestsDismiss
 components:
+  responses:
+    RateLimited:
+      description: The request was rate limited.
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+        RateLimit-Limit:
+          $ref: '#/components/headers/RateLimit-Limit'
+        RateLimit-Remaining:
+          $ref: '#/components/headers/RateLimit-Remaining'
+        RateLimit-Reset:
+          $ref: '#/components/headers/RateLimit-Reset'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: rate_limit_exceeded
+              status:
+                type: number
+                example: 429
+    Unauthorized:
+      description: The current API key is not authorized to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthenticated:
+      description: The API key is missing or otherwise invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Validation:
+      description: The request failed one or more validations.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   headers:
     RateLimit-Remaining:
       schema:
         type: integer
       description: How many requests are left in the current duration.
+    RateLimit-Reset:
+      schema:
+        type: string
+      description: Timestamp in the future the duration will reset.
     RateLimit-Limit:
       schema:
         type: integer
@@ -228,10 +282,6 @@ components:
       schema:
         type: integer
       description: Seconds in the future to retry the request, if rate limited.
-    RateLimit-Reset:
-      schema:
-        type: string
-      description: Timestamp in the future the duration will reset.
   schemas:
     UserRole:
       type: string
@@ -240,6 +290,73 @@ components:
       - member
       - viewer
       - guest
+    Error:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          example: false
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: number
+        data:
+          type: object
+    AccessRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          readOnly: true
+          format: uuid
+        documentId:
+          type: string
+          description: Identifier for the document this request is for.
+          format: uuid
+        userId:
+          type: string
+          description: Identifier for the user that made the request.
+          format: uuid
+        user:
+          $ref: '#/components/schemas/User'
+        teamId:
+          type: string
+          description: Identifier for the workspace the request belongs to.
+          format: uuid
+        status:
+          type: string
+          description: The current status of the access request.
+          enum:
+          - pending
+          - approved
+          - dismissed
+        responderId:
+          type:
+          - string
+          - 'null'
+          description: Identifier for the user that responded to the request, if any.
+          format: uuid
+        responder:
+          $ref: '#/components/schemas/User'
+        respondedAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time the request was responded to, if any.
+          format: date-time
+        createdAt:
+          type: string
+          description: The date and time that this object was created
+          readOnly: true
+          format: date-time
+        updatedAt:
+          type: string
+          description: The date and time that this object was last changed
+          readOnly: true
+          format: date-time
     Ability:
       description: A single permission granted by a policy
       example: true
@@ -325,123 +442,6 @@ components:
           description: The date and time that this user was deleted, if applicable.
           readOnly: true
           format: date-time
-    Error:
-      type: object
-      properties:
-        ok:
-          type: boolean
-          example: false
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: number
-        data:
-          type: object
-    AccessRequest:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object.
-          readOnly: true
-          format: uuid
-        documentId:
-          type: string
-          description: Identifier for the document this request is for.
-          format: uuid
-        userId:
-          type: string
-          description: Identifier for the user that made the request.
-          format: uuid
-        user:
-          $ref: '#/components/schemas/User'
-        teamId:
-          type: string
-          description: Identifier for the workspace the request belongs to.
-          format: uuid
-        status:
-          type: string
-          description: The current status of the access request.
-          enum:
-          - pending
-          - approved
-          - dismissed
-        responderId:
-          type:
-          - string
-          - 'null'
-          description: Identifier for the user that responded to the request, if any.
-          format: uuid
-        responder:
-          $ref: '#/components/schemas/User'
-        respondedAt:
-          type:
-          - string
-          - 'null'
-          description: The date and time the request was responded to, if any.
-          format: date-time
-        createdAt:
-          type: string
-          description: The date and time that this object was created
-          readOnly: true
-          format: date-time
-        updatedAt:
-          type: string
-          description: The date and time that this object was last changed
-          readOnly: true
-          format: date-time
-  responses:
-    Validation:
-      description: The request failed one or more validations.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RateLimited:
-      description: The request was rate limited.
-      headers:
-        Retry-After:
-          $ref: '#/components/headers/Retry-After'
-        RateLimit-Limit:
-          $ref: '#/components/headers/RateLimit-Limit'
-        RateLimit-Remaining:
-          $ref: '#/components/headers/RateLimit-Remaining'
-        RateLimit-Reset:
-          $ref: '#/components/headers/RateLimit-Reset'
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              ok:
-                type: boolean
-                example: false
-              error:
-                type: string
-                example: rate_limit_exceeded
-              status:
-                type: number
-                example: 429
-    Unauthorized:
-      description: The current API key is not authorized to perform this action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthenticated:
-      description: The API key is missing or otherwise invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http

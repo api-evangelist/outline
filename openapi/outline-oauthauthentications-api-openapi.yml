@@ -110,11 +110,65 @@ paths:
           $ref: '#/components/responses/RateLimited'
       operationId: oauthAuthenticationsDelete
 components:
+  responses:
+    RateLimited:
+      description: The request was rate limited.
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+        RateLimit-Limit:
+          $ref: '#/components/headers/RateLimit-Limit'
+        RateLimit-Remaining:
+          $ref: '#/components/headers/RateLimit-Remaining'
+        RateLimit-Reset:
+          $ref: '#/components/headers/RateLimit-Reset'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: rate_limit_exceeded
+              status:
+                type: number
+                example: 429
+    Unauthorized:
+      description: The current API key is not authorized to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthenticated:
+      description: The API key is missing or otherwise invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Validation:
+      description: The request failed one or more validations.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   headers:
     RateLimit-Remaining:
       schema:
         type: integer
       description: How many requests are left in the current duration.
+    RateLimit-Reset:
+      schema:
+        type: string
+      description: Timestamp in the future the duration will reset.
     RateLimit-Limit:
       schema:
         type: integer
@@ -123,37 +177,7 @@ components:
       schema:
         type: integer
       description: Seconds in the future to retry the request, if rate limited.
-    RateLimit-Reset:
-      schema:
-        type: string
-      description: Timestamp in the future the duration will reset.
   schemas:
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: number
-          example: 0
-        limit:
-          type: number
-          example: 25
-    Policy:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object this policy references.
-          format: uuid
-          readOnly: true
-        abilities:
-          type: object
-          description: The abilities that are allowed by this policy, if an array is returned then the individual ID's in the array represent the memberships that grant the ability.
-          additionalProperties:
-            $ref: '#/components/schemas/Ability'
-          example:
-            read: true
-            update: true
-            delete: false
     Error:
       type: object
       properties:
@@ -235,56 +259,32 @@ components:
         items:
           type: string
       - type: boolean
-  responses:
-    Validation:
-      description: The request failed one or more validations.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RateLimited:
-      description: The request was rate limited.
-      headers:
-        Retry-After:
-          $ref: '#/components/headers/Retry-After'
-        RateLimit-Limit:
-          $ref: '#/components/headers/RateLimit-Limit'
-        RateLimit-Remaining:
-          $ref: '#/components/headers/RateLimit-Remaining'
-        RateLimit-Reset:
-          $ref: '#/components/headers/RateLimit-Reset'
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              ok:
-                type: boolean
-                example: false
-              error:
-                type: string
-                example: rate_limit_exceeded
-              status:
-                type: number
-                example: 429
-    Unauthorized:
-      description: The current API key is not authorized to perform this action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthenticated:
-      description: The API key is missing or otherwise invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: number
+          example: 0
+        limit:
+          type: number
+          example: 25
+    Policy:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object this policy references.
+          format: uuid
+          readOnly: true
+        abilities:
+          type: object
+          description: The abilities that are allowed by this policy, if an array is returned then the individual ID's in the array represent the memberships that grant the ability.
+          additionalProperties:
+            $ref: '#/components/schemas/Ability'
+          example:
+            read: true
+            update: true
+            delete: false
   securitySchemes:
     BearerAuth:
       type: http

@@ -203,11 +203,65 @@ paths:
           $ref: '#/components/responses/RateLimited'
       operationId: starsDelete
 components:
+  responses:
+    RateLimited:
+      description: The request was rate limited.
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+        RateLimit-Limit:
+          $ref: '#/components/headers/RateLimit-Limit'
+        RateLimit-Remaining:
+          $ref: '#/components/headers/RateLimit-Remaining'
+        RateLimit-Reset:
+          $ref: '#/components/headers/RateLimit-Reset'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: rate_limit_exceeded
+              status:
+                type: number
+                example: 429
+    Unauthorized:
+      description: The current API key is not authorized to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthenticated:
+      description: The API key is missing or otherwise invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Validation:
+      description: The request failed one or more validations.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   headers:
     RateLimit-Remaining:
       schema:
         type: integer
       description: How many requests are left in the current duration.
+    RateLimit-Reset:
+      schema:
+        type: string
+      description: Timestamp in the future the duration will reset.
     RateLimit-Limit:
       schema:
         type: integer
@@ -216,28 +270,28 @@ components:
       schema:
         type: integer
       description: Seconds in the future to retry the request, if rate limited.
-    RateLimit-Reset:
-      schema:
-        type: string
-      description: Timestamp in the future the duration will reset.
   schemas:
-    Ability:
-      description: A single permission granted by a policy
-      example: true
-      oneOf:
-      - type: array
-        items:
-          type: string
-      - type: boolean
-    Pagination:
+    UserRole:
+      type: string
+      enum:
+      - admin
+      - member
+      - viewer
+      - guest
+    Error:
       type: object
       properties:
-        offset:
+        ok:
+          type: boolean
+          example: false
+        error:
+          type: string
+        message:
+          type: string
+        status:
           type: number
-          example: 0
-        limit:
-          type: number
-          example: 25
+        data:
+          type: object
     Document:
       type: object
       properties:
@@ -356,13 +410,23 @@ components:
           description: The date and time that this object was deleted
           readOnly: true
           format: date-time
-    UserRole:
-      type: string
-      enum:
-      - admin
-      - member
-      - viewer
-      - guest
+    Ability:
+      description: A single permission granted by a policy
+      example: true
+      oneOf:
+      - type: array
+        items:
+          type: string
+      - type: boolean
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: number
+          example: 0
+        limit:
+          type: number
+          example: 25
     Policy:
       type: object
       properties:
@@ -380,20 +444,6 @@ components:
             read: true
             update: true
             delete: false
-    Error:
-      type: object
-      properties:
-        ok:
-          type: boolean
-          example: false
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: number
-        data:
-          type: object
     User:
       type: object
       properties:
@@ -454,25 +504,6 @@ components:
           description: The date and time that this user was deleted, if applicable.
           readOnly: true
           format: date-time
-    DocumentDataAttribute:
-      type: object
-      properties:
-        dataAttributeId:
-          type: string
-          description: Unique identifier for the associated data attribute.
-          format: uuid
-        value:
-          description: The value of the data attribute for this document.
-          example: In Progress
-          oneOf:
-          - type: string
-          - type: boolean
-          - type: number
-        updatedAt:
-          type: string
-          description: The date and time that this object attribute was last changed
-          readOnly: true
-          format: date-time
     Star:
       type: object
       properties:
@@ -508,56 +539,25 @@ components:
           format: date-time
           description: Date and time when this star was last changed
           readOnly: true
-  responses:
-    Validation:
-      description: The request failed one or more validations.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RateLimited:
-      description: The request was rate limited.
-      headers:
-        Retry-After:
-          $ref: '#/components/headers/Retry-After'
-        RateLimit-Limit:
-          $ref: '#/components/headers/RateLimit-Limit'
-        RateLimit-Remaining:
-          $ref: '#/components/headers/RateLimit-Remaining'
-        RateLimit-Reset:
-          $ref: '#/components/headers/RateLimit-Reset'
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              ok:
-                type: boolean
-                example: false
-              error:
-                type: string
-                example: rate_limit_exceeded
-              status:
-                type: number
-                example: 429
-    Unauthorized:
-      description: The current API key is not authorized to perform this action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthenticated:
-      description: The API key is missing or otherwise invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    DocumentDataAttribute:
+      type: object
+      properties:
+        dataAttributeId:
+          type: string
+          description: Unique identifier for the associated data attribute.
+          format: uuid
+        value:
+          description: The value of the data attribute for this document.
+          example: In Progress
+          oneOf:
+          - type: string
+          - type: boolean
+          - type: number
+        updatedAt:
+          type: string
+          description: The date and time that this object attribute was last changed
+          readOnly: true
+          format: date-time
   securitySchemes:
     BearerAuth:
       type: http

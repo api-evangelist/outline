@@ -110,11 +110,59 @@ paths:
           $ref: '#/components/responses/RateLimited'
       operationId: viewsCreate
 components:
+  responses:
+    RateLimited:
+      description: The request was rate limited.
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+        RateLimit-Limit:
+          $ref: '#/components/headers/RateLimit-Limit'
+        RateLimit-Remaining:
+          $ref: '#/components/headers/RateLimit-Remaining'
+        RateLimit-Reset:
+          $ref: '#/components/headers/RateLimit-Reset'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: rate_limit_exceeded
+              status:
+                type: number
+                example: 429
+    Unauthorized:
+      description: The current API key is not authorized to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthenticated:
+      description: The API key is missing or otherwise invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   headers:
     RateLimit-Remaining:
       schema:
         type: integer
       description: How many requests are left in the current duration.
+    RateLimit-Reset:
+      schema:
+        type: string
+      description: Timestamp in the future the duration will reset.
     RateLimit-Limit:
       schema:
         type: integer
@@ -123,18 +171,41 @@ components:
       schema:
         type: integer
       description: Seconds in the future to retry the request, if rate limited.
-    RateLimit-Reset:
-      schema:
-        type: string
-      description: Timestamp in the future the duration will reset.
   schemas:
-    UserRole:
-      type: string
-      enum:
-      - admin
-      - member
-      - viewer
-      - guest
+    View:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          readOnly: true
+        documentId:
+          type: string
+          description: Identifier for the associated document.
+          readOnly: true
+          format: uuid
+        firstViewedAt:
+          type: string
+          description: When the document was first viewed by the user
+          readOnly: true
+          format: date-time
+        lastViewedAt:
+          type: string
+          description: When the document was last viewed by the user
+          readOnly: true
+          format: date-time
+        count:
+          type: number
+          description: The number of times the user has viewed the document.
+          example: 22
+          readOnly: true
+        userId:
+          type: string
+          format: uuid
+          description: Identifier of the user who viewed the document.
+          readOnly: true
+        user:
+          $ref: '#/components/schemas/User'
     Error:
       type: object
       properties:
@@ -149,6 +220,13 @@ components:
           type: number
         data:
           type: object
+    UserRole:
+      type: string
+      enum:
+      - admin
+      - member
+      - viewer
+      - guest
     User:
       type: object
       properties:
@@ -209,84 +287,6 @@ components:
           description: The date and time that this user was deleted, if applicable.
           readOnly: true
           format: date-time
-    View:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object.
-          readOnly: true
-        documentId:
-          type: string
-          description: Identifier for the associated document.
-          readOnly: true
-          format: uuid
-        firstViewedAt:
-          type: string
-          description: When the document was first viewed by the user
-          readOnly: true
-          format: date-time
-        lastViewedAt:
-          type: string
-          description: When the document was last viewed by the user
-          readOnly: true
-          format: date-time
-        count:
-          type: number
-          description: The number of times the user has viewed the document.
-          example: 22
-          readOnly: true
-        userId:
-          type: string
-          format: uuid
-          description: Identifier of the user who viewed the document.
-          readOnly: true
-        user:
-          $ref: '#/components/schemas/User'
-  responses:
-    NotFound:
-      description: The specified resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RateLimited:
-      description: The request was rate limited.
-      headers:
-        Retry-After:
-          $ref: '#/components/headers/Retry-After'
-        RateLimit-Limit:
-          $ref: '#/components/headers/RateLimit-Limit'
-        RateLimit-Remaining:
-          $ref: '#/components/headers/RateLimit-Remaining'
-        RateLimit-Reset:
-          $ref: '#/components/headers/RateLimit-Reset'
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              ok:
-                type: boolean
-                example: false
-              error:
-                type: string
-                example: rate_limit_exceeded
-              status:
-                type: number
-                example: 429
-    Unauthorized:
-      description: The current API key is not authorized to perform this action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthenticated:
-      description: The API key is missing or otherwise invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http
