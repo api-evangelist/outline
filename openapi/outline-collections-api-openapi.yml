@@ -724,67 +724,17 @@ paths:
           $ref: '#/components/responses/RateLimited'
       operationId: collectionsExportAll
 components:
-  responses:
-    RateLimited:
-      description: The request was rate limited.
-      headers:
-        Retry-After:
-          $ref: '#/components/headers/Retry-After'
-        RateLimit-Limit:
-          $ref: '#/components/headers/RateLimit-Limit'
-        RateLimit-Remaining:
-          $ref: '#/components/headers/RateLimit-Remaining'
-        RateLimit-Reset:
-          $ref: '#/components/headers/RateLimit-Reset'
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              ok:
-                type: boolean
-                example: false
-              error:
-                type: string
-                example: rate_limit_exceeded
-              status:
-                type: number
-                example: 429
-    Unauthenticated:
-      description: The API key is missing or otherwise invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The current API key is not authorized to perform this action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Validation:
-      description: The request failed one or more validations.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    CollectionGroupMembership:
+    Membership:
       type: object
       properties:
         id:
           type: string
           description: Unique identifier for the object.
           readOnly: true
-        groupId:
+        userId:
           type: string
-          description: Identifier for the associated group.
+          description: Identifier for the associated user.
           readOnly: true
           format: uuid
         documentId:
@@ -803,6 +753,11 @@ components:
           format: uuid
         permission:
           $ref: '#/components/schemas/Permission'
+        createdById:
+          type: string
+          description: Identifier for the user who created this membership.
+          readOnly: true
+          format: uuid
         sourceId:
           type:
           - string
@@ -810,6 +765,84 @@ components:
           description: Identifier for the membership this one was inherited from, if any.
           readOnly: true
           format: uuid
+        index:
+          type:
+          - string
+          - 'null'
+          description: The position of the collection in the user's sidebar.
+    Permission:
+      type: string
+      enum:
+      - read
+      - read_write
+    Group:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          readOnly: true
+          format: uuid
+        name:
+          type: string
+          description: The name of this group.
+          example: Engineering
+        description:
+          type:
+          - string
+          - 'null'
+          description: A short description of this group.
+        externalId:
+          type:
+          - string
+          - 'null'
+          description: An identifier for this group in an external system, if linked.
+        disableMentions:
+          type: boolean
+          description: Whether mentioning this group is disabled.
+        externalGroup:
+          type:
+          - object
+          - 'null'
+          description: Details of the linked external group, if any.
+        memberCount:
+          type: number
+          description: The number of users that are members of the group
+          example: 11
+          readOnly: true
+        createdAt:
+          type: string
+          description: The date and time that this object was created
+          readOnly: true
+          format: date-time
+        updatedAt:
+          type: string
+          description: The date and time that this object was last changed
+          readOnly: true
+          format: date-time
+    Ability:
+      description: A single permission granted by a policy
+      example: true
+      oneOf:
+      - type: array
+        items:
+          type: string
+      - type: boolean
+    NavigationNode:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the document.
+          format: uuid
+        title:
+          type: string
+        url:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/NavigationNode'
     User:
       type: object
       properties:
@@ -870,6 +903,37 @@ components:
           description: The date and time that this user was deleted, if applicable.
           readOnly: true
           format: date-time
+    Policy:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object this policy references.
+          format: uuid
+          readOnly: true
+        abilities:
+          type: object
+          description: The abilities that are allowed by this policy, if an array is returned then the individual ID's in the array represent the memberships that grant the ability.
+          additionalProperties:
+            $ref: '#/components/schemas/Ability'
+          example:
+            read: true
+            update: true
+            delete: false
+    Error:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          example: false
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: number
+        data:
+          type: object
     Collection:
       type: object
       properties:
@@ -981,6 +1045,10 @@ components:
               type: string
             createdByName:
               type: string
+    CollectionStatus:
+      type: string
+      enum:
+      - archived
     Sorting:
       type: object
       properties:
@@ -993,32 +1061,6 @@ components:
           enum:
           - ASC
           - DESC
-    Permission:
-      type: string
-      enum:
-      - read
-      - read_write
-    UserRole:
-      type: string
-      enum:
-      - admin
-      - member
-      - viewer
-      - guest
-    Error:
-      type: object
-      properties:
-        ok:
-          type: boolean
-          example: false
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: number
-        data:
-          type: object
     Pagination:
       type: object
       properties:
@@ -1028,140 +1070,13 @@ components:
         limit:
           type: number
           example: 25
-    Policy:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object this policy references.
-          format: uuid
-          readOnly: true
-        abilities:
-          type: object
-          description: The abilities that are allowed by this policy, if an array is returned then the individual ID's in the array represent the memberships that grant the ability.
-          additionalProperties:
-            $ref: '#/components/schemas/Ability'
-          example:
-            read: true
-            update: true
-            delete: false
-    Group:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object.
-          readOnly: true
-          format: uuid
-        name:
-          type: string
-          description: The name of this group.
-          example: Engineering
-        description:
-          type:
-          - string
-          - 'null'
-          description: A short description of this group.
-        externalId:
-          type:
-          - string
-          - 'null'
-          description: An identifier for this group in an external system, if linked.
-        disableMentions:
-          type: boolean
-          description: Whether mentioning this group is disabled.
-        externalGroup:
-          type:
-          - object
-          - 'null'
-          description: Details of the linked external group, if any.
-        memberCount:
-          type: number
-          description: The number of users that are members of the group
-          example: 11
-          readOnly: true
-        createdAt:
-          type: string
-          description: The date and time that this object was created
-          readOnly: true
-          format: date-time
-        updatedAt:
-          type: string
-          description: The date and time that this object was last changed
-          readOnly: true
-          format: date-time
-    Membership:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object.
-          readOnly: true
-        userId:
-          type: string
-          description: Identifier for the associated user.
-          readOnly: true
-          format: uuid
-        documentId:
-          type:
-          - string
-          - 'null'
-          description: Identifier for the associated document, if any.
-          readOnly: true
-          format: uuid
-        collectionId:
-          type:
-          - string
-          - 'null'
-          description: Identifier for the associated collection, if any.
-          readOnly: true
-          format: uuid
-        permission:
-          $ref: '#/components/schemas/Permission'
-        createdById:
-          type: string
-          description: Identifier for the user who created this membership.
-          readOnly: true
-          format: uuid
-        sourceId:
-          type:
-          - string
-          - 'null'
-          description: Identifier for the membership this one was inherited from, if any.
-          readOnly: true
-          format: uuid
-        index:
-          type:
-          - string
-          - 'null'
-          description: The position of the collection in the user's sidebar.
-    Ability:
-      description: A single permission granted by a policy
-      example: true
-      oneOf:
-      - type: array
-        items:
-          type: string
-      - type: boolean
-    CollectionStatus:
+    UserRole:
       type: string
       enum:
-      - archived
-    NavigationNode:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the document.
-          format: uuid
-        title:
-          type: string
-        url:
-          type: string
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/NavigationNode'
+      - admin
+      - member
+      - viewer
+      - guest
     FileOperation:
       type: object
       properties:
@@ -1235,23 +1150,108 @@ components:
           description: The date and time that this object was last changed
           readOnly: true
           format: date-time
+    CollectionGroupMembership:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          readOnly: true
+        groupId:
+          type: string
+          description: Identifier for the associated group.
+          readOnly: true
+          format: uuid
+        documentId:
+          type:
+          - string
+          - 'null'
+          description: Identifier for the associated document, if any.
+          readOnly: true
+          format: uuid
+        collectionId:
+          type:
+          - string
+          - 'null'
+          description: Identifier for the associated collection, if any.
+          readOnly: true
+          format: uuid
+        permission:
+          $ref: '#/components/schemas/Permission'
+        sourceId:
+          type:
+          - string
+          - 'null'
+          description: Identifier for the membership this one was inherited from, if any.
+          readOnly: true
+          format: uuid
   headers:
-    RateLimit-Reset:
-      schema:
-        type: string
-      description: Timestamp in the future the duration will reset.
     Retry-After:
       schema:
         type: integer
       description: Seconds in the future to retry the request, if rate limited.
-    RateLimit-Remaining:
+    RateLimit-Reset:
       schema:
-        type: integer
-      description: How many requests are left in the current duration.
+        type: string
+      description: Timestamp in the future the duration will reset.
     RateLimit-Limit:
       schema:
         type: integer
       description: The maximum requests available in the current duration.
+    RateLimit-Remaining:
+      schema:
+        type: integer
+      description: How many requests are left in the current duration.
+  responses:
+    Unauthenticated:
+      description: The API key is missing or otherwise invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Validation:
+      description: The request failed one or more validations.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The current API key is not authorized to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: The request was rate limited.
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+        RateLimit-Limit:
+          $ref: '#/components/headers/RateLimit-Limit'
+        RateLimit-Remaining:
+          $ref: '#/components/headers/RateLimit-Remaining'
+        RateLimit-Reset:
+          $ref: '#/components/headers/RateLimit-Reset'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: rate_limit_exceeded
+              status:
+                type: number
+                example: 429
   securitySchemes:
     BearerAuth:
       type: http

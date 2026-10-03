@@ -164,7 +164,42 @@ paths:
           $ref: '#/components/responses/RateLimited'
       operationId: attachmentsDelete
 components:
+  headers:
+    RateLimit-Remaining:
+      schema:
+        type: integer
+      description: How many requests are left in the current duration.
+    Retry-After:
+      schema:
+        type: integer
+      description: Seconds in the future to retry the request, if rate limited.
+    RateLimit-Reset:
+      schema:
+        type: string
+      description: Timestamp in the future the duration will reset.
+    RateLimit-Limit:
+      schema:
+        type: integer
+      description: The maximum requests available in the current duration.
   responses:
+    Validation:
+      description: The request failed one or more validations.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthenticated:
+      description: The API key is missing or otherwise invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The current API key is not authorized to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     RateLimited:
       description: The request was rate limited.
       headers:
@@ -190,26 +225,8 @@ components:
               status:
                 type: number
                 example: 429
-    Unauthorized:
-      description: The current API key is not authorized to perform this action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthenticated:
-      description: The API key is missing or otherwise invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: The specified resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Validation:
-      description: The request failed one or more validations.
       content:
         application/json:
           schema:
@@ -253,23 +270,6 @@ components:
           type: number
         data:
           type: object
-  headers:
-    RateLimit-Remaining:
-      schema:
-        type: integer
-      description: How many requests are left in the current duration.
-    RateLimit-Reset:
-      schema:
-        type: string
-      description: Timestamp in the future the duration will reset.
-    RateLimit-Limit:
-      schema:
-        type: integer
-      description: The maximum requests available in the current duration.
-    Retry-After:
-      schema:
-        type: integer
-      description: Seconds in the future to retry the request, if rate limited.
   securitySchemes:
     BearerAuth:
       type: http

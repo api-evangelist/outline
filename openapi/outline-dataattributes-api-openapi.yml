@@ -263,55 +263,15 @@ paths:
           $ref: '#/components/responses/RateLimited'
       operationId: dataAttributesDelete
 components:
-  responses:
-    RateLimited:
-      description: The request was rate limited.
-      headers:
-        Retry-After:
-          $ref: '#/components/headers/Retry-After'
-        RateLimit-Limit:
-          $ref: '#/components/headers/RateLimit-Limit'
-        RateLimit-Remaining:
-          $ref: '#/components/headers/RateLimit-Remaining'
-        RateLimit-Reset:
-          $ref: '#/components/headers/RateLimit-Reset'
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              ok:
-                type: boolean
-                example: false
-              error:
-                type: string
-                example: rate_limit_exceeded
-              status:
-                type: number
-                example: 429
-    Unauthorized:
-      description: The current API key is not authorized to perform this action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthenticated:
-      description: The API key is missing or otherwise invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   headers:
     RateLimit-Remaining:
       schema:
         type: integer
       description: How many requests are left in the current duration.
+    Retry-After:
+      schema:
+        type: integer
+      description: Seconds in the future to retry the request, if rate limited.
     RateLimit-Reset:
       schema:
         type: string
@@ -320,61 +280,7 @@ components:
       schema:
         type: integer
       description: The maximum requests available in the current duration.
-    Retry-After:
-      schema:
-        type: integer
-      description: Seconds in the future to retry the request, if rate limited.
   schemas:
-    Error:
-      type: object
-      properties:
-        ok:
-          type: boolean
-          example: false
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: number
-        data:
-          type: object
-    DataAttributeOptions:
-      type: object
-      description: Additional options for certain data attribute types.
-      properties:
-        icon:
-          type: string
-          description: An icon representing the data attribute from the outline-icons package.
-        options:
-          type: array
-          description: Valid options for list data type.
-          items:
-            type: object
-            properties:
-              value:
-                type: string
-                description: The label/value of the option.
-              color:
-                type: string
-                description: Optional color for the option.
-    Ability:
-      description: A single permission granted by a policy
-      example: true
-      oneOf:
-      - type: array
-        items:
-          type: string
-      - type: boolean
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: number
-          example: 0
-        limit:
-          type: number
-          example: 25
     Policy:
       type: object
       properties:
@@ -412,6 +318,15 @@ components:
           enum:
           - ASC
           - DESC
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: number
+          example: 0
+        limit:
+          type: number
+          example: 25
     DataAttribute:
       type: object
       properties:
@@ -453,6 +368,91 @@ components:
           description: The date and time that this object was deleted
           readOnly: true
           format: date-time
+    DataAttributeOptions:
+      type: object
+      description: Additional options for certain data attribute types.
+      properties:
+        icon:
+          type: string
+          description: An icon representing the data attribute from the outline-icons package.
+        options:
+          type: array
+          description: Valid options for list data type.
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+                description: The label/value of the option.
+              color:
+                type: string
+                description: Optional color for the option.
+    Error:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          example: false
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: number
+        data:
+          type: object
+    Ability:
+      description: A single permission granted by a policy
+      example: true
+      oneOf:
+      - type: array
+        items:
+          type: string
+      - type: boolean
+  responses:
+    Unauthenticated:
+      description: The API key is missing or otherwise invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The current API key is not authorized to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: The request was rate limited.
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+        RateLimit-Limit:
+          $ref: '#/components/headers/RateLimit-Limit'
+        RateLimit-Remaining:
+          $ref: '#/components/headers/RateLimit-Remaining'
+        RateLimit-Reset:
+          $ref: '#/components/headers/RateLimit-Reset'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                example: false
+              error:
+                type: string
+                example: rate_limit_exceeded
+              status:
+                type: number
+                example: 429
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http

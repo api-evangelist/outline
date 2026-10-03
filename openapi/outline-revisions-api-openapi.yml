@@ -110,7 +110,36 @@ paths:
           $ref: '#/components/responses/RateLimited'
       operationId: revisionsList
 components:
+  headers:
+    RateLimit-Remaining:
+      schema:
+        type: integer
+      description: How many requests are left in the current duration.
+    Retry-After:
+      schema:
+        type: integer
+      description: Seconds in the future to retry the request, if rate limited.
+    RateLimit-Reset:
+      schema:
+        type: string
+      description: Timestamp in the future the duration will reset.
+    RateLimit-Limit:
+      schema:
+        type: integer
+      description: The maximum requests available in the current duration.
   responses:
+    Unauthenticated:
+      description: The API key is missing or otherwise invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The current API key is not authorized to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     RateLimited:
       description: The request was rate limited.
       headers:
@@ -136,129 +165,25 @@ components:
               status:
                 type: number
                 example: 429
-    Unauthorized:
-      description: The current API key is not authorized to perform this action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthenticated:
-      description: The API key is missing or otherwise invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: The specified resource was not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  headers:
-    RateLimit-Remaining:
-      schema:
-        type: integer
-      description: How many requests are left in the current duration.
-    RateLimit-Reset:
-      schema:
-        type: string
-      description: Timestamp in the future the duration will reset.
-    RateLimit-Limit:
-      schema:
-        type: integer
-      description: The maximum requests available in the current duration.
-    Retry-After:
-      schema:
-        type: integer
-      description: Seconds in the future to retry the request, if rate limited.
   schemas:
-    Revision:
+    Sorting:
       type: object
       properties:
-        id:
+        sort:
           type: string
-          description: Unique identifier for the object.
-          readOnly: true
-          format: uuid
-        documentId:
+          example: updatedAt
+        direction:
           type: string
-          description: Identifier for the associated document.
-          readOnly: true
-          format: uuid
-        title:
-          type: string
-          description: Title of the document.
-          readOnly: true
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the revision, if any.
-          readOnly: true
-        data:
-          type: object
-          description: The body of the revision as a Prosemirror document.
-          readOnly: true
-        text:
-          type: string
-          description: Body of the document, may contain markdown formatting
-          readOnly: true
-        icon:
-          type:
-          - string
-          - 'null'
-          description: An emoji or icon associated with the revision.
-          readOnly: true
-        color:
-          type:
-          - string
-          - 'null'
-          description: The color of the revision icon in hex format.
-          readOnly: true
-        collaborators:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-        createdAt:
-          type: string
-          format: date-time
-          description: Date and time when this revision was created
-          readOnly: true
-        createdBy:
-          $ref: '#/components/schemas/User'
-        createdById:
-          type: string
-          description: Identifier for the user who created this revision.
-          format: uuid
-          readOnly: true
-        deletedAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: Date and time when this revision was deleted, if applicable.
-          readOnly: true
-    UserRole:
-      type: string
-      enum:
-      - admin
-      - member
-      - viewer
-      - guest
-    Error:
-      type: object
-      properties:
-        ok:
-          type: boolean
-          example: false
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: number
-        data:
-          type: object
+          example: DESC
+          enum:
+          - ASC
+          - DESC
     Pagination:
       type: object
       properties:
@@ -328,18 +253,93 @@ components:
           description: The date and time that this user was deleted, if applicable.
           readOnly: true
           format: date-time
-    Sorting:
+    UserRole:
+      type: string
+      enum:
+      - admin
+      - member
+      - viewer
+      - guest
+    Error:
       type: object
       properties:
-        sort:
+        ok:
+          type: boolean
+          example: false
+        error:
           type: string
-          example: updatedAt
-        direction:
+        message:
           type: string
-          example: DESC
-          enum:
-          - ASC
-          - DESC
+        status:
+          type: number
+        data:
+          type: object
+    Revision:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          readOnly: true
+          format: uuid
+        documentId:
+          type: string
+          description: Identifier for the associated document.
+          readOnly: true
+          format: uuid
+        title:
+          type: string
+          description: Title of the document.
+          readOnly: true
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the revision, if any.
+          readOnly: true
+        data:
+          type: object
+          description: The body of the revision as a Prosemirror document.
+          readOnly: true
+        text:
+          type: string
+          description: Body of the document, may contain markdown formatting
+          readOnly: true
+        icon:
+          type:
+          - string
+          - 'null'
+          description: An emoji or icon associated with the revision.
+          readOnly: true
+        color:
+          type:
+          - string
+          - 'null'
+          description: The color of the revision icon in hex format.
+          readOnly: true
+        collaborators:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        createdAt:
+          type: string
+          format: date-time
+          description: Date and time when this revision was created
+          readOnly: true
+        createdBy:
+          $ref: '#/components/schemas/User'
+        createdById:
+          type: string
+          description: Identifier for the user who created this revision.
+          format: uuid
+          readOnly: true
+        deletedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Date and time when this revision was deleted, if applicable.
+          readOnly: true
   securitySchemes:
     BearerAuth:
       type: http

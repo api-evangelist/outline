@@ -188,7 +188,36 @@ paths:
           $ref: '#/components/responses/RateLimited'
       operationId: fileOperationsList
 components:
+  headers:
+    RateLimit-Remaining:
+      schema:
+        type: integer
+      description: How many requests are left in the current duration.
+    Retry-After:
+      schema:
+        type: integer
+      description: Seconds in the future to retry the request, if rate limited.
+    RateLimit-Reset:
+      schema:
+        type: string
+      description: Timestamp in the future the duration will reset.
+    RateLimit-Limit:
+      schema:
+        type: integer
+      description: The maximum requests available in the current duration.
   responses:
+    Unauthenticated:
+      description: The API key is missing or otherwise invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The current API key is not authorized to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     RateLimited:
       description: The request was rate limited.
       headers:
@@ -214,132 +243,13 @@ components:
               status:
                 type: number
                 example: 429
-    Unauthorized:
-      description: The current API key is not authorized to perform this action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthenticated:
-      description: The API key is missing or otherwise invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: The specified resource was not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  headers:
-    RateLimit-Remaining:
-      schema:
-        type: integer
-      description: How many requests are left in the current duration.
-    RateLimit-Reset:
-      schema:
-        type: string
-      description: Timestamp in the future the duration will reset.
-    RateLimit-Limit:
-      schema:
-        type: integer
-      description: The maximum requests available in the current duration.
-    Retry-After:
-      schema:
-        type: integer
-      description: Seconds in the future to retry the request, if rate limited.
   schemas:
-    UserRole:
-      type: string
-      enum:
-      - admin
-      - member
-      - viewer
-      - guest
-    Error:
-      type: object
-      properties:
-        ok:
-          type: boolean
-          example: false
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: number
-        data:
-          type: object
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: number
-          example: 0
-        limit:
-          type: number
-          example: 25
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object.
-          readOnly: true
-          format: uuid
-        name:
-          type: string
-          description: The name of this user, it is migrated from Slack or Google Workspace when the SSO connection is made but can be changed if necessary.
-          example: Jane Doe
-        avatarUrl:
-          type: string
-          format: uri
-          description: The URL for the image associated with this user, it will be displayed in the application UI and email notifications.
-        color:
-          type: string
-          description: A color representing the user, used in the UI for avatars without an image.
-          readOnly: true
-        email:
-          type: string
-          description: The email associated with this user, it is migrated from Slack or Google Workspace when the SSO connection is made but can be changed if necessary.
-          format: email
-          readOnly: true
-        role:
-          $ref: '#/components/schemas/UserRole'
-        isSuspended:
-          type: boolean
-          description: Whether this user has been suspended.
-          readOnly: true
-        lastActiveAt:
-          type:
-          - string
-          - 'null'
-          description: The last time this user made an API request, this value is updated at most every 5 minutes.
-          readOnly: true
-          format: date-time
-        timezone:
-          type:
-          - string
-          - 'null'
-          description: The timezone this user has registered.
-        createdAt:
-          type: string
-          description: The date and time that this user first signed in or was invited as a guest.
-          readOnly: true
-          format: date-time
-        updatedAt:
-          type: string
-          description: The date and time that this user was last updated.
-          readOnly: true
-          format: date-time
-        deletedAt:
-          type:
-          - string
-          - 'null'
-          description: The date and time that this user was deleted, if applicable.
-          readOnly: true
-          format: date-time
     Sorting:
       type: object
       properties:
@@ -352,6 +262,15 @@ components:
           enum:
           - ASC
           - DESC
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: number
+          example: 0
+        limit:
+          type: number
+          example: 25
     FileOperation:
       type: object
       properties:
@@ -425,6 +344,87 @@ components:
           description: The date and time that this object was last changed
           readOnly: true
           format: date-time
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          readOnly: true
+          format: uuid
+        name:
+          type: string
+          description: The name of this user, it is migrated from Slack or Google Workspace when the SSO connection is made but can be changed if necessary.
+          example: Jane Doe
+        avatarUrl:
+          type: string
+          format: uri
+          description: The URL for the image associated with this user, it will be displayed in the application UI and email notifications.
+        color:
+          type: string
+          description: A color representing the user, used in the UI for avatars without an image.
+          readOnly: true
+        email:
+          type: string
+          description: The email associated with this user, it is migrated from Slack or Google Workspace when the SSO connection is made but can be changed if necessary.
+          format: email
+          readOnly: true
+        role:
+          $ref: '#/components/schemas/UserRole'
+        isSuspended:
+          type: boolean
+          description: Whether this user has been suspended.
+          readOnly: true
+        lastActiveAt:
+          type:
+          - string
+          - 'null'
+          description: The last time this user made an API request, this value is updated at most every 5 minutes.
+          readOnly: true
+          format: date-time
+        timezone:
+          type:
+          - string
+          - 'null'
+          description: The timezone this user has registered.
+        createdAt:
+          type: string
+          description: The date and time that this user first signed in or was invited as a guest.
+          readOnly: true
+          format: date-time
+        updatedAt:
+          type: string
+          description: The date and time that this user was last updated.
+          readOnly: true
+          format: date-time
+        deletedAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time that this user was deleted, if applicable.
+          readOnly: true
+          format: date-time
+    UserRole:
+      type: string
+      enum:
+      - admin
+      - member
+      - viewer
+      - guest
+    Error:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          example: false
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: number
+        data:
+          type: object
   securitySchemes:
     BearerAuth:
       type: http

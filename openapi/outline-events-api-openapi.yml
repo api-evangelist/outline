@@ -87,7 +87,36 @@ paths:
           $ref: '#/components/responses/RateLimited'
       operationId: eventsList
 components:
+  headers:
+    RateLimit-Remaining:
+      schema:
+        type: integer
+      description: How many requests are left in the current duration.
+    Retry-After:
+      schema:
+        type: integer
+      description: Seconds in the future to retry the request, if rate limited.
+    RateLimit-Reset:
+      schema:
+        type: string
+      description: Timestamp in the future the duration will reset.
+    RateLimit-Limit:
+      schema:
+        type: integer
+      description: The maximum requests available in the current duration.
   responses:
+    Unauthenticated:
+      description: The API key is missing or otherwise invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The current API key is not authorized to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     RateLimited:
       description: The request was rate limited.
       headers:
@@ -113,43 +142,7 @@ components:
               status:
                 type: number
                 example: 429
-    Unauthorized:
-      description: The current API key is not authorized to perform this action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthenticated:
-      description: The API key is missing or otherwise invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  headers:
-    RateLimit-Remaining:
-      schema:
-        type: integer
-      description: How many requests are left in the current duration.
-    RateLimit-Reset:
-      schema:
-        type: string
-      description: Timestamp in the future the duration will reset.
-    RateLimit-Limit:
-      schema:
-        type: integer
-      description: The maximum requests available in the current duration.
-    Retry-After:
-      schema:
-        type: integer
-      description: Seconds in the future to retry the request, if rate limited.
   schemas:
-    UserRole:
-      type: string
-      enum:
-      - admin
-      - member
-      - viewer
-      - guest
     Event:
       type: object
       properties:
@@ -211,20 +204,18 @@ components:
           readOnly: true
         actor:
           $ref: '#/components/schemas/User'
-    Error:
+    Sorting:
       type: object
       properties:
-        ok:
-          type: boolean
-          example: false
-        error:
+        sort:
           type: string
-        message:
+          example: updatedAt
+        direction:
           type: string
-        status:
-          type: number
-        data:
-          type: object
+          example: DESC
+          enum:
+          - ASC
+          - DESC
     Pagination:
       type: object
       properties:
@@ -294,18 +285,27 @@ components:
           description: The date and time that this user was deleted, if applicable.
           readOnly: true
           format: date-time
-    Sorting:
+    UserRole:
+      type: string
+      enum:
+      - admin
+      - member
+      - viewer
+      - guest
+    Error:
       type: object
       properties:
-        sort:
+        ok:
+          type: boolean
+          example: false
+        error:
           type: string
-          example: updatedAt
-        direction:
+        message:
           type: string
-          example: DESC
-          enum:
-          - ASC
-          - DESC
+        status:
+          type: number
+        data:
+          type: object
   securitySchemes:
     BearerAuth:
       type: http
