@@ -40,6 +40,7 @@ tags:
   - Collaboration
   - Open Source
   - Team
+  - Knowledge Management
 tags_raw:
   - Knowledge Base
   - Wiki
@@ -48,6 +49,7 @@ tags_raw:
   - Open Source
   - Team
   - Open-Source
+  - Knowledge Management
 apis:
 - aid: outline:outline-attachments-api
   name: Outline Attachments API
@@ -355,6 +357,8 @@ apis:
   humanURL: https://www.getoutline.com/developers
   baseURL: https://app.getoutline.com/api
   tags:
+  - AccessRequests
+  tags_raw:
   - Access Requests
   properties:
   - type: OpenAPI
@@ -400,6 +404,9 @@ apis:
   - type: GitHubRepository
     url: https://github.com/outline/openapi
 common:
+  - type: CapabilityMap
+    url: capabilities/outline-capability-edges.yml
+    name: Outline Business Capability Map
   - type: Website
     url: https://www.getoutline.com/
   - type: IssueTracker
