@@ -357,8 +357,6 @@ apis:
   humanURL: https://www.getoutline.com/developers
   baseURL: https://app.getoutline.com/api
   tags:
-  - AccessRequests
-  tags_raw:
   - Access Requests
   properties:
   - type: OpenAPI

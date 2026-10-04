@@ -1714,16 +1714,357 @@ paths:
       operationId: documentsEmptyTrash
 components:
   schemas:
-    Membership:
+    Group:
       type: object
       properties:
         id:
           type: string
           description: Unique identifier for the object.
           readOnly: true
-        userId:
+          format: uuid
+        name:
           type: string
-          description: Identifier for the associated user.
+          description: The name of this group.
+          example: Engineering
+        description:
+          type:
+          - string
+          - 'null'
+          description: A short description of this group.
+        externalId:
+          type:
+          - string
+          - 'null'
+          description: An identifier for this group in an external system, if linked.
+        disableMentions:
+          type: boolean
+          description: Whether mentioning this group is disabled.
+        externalGroup:
+          type:
+          - object
+          - 'null'
+          description: Details of the linked external group, if any.
+        memberCount:
+          type: number
+          description: The number of users that are members of the group
+          example: 11
+          readOnly: true
+        createdAt:
+          type: string
+          description: The date and time that this object was created
+          readOnly: true
+          format: date-time
+        updatedAt:
+          type: string
+          description: The date and time that this object was last changed
+          readOnly: true
+          format: date-time
+    Collection:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          readOnly: true
+          format: uuid
+        url:
+          type: string
+          description: The relative URL path at which the collection can be accessed.
+          readOnly: true
+        urlId:
+          type: string
+          description: A short unique identifier that can be used to identify the collection instead of the UUID.
+          readOnly: true
+          example: hDYep1TPAM
+        name:
+          type: string
+          description: The name of the collection.
+          example: Human Resources
+        description:
+          type:
+          - string
+          - 'null'
+          description: A description of the collection, may contain markdown formatting
+          example: ''
+        data:
+          type:
+          - object
+          - 'null'
+          description: The collection description as rich-text JSON, when available.
+        sort:
+          type: object
+          description: The sort of documents in the collection. Note that not all API responses respect this and it is left as a frontend concern to implement.
+          properties:
+            field:
+              type: string
+            direction:
+              type: string
+              enum:
+              - asc
+              - desc
+        index:
+          type:
+          - string
+          - 'null'
+          description: The position of the collection in the sidebar
+          example: P
+        color:
+          type:
+          - string
+          - 'null'
+          description: 'A color representing the collection, this is used to help make collections more identifiable in the UI. It should be in HEX format including the #'
+          example: '#123123'
+        icon:
+          type:
+          - string
+          - 'null'
+          description: A string that represents an icon in the outline-icons package or an emoji
+        permission:
+          $ref: '#/components/schemas/Permission'
+        templateManagement:
+          $ref: '#/components/schemas/Permission'
+        sharing:
+          type: boolean
+          description: Whether public document sharing is enabled in this collection
+          default: false
+        commenting:
+          type:
+          - boolean
+          - 'null'
+          description: Whether commenting is enabled in this collection
+        createdAt:
+          type: string
+          description: The date and time that this object was created
+          readOnly: true
+          format: date-time
+        updatedAt:
+          type: string
+          description: The date and time that this object was last changed
+          readOnly: true
+          format: date-time
+        deletedAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time that this object was deleted
+          readOnly: true
+          format: date-time
+        archivedAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time that this object was archived
+          readOnly: true
+          format: date-time
+        archivedBy:
+          $ref: '#/components/schemas/User'
+        sourceMetadata:
+          type:
+          - object
+          - 'null'
+          description: Metadata about the external source this collection was imported from, if any.
+          properties:
+            externalId:
+              type: string
+            externalName:
+              type: string
+            createdByName:
+              type: string
+    Error:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          example: false
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: number
+        data:
+          type: object
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          readOnly: true
+          format: uuid
+        name:
+          type: string
+          description: The name of this user, it is migrated from Slack or Google Workspace when the SSO connection is made but can be changed if necessary.
+          example: Jane Doe
+        avatarUrl:
+          type: string
+          format: uri
+          description: The URL for the image associated with this user, it will be displayed in the application UI and email notifications.
+        color:
+          type: string
+          description: A color representing the user, used in the UI for avatars without an image.
+          readOnly: true
+        email:
+          type: string
+          description: The email associated with this user, it is migrated from Slack or Google Workspace when the SSO connection is made but can be changed if necessary.
+          format: email
+          readOnly: true
+        role:
+          $ref: '#/components/schemas/UserRole'
+        isSuspended:
+          type: boolean
+          description: Whether this user has been suspended.
+          readOnly: true
+        lastActiveAt:
+          type:
+          - string
+          - 'null'
+          description: The last time this user made an API request, this value is updated at most every 5 minutes.
+          readOnly: true
+          format: date-time
+        timezone:
+          type:
+          - string
+          - 'null'
+          description: The timezone this user has registered.
+        createdAt:
+          type: string
+          description: The date and time that this user first signed in or was invited as a guest.
+          readOnly: true
+          format: date-time
+        updatedAt:
+          type: string
+          description: The date and time that this user was last updated.
+          readOnly: true
+          format: date-time
+        deletedAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time that this user was deleted, if applicable.
+          readOnly: true
+          format: date-time
+    Ability:
+      description: A single permission granted by a policy
+      example: true
+      oneOf:
+      - type: array
+        items:
+          type: string
+      - type: boolean
+    NavigationNode:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the document.
+          format: uuid
+        title:
+          type: string
+        url:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/NavigationNode'
+    DocumentDataAttribute:
+      type: object
+      properties:
+        dataAttributeId:
+          type: string
+          description: Unique identifier for the associated data attribute.
+          format: uuid
+        value:
+          description: The value of the data attribute for this document.
+          example: In Progress
+          oneOf:
+          - type: string
+          - type: boolean
+          - type: number
+        updatedAt:
+          type: string
+          description: The date and time that this object attribute was last changed
+          readOnly: true
+          format: date-time
+    Template:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          readOnly: true
+          format: uuid
+        url:
+          type: string
+          description: A URL path to access the template.
+          readOnly: true
+        urlId:
+          type: string
+          description: A short unique identifier for the template used in URLs.
+          readOnly: true
+        title:
+          type: string
+          description: The title of the template.
+        data:
+          type: object
+          description: The body of the template as a Prosemirror document.
+        icon:
+          type:
+          - string
+          - 'null'
+          description: An emoji to use as the template icon.
+        color:
+          type:
+          - string
+          - 'null'
+          description: The color of the template icon in hex format.
+        fullWidth:
+          type: boolean
+          description: Whether the template should be displayed full width.
+        collectionId:
+          type:
+          - string
+          - 'null'
+          description: Identifier for the associated collection, if any.
+          format: uuid
+        createdAt:
+          type: string
+          description: The date and time that the template was created.
+          readOnly: true
+          format: date-time
+        createdBy:
+          $ref: '#/components/schemas/User'
+        updatedAt:
+          type: string
+          description: The date and time that the template was last changed.
+          readOnly: true
+          format: date-time
+        updatedBy:
+          $ref: '#/components/schemas/User'
+        deletedAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time that the template was deleted.
+          readOnly: true
+          format: date-time
+        publishedAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time that the template was published.
+          readOnly: true
+          format: date-time
+    CollectionGroupMembership:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          readOnly: true
+        groupId:
+          type: string
+          description: Identifier for the associated group.
           readOnly: true
           format: uuid
         documentId:
@@ -1742,11 +2083,6 @@ components:
           format: uuid
         permission:
           $ref: '#/components/schemas/Permission'
-        createdById:
-          type: string
-          description: Identifier for the user who created this membership.
-          readOnly: true
-          format: uuid
         sourceId:
           type:
           - string
@@ -1754,16 +2090,15 @@ components:
           description: Identifier for the membership this one was inherited from, if any.
           readOnly: true
           format: uuid
-        index:
-          type:
-          - string
-          - 'null'
-          description: The position of the collection in the user's sidebar.
-    Permission:
-      type: string
-      enum:
-      - read
-      - read_write
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: number
+          example: 0
+        limit:
+          type: number
+          example: 25
     Document:
       type: object
       properties:
@@ -1882,153 +2217,6 @@ components:
           description: The date and time that this object was deleted
           readOnly: true
           format: date-time
-    DocumentDataAttribute:
-      type: object
-      properties:
-        dataAttributeId:
-          type: string
-          description: Unique identifier for the associated data attribute.
-          format: uuid
-        value:
-          description: The value of the data attribute for this document.
-          example: In Progress
-          oneOf:
-          - type: string
-          - type: boolean
-          - type: number
-        updatedAt:
-          type: string
-          description: The date and time that this object attribute was last changed
-          readOnly: true
-          format: date-time
-    Group:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object.
-          readOnly: true
-          format: uuid
-        name:
-          type: string
-          description: The name of this group.
-          example: Engineering
-        description:
-          type:
-          - string
-          - 'null'
-          description: A short description of this group.
-        externalId:
-          type:
-          - string
-          - 'null'
-          description: An identifier for this group in an external system, if linked.
-        disableMentions:
-          type: boolean
-          description: Whether mentioning this group is disabled.
-        externalGroup:
-          type:
-          - object
-          - 'null'
-          description: Details of the linked external group, if any.
-        memberCount:
-          type: number
-          description: The number of users that are members of the group
-          example: 11
-          readOnly: true
-        createdAt:
-          type: string
-          description: The date and time that this object was created
-          readOnly: true
-          format: date-time
-        updatedAt:
-          type: string
-          description: The date and time that this object was last changed
-          readOnly: true
-          format: date-time
-    Ability:
-      description: A single permission granted by a policy
-      example: true
-      oneOf:
-      - type: array
-        items:
-          type: string
-      - type: boolean
-    NavigationNode:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the document.
-          format: uuid
-        title:
-          type: string
-        url:
-          type: string
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/NavigationNode'
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object.
-          readOnly: true
-          format: uuid
-        name:
-          type: string
-          description: The name of this user, it is migrated from Slack or Google Workspace when the SSO connection is made but can be changed if necessary.
-          example: Jane Doe
-        avatarUrl:
-          type: string
-          format: uri
-          description: The URL for the image associated with this user, it will be displayed in the application UI and email notifications.
-        color:
-          type: string
-          description: A color representing the user, used in the UI for avatars without an image.
-          readOnly: true
-        email:
-          type: string
-          description: The email associated with this user, it is migrated from Slack or Google Workspace when the SSO connection is made but can be changed if necessary.
-          format: email
-          readOnly: true
-        role:
-          $ref: '#/components/schemas/UserRole'
-        isSuspended:
-          type: boolean
-          description: Whether this user has been suspended.
-          readOnly: true
-        lastActiveAt:
-          type:
-          - string
-          - 'null'
-          description: The last time this user made an API request, this value is updated at most every 5 minutes.
-          readOnly: true
-          format: date-time
-        timezone:
-          type:
-          - string
-          - 'null'
-          description: The timezone this user has registered.
-        createdAt:
-          type: string
-          description: The date and time that this user first signed in or was invited as a guest.
-          readOnly: true
-          format: date-time
-        updatedAt:
-          type: string
-          description: The date and time that this user was last updated.
-          readOnly: true
-          format: date-time
-        deletedAt:
-          type:
-          - string
-          - 'null'
-          description: The date and time that this user was deleted, if applicable.
-          readOnly: true
-          format: date-time
     TextEditMode:
       type: string
       description: The editing mode for text updates to a document. When set to `patch`, the `findText` parameter is required and the existing occurrence of `findText` will be replaced with the value of `text`.
@@ -2037,23 +2225,6 @@ components:
       - prepend
       - replace
       - patch
-    Policy:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object this policy references.
-          format: uuid
-          readOnly: true
-        abilities:
-          type: object
-          description: The abilities that are allowed by this policy, if an array is returned then the individual ID's in the array represent the memberships that grant the ability.
-          additionalProperties:
-            $ref: '#/components/schemas/Ability'
-          example:
-            read: true
-            update: true
-            delete: false
     SearchResult:
       type: object
       properties:
@@ -2084,131 +2255,6 @@ components:
           description: The date and time that this object was created
           readOnly: true
           format: date-time
-    Error:
-      type: object
-      properties:
-        ok:
-          type: boolean
-          example: false
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: number
-        data:
-          type: object
-    Collection:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object.
-          readOnly: true
-          format: uuid
-        url:
-          type: string
-          description: The relative URL path at which the collection can be accessed.
-          readOnly: true
-        urlId:
-          type: string
-          description: A short unique identifier that can be used to identify the collection instead of the UUID.
-          readOnly: true
-          example: hDYep1TPAM
-        name:
-          type: string
-          description: The name of the collection.
-          example: Human Resources
-        description:
-          type:
-          - string
-          - 'null'
-          description: A description of the collection, may contain markdown formatting
-          example: ''
-        data:
-          type:
-          - object
-          - 'null'
-          description: The collection description as rich-text JSON, when available.
-        sort:
-          type: object
-          description: The sort of documents in the collection. Note that not all API responses respect this and it is left as a frontend concern to implement.
-          properties:
-            field:
-              type: string
-            direction:
-              type: string
-              enum:
-              - asc
-              - desc
-        index:
-          type:
-          - string
-          - 'null'
-          description: The position of the collection in the sidebar
-          example: P
-        color:
-          type:
-          - string
-          - 'null'
-          description: 'A color representing the collection, this is used to help make collections more identifiable in the UI. It should be in HEX format including the #'
-          example: '#123123'
-        icon:
-          type:
-          - string
-          - 'null'
-          description: A string that represents an icon in the outline-icons package or an emoji
-        permission:
-          $ref: '#/components/schemas/Permission'
-        templateManagement:
-          $ref: '#/components/schemas/Permission'
-        sharing:
-          type: boolean
-          description: Whether public document sharing is enabled in this collection
-          default: false
-        commenting:
-          type:
-          - boolean
-          - 'null'
-          description: Whether commenting is enabled in this collection
-        createdAt:
-          type: string
-          description: The date and time that this object was created
-          readOnly: true
-          format: date-time
-        updatedAt:
-          type: string
-          description: The date and time that this object was last changed
-          readOnly: true
-          format: date-time
-        deletedAt:
-          type:
-          - string
-          - 'null'
-          description: The date and time that this object was deleted
-          readOnly: true
-          format: date-time
-        archivedAt:
-          type:
-          - string
-          - 'null'
-          description: The date and time that this object was archived
-          readOnly: true
-          format: date-time
-        archivedBy:
-          $ref: '#/components/schemas/User'
-        sourceMetadata:
-          type:
-          - object
-          - 'null'
-          description: Metadata about the external source this collection was imported from, if any.
-          properties:
-            externalId:
-              type: string
-            externalName:
-              type: string
-            createdByName:
-              type: string
     DocumentInsight:
       type: object
       description: A rollup of activity counts for a document over a daily or weekly period.
@@ -2241,75 +2287,11 @@ components:
         editorCount:
           type: integer
           description: Number of unique editors on this day.
-    Template:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object.
-          readOnly: true
-          format: uuid
-        url:
-          type: string
-          description: A URL path to access the template.
-          readOnly: true
-        urlId:
-          type: string
-          description: A short unique identifier for the template used in URLs.
-          readOnly: true
-        title:
-          type: string
-          description: The title of the template.
-        data:
-          type: object
-          description: The body of the template as a Prosemirror document.
-        icon:
-          type:
-          - string
-          - 'null'
-          description: An emoji to use as the template icon.
-        color:
-          type:
-          - string
-          - 'null'
-          description: The color of the template icon in hex format.
-        fullWidth:
-          type: boolean
-          description: Whether the template should be displayed full width.
-        collectionId:
-          type:
-          - string
-          - 'null'
-          description: Identifier for the associated collection, if any.
-          format: uuid
-        createdAt:
-          type: string
-          description: The date and time that the template was created.
-          readOnly: true
-          format: date-time
-        createdBy:
-          $ref: '#/components/schemas/User'
-        updatedAt:
-          type: string
-          description: The date and time that the template was last changed.
-          readOnly: true
-          format: date-time
-        updatedBy:
-          $ref: '#/components/schemas/User'
-        deletedAt:
-          type:
-          - string
-          - 'null'
-          description: The date and time that the template was deleted.
-          readOnly: true
-          format: date-time
-        publishedAt:
-          type:
-          - string
-          - 'null'
-          description: The date and time that the template was published.
-          readOnly: true
-          format: date-time
+    Permission:
+      type: string
+      enum:
+      - read
+      - read_write
     Sorting:
       type: object
       properties:
@@ -2322,32 +2304,16 @@ components:
           enum:
           - ASC
           - DESC
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: number
-          example: 0
-        limit:
-          type: number
-          example: 25
-    UserRole:
-      type: string
-      enum:
-      - admin
-      - member
-      - viewer
-      - guest
-    CollectionGroupMembership:
+    Membership:
       type: object
       properties:
         id:
           type: string
           description: Unique identifier for the object.
           readOnly: true
-        groupId:
+        userId:
           type: string
-          description: Identifier for the associated group.
+          description: Identifier for the associated user.
           readOnly: true
           format: uuid
         documentId:
@@ -2366,6 +2332,11 @@ components:
           format: uuid
         permission:
           $ref: '#/components/schemas/Permission'
+        createdById:
+          type: string
+          description: Identifier for the user who created this membership.
+          readOnly: true
+          format: uuid
         sourceId:
           type:
           - string
@@ -2373,48 +2344,53 @@ components:
           description: Identifier for the membership this one was inherited from, if any.
           readOnly: true
           format: uuid
+        index:
+          type:
+          - string
+          - 'null'
+          description: The position of the collection in the user's sidebar.
+    UserRole:
+      type: string
+      enum:
+      - admin
+      - member
+      - viewer
+      - guest
+    Policy:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object this policy references.
+          format: uuid
+          readOnly: true
+        abilities:
+          type: object
+          description: The abilities that are allowed by this policy, if an array is returned then the individual ID's in the array represent the memberships that grant the ability.
+          additionalProperties:
+            $ref: '#/components/schemas/Ability'
+          example:
+            read: true
+            update: true
+            delete: false
   headers:
-    Retry-After:
-      schema:
-        type: integer
-      description: Seconds in the future to retry the request, if rate limited.
-    RateLimit-Reset:
-      schema:
-        type: string
-      description: Timestamp in the future the duration will reset.
     RateLimit-Limit:
       schema:
         type: integer
       description: The maximum requests available in the current duration.
+    RateLimit-Reset:
+      schema:
+        type: string
+      description: Timestamp in the future the duration will reset.
+    Retry-After:
+      schema:
+        type: integer
+      description: Seconds in the future to retry the request, if rate limited.
     RateLimit-Remaining:
       schema:
         type: integer
       description: How many requests are left in the current duration.
   responses:
-    Unauthenticated:
-      description: The API key is missing or otherwise invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Validation:
-      description: The request failed one or more validations.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The current API key is not authorized to perform this action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     RateLimited:
       description: The request was rate limited.
       headers:
@@ -2440,6 +2416,30 @@ components:
               status:
                 type: number
                 example: 429
+    Validation:
+      description: The request failed one or more validations.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthenticated:
+      description: The API key is missing or otherwise invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The current API key is not authorized to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http
