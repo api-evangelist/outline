@@ -1,0 +1,48 @@
+slug: outline
+provider: Outline
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Documents
+  spec_file: outline-documents-api-openapi.yml
+  capability_id: BC-830
+  capability_id_l1: BC-830
+  capability_name: Knowledge Management
+  confidence: 0.8
+  evidence: POST /documents.create / documents.search — "Search all documents"; documents.answerQuestion
+    — "Query documents with natural language"
+  reason: Core authoring, import/export, search and insight operations over wiki documents in a team knowledge
+    base — Knowledge Management. Spans capture, curation and sharing, so no single L2 is named by the
+    evidence.
+- tag: OAuth Clients
+  spec_file: outline-oauth-clients-api-openapi.yml
+  capability_id: BC-4270.40
+  capability_id_l1: BC-4270
+  capability_name: Developer Identity & Credential Management
+  confidence: 0.72
+  evidence: POST /oauthClients.create  Create an OAuth client; POST /oauthClients.rotate_secret  Rotate
+    the secret for an OAuth client
+  reason: Operations create, update, rotate secrets for and delete OAuth client credentials used by integrations
+    against Outline's public API — this is issuance and stewardship of developer credentials/OAuth clients,
+    which BC-4270.40 names explicitly. Not generic workforce IAM, as the subjects are API client applications.
+- tag: Access Requests
+  spec_file: outline-access-requests-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: 'POST /accessRequests.approve — "Approve an access request"; schemas: Policy, AccessRequest,
+    User, UserRole'
+  reason: Create/approve/dismiss workflow over access requests with Policy and UserRole schemas is access
+    request and entitlement administration for the knowledge platform — Identity & Access Management.
+    Not a knowledge-content capability.
