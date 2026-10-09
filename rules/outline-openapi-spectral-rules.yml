@@ -1,0 +1,41 @@
+# harvested from https://github.com/outline/openapi/blob/892d56bda52b739985ccd985da45ee8ecd17a7c8/.spectral.yml on 2026-10-09 — a Spectral ruleset published in the provider's own GitHub repository (outline/openapi); found by GitHub code search, fetched verbatim
+x-method: harvested
+x-stamped: 2026-10-09
+x-source-url: https://github.com/outline/openapi/blob/892d56bda52b739985ccd985da45ee8ecd17a7c8/.spectral.yml
+extends:
+  - spectral:oas
+
+rules:
+  # Operations must have summaries (short description shown in docs)
+  oas3-operation-security-defined: error
+
+  # Operations should have descriptions (detailed explanation)
+  operation-description: error
+
+  # Parameters should have descriptions
+  oas3-parameter-description: error
+
+  # Tags should have descriptions
+  openapi-tags: warn
+
+  # Ensure operationId is present and unique
+  operation-operationId: error
+  operation-operationId-unique: error
+
+  # Valid operation examples
+  oas3-valid-media-example: warn
+  oas3-valid-schema-example: warn
+
+  # Schema validation
+  oas3-schema: error
+
+  # Disable some overly strict rules for this project
+  info-contact: off
+  info-license: off
+  oas3-api-servers: off
+
+  # Unused components should be cleaned up
+  oas3-unused-component: error
+
+  # Ensure no $ref siblings (invalid in OpenAPI 3.0)
+  no-$ref-siblings: error

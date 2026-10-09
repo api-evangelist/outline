@@ -446,6 +446,8 @@ common:
     url: finops/outline-finops.yml
   - url: https://www.getoutline.com/changelog
     type: Blog
+  - type: SpectralRules
+    url: https://github.com/outline/openapi/blob/892d56bda52b739985ccd985da45ee8ecd17a7c8/.spectral.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
