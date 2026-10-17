@@ -165,6 +165,20 @@ paths:
       operationId: attachmentsDelete
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          example: false
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: number
+        data:
+          type: object
     Attachment:
       type: object
       properties:
@@ -189,21 +203,25 @@ components:
           type: string
           description: Identifier for the user that created the attachment.
           format: uuid
-    Error:
-      type: object
-      properties:
-        ok:
-          type: boolean
-          example: false
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: number
-        data:
-          type: object
   responses:
+    Unauthenticated:
+      description: The API key is missing or otherwise invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Validation:
+      description: The request failed one or more validations.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     RateLimited:
       description: The request was rate limited.
       headers:
@@ -229,24 +247,6 @@ components:
               status:
                 type: number
                 example: 429
-    Validation:
-      description: The request failed one or more validations.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthenticated:
-      description: The API key is missing or otherwise invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: The current API key is not authorized to perform this action.
       content:
@@ -258,6 +258,10 @@ components:
       schema:
         type: integer
       description: The maximum requests available in the current duration.
+    RateLimit-Remaining:
+      schema:
+        type: integer
+      description: How many requests are left in the current duration.
     Retry-After:
       schema:
         type: integer
@@ -266,10 +270,6 @@ components:
       schema:
         type: string
       description: Timestamp in the future the duration will reset.
-    RateLimit-Remaining:
-      schema:
-        type: integer
-      description: How many requests are left in the current duration.
   securitySchemes:
     BearerAuth:
       type: http

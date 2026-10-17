@@ -262,59 +262,6 @@ paths:
       operationId: commentsList
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: number
-          example: 0
-        limit:
-          type: number
-          example: 25
-    Ability:
-      description: A single permission granted by a policy
-      example: true
-      oneOf:
-      - type: array
-        items:
-          type: string
-      - type: boolean
-    Sorting:
-      type: object
-      properties:
-        sort:
-          type: string
-          example: updatedAt
-        direction:
-          type: string
-          example: DESC
-          enum:
-          - ASC
-          - DESC
-    Policy:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object this policy references.
-          format: uuid
-          readOnly: true
-        abilities:
-          type: object
-          description: The abilities that are allowed by this policy, if an array is returned then the individual ID's in the array represent the memberships that grant the ability.
-          additionalProperties:
-            $ref: '#/components/schemas/Ability'
-          example:
-            read: true
-            update: true
-            delete: false
-    UserRole:
-      type: string
-      enum:
-      - admin
-      - member
-      - viewer
-      - guest
     Error:
       type: object
       properties:
@@ -329,6 +276,22 @@ components:
           type: number
         data:
           type: object
+    UserRole:
+      type: string
+      enum:
+      - admin
+      - member
+      - viewer
+      - guest
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: number
+          example: 0
+        limit:
+          type: number
+          example: 25
     User:
       type: object
       properties:
@@ -453,7 +416,79 @@ components:
           type: string
           description: The document text that the comment is anchored to, only included if includeAnchorText=true.
           readOnly: true
+    Sorting:
+      type: object
+      properties:
+        sort:
+          type: string
+          example: updatedAt
+        direction:
+          type: string
+          example: DESC
+          enum:
+          - ASC
+          - DESC
+    Policy:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object this policy references.
+          format: uuid
+          readOnly: true
+        abilities:
+          type: object
+          description: The abilities that are allowed by this policy, if an array is returned then the individual ID's in the array represent the memberships that grant the ability.
+          additionalProperties:
+            $ref: '#/components/schemas/Ability'
+          example:
+            read: true
+            update: true
+            delete: false
+    Ability:
+      description: A single permission granted by a policy
+      example: true
+      oneOf:
+      - type: array
+        items:
+          type: string
+      - type: boolean
+  headers:
+    Retry-After:
+      schema:
+        type: integer
+      description: Seconds in the future to retry the request, if rate limited.
+    RateLimit-Limit:
+      schema:
+        type: integer
+      description: The maximum requests available in the current duration.
+    RateLimit-Remaining:
+      schema:
+        type: integer
+      description: How many requests are left in the current duration.
+    RateLimit-Reset:
+      schema:
+        type: string
+      description: Timestamp in the future the duration will reset.
   responses:
+    Unauthenticated:
+      description: The API key is missing or otherwise invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The current API key is not authorized to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     RateLimited:
       description: The request was rate limited.
       headers:
@@ -479,41 +514,6 @@ components:
               status:
                 type: number
                 example: 429
-    Unauthenticated:
-      description: The API key is missing or otherwise invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The current API key is not authorized to perform this action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  headers:
-    RateLimit-Limit:
-      schema:
-        type: integer
-      description: The maximum requests available in the current duration.
-    Retry-After:
-      schema:
-        type: integer
-      description: Seconds in the future to retry the request, if rate limited.
-    RateLimit-Reset:
-      schema:
-        type: string
-      description: Timestamp in the future the duration will reset.
-    RateLimit-Remaining:
-      schema:
-        type: integer
-      description: How many requests are left in the current duration.
   securitySchemes:
     BearerAuth:
       type: http
